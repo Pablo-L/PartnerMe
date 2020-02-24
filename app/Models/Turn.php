@@ -8,4 +8,14 @@ class Turn extends Model
     private $day; //día de la semana en que se imparte el turno
     private $beginHour; //hora a la que comienza el turno
     private $endHour; //hora a la que termina el turno
+    private $subject_id;//clave ajena a subject
+
+    //relación con Subject
+    public function subjects(){
+        return $this->belongsTo('App\Subject');
+    }
+    //relación con Student
+    public function students(){
+        return $this->belongsToMany('App\Student');
+    }
 } 

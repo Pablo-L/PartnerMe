@@ -21,7 +21,7 @@ class CreateTurnsTable extends Migration
             $table->time('beginHour');
             $table->time('endHour');
             $table->unsignedBigInteger('subject_id');
-            $table->foreing('subject_id')->references('id')->on('subjects');
+            $table->foreign('subject_id')->references('id')->on('subjects');
         });
     }
 

@@ -17,9 +17,9 @@ class CreateStudentsTurnsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->unsignedBigInteger('students_id');
-            $table->foreing('students_id')->references('id')->on('students');
+            $table->foreign('students_id')->references('id')->on('students');
             $table->unsignedBigInteger('turns_id');
-            $table->foreing('turns_id')->references('id')->on('turns');
+            $table->foreign('turns_id')->references('id')->on('turns');
             $table->unique(['students_id','turns_id']);
         });
     }

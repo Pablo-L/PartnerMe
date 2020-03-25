@@ -18,6 +18,14 @@ class CreateStudentsTable extends Migration
             $table->timestamps();
             $table->string('phone');
             $table->string('description');
+
+            $table->string('alias')->unique();
+            $table->string('name');
+            $table->string('lastName'); 
+            $table->string('email');
+            $table->string('password');
+            $table->string('studies');
+            $table->integer('course');
         });
     }
 

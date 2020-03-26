@@ -8,5 +8,12 @@
 @endsection
 
 @section('content')
-    
+    <ul>
+        @foreach($students as $student)
+            <li>
+                {{ $student->name }}
+            </li>
+        @endforeach
+
+    </ul>
 @endsection

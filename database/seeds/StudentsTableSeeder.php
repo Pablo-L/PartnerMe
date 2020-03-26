@@ -38,7 +38,7 @@ class StudentsTableSeeder extends Seeder
 
         $students = factory(App\Student::class, 20)->make();
 
-        for($i = 0; $i < 1; $i++){
+        for($i = 0; $i < 20; $i++){
             DB::table('students')->insert([
                 'phone' => $students[$i]->phone,
                 'description' => $students[$i]->description,

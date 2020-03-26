@@ -1,0 +1,26 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+}
+
+.main-container{
+    width: 100vw;
+    height: 85vh;
+    background-color: var(--main-azul-claro);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo{
+    font-family: 'Rubik', sans-serif;
+    font-size: 72px;
+    font-weight: bold;
+    color: white;
+
+}

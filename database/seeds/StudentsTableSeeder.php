@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use SebastianBergmann\Environment\Console;
 
 class StudentsTableSeeder extends Seeder
 {
@@ -13,8 +14,9 @@ class StudentsTableSeeder extends Seeder
     {
         //borramos datos de la tabla
         DB::table('students')->delete();
+
         //rellenamos la tabla
-        DB::table('students')->insert([[
+        /*DB::table('students')->insert([[
             'phone' => '+34112893389',
             'description' => 'Años de experiencia en la gestión de sistemas.'
         ],[
@@ -32,6 +34,23 @@ class StudentsTableSeeder extends Seeder
         ],[
             'phone' => '+34438898335',
             'description' => 'Me llamo pedro y PartnerMe es una aplicación genial'
-        ]]);
+        ]]);*/
+
+        $students = factory(App\Student::class, 20)->make();
+
+        for($i = 0; $i < 1; $i++){
+            DB::table('students')->insert([
+                'phone' => $students[$i]->phone,
+                'description' => $students[$i]->description,
+                'alias' => $students[$i]->alias,
+                'name' => $students[$i]->name,
+                'lastName' => $students[$i]->lastName,
+                'email' => $students[$i]->email,
+                'password' => $students[$i]->password,
+                'studies' => $students[$i]->studies,
+                'course' => $students[$i]->course,
+            ]);
+        }
+
     }
 }

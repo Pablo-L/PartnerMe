@@ -19,11 +19,21 @@ class Student extends Model{
     private $studies;
     private $course;
 
+    protected $fillable = [
+        'phone', 'description', 'alias', 'name', 'lastName', 'email', 'password', 'studies', 'course'
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+
     public function turns(){
         return $this->belongsToMany('App\Turn');
     }
-
+/*
     public function __construct(){
+        $this->phone = "634563726";
+        $this->description = "defaultDescription";
         $this->alias = "default";
         $this->name = "defaultName";
         $this->lastName = "defaultLastName";
@@ -32,9 +42,11 @@ class Student extends Model{
         $this->studies = "Ingenieriía informática";
         $this->course = 3;
     }
+*/
 
-
-    public function __constructAll($alias, $name, $lastName, $email, $password, $studies, $course){
+   /* public function __constructAll($phone, $description, $alias, $name, $lastName, $email, $password, $studies, $course){
+        $this->phone = $phone;
+        $this->description = $description;
         $this->alias = $alias;
         $this->name = $name;
         $this->lastName = $lastName;
@@ -43,10 +55,10 @@ class Student extends Model{
         $this->studies = $studies;
         $this->course = $course; 
     }
-
+*/
 
     public function __destruct(){
-        echo 'Destruyendo: ', $this->alias, PHP_EOL;
+        echo 'Destruyendo: ' . $this->alias . PHP_EOL;
     }
 
 

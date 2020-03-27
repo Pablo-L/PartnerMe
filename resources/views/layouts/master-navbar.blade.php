@@ -18,7 +18,7 @@
 
       @section('nav')
          <nav>
-            <div class="logo"><h1>PartnerMe</h1></div>
+            <div class="logo"><a href=" {{URL::route('main')}} "><h1>PartnerMe</h1></a></div>
             
             <div class="icon-menu">
                <i class="fas fa-bars"></i>

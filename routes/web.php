@@ -13,8 +13,7 @@
 
 Route::get('/', function () {
     return view('index');
-});
-
+})->name('main');
 
 Route::group(['prefix'=>'students'], function(){
     Route::get('/', 'StudentController@index');

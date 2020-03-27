@@ -7,7 +7,8 @@
     --main-turquesa: #3ACACE;
 }
 
-/*Cuando se use en otras vistas simplemente cambiar el color de fondo*/
+/* Usar si se decide otra alternativa de diseño en el dropdown
+Cuando se use en otras vistas simplemente cambiar el color de fondo
 .drop-filler{
     background-color: var(--main-azul-claro);
     grid-row: 2 / span 2;
@@ -16,7 +17,7 @@
     position: relative;
     left: calc(-50vw + 50%);
 }
-
+*/
 
 .main-container{
     width: 100vw;

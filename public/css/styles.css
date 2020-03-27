@@ -120,8 +120,9 @@
   
   .dropdown-content {
   
-    grid-column: col-start / span 4;
-    grid-row: 2 / span 1;
+    /*Descomentar si se decide otra alternativa*/
+    /*grid-column: col-start / span 4;
+    grid-row: 2 / span 1;*/
   
     display: none;
     flex-direction: column;
@@ -133,16 +134,22 @@
     z-index: 1;
   
     text-align: center;
+
+    position: absolute;
+    top: 100px;
   }
   
+  a { outline: 0; }
   .dropdown-content a {
     font-family: 'Rubik', sans-serif;
     font-size: 24px;
     font-weight: bold;
     color: #fff;    
     
-    padding: 16px 16px;
+    /*padding: 16px 16px;*/
+    padding: 16px 154px;
     text-decoration: none;
+
   }
   
   .dropdown-content a:hover {

@@ -14,4 +14,9 @@ class StudentController extends Controller{
         ]);
     }
 
+    public function detail($alias){
+        echo "<h1>Hola $alias </h1>";
+        die();
+    }
+
 }

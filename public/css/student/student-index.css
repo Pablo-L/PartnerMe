@@ -7,7 +7,8 @@
     --main-turquesa: #3ACACE;
 }
 
-/*Cuando se use en otras vistas simplemente cambiar el color de fondo*/
+/* Usar si se decide otra alternativa de diseño en el dropdown
+Cuando se use en otras vistas simplemente cambiar el color de fondo
 .drop-filler{
     background-color: var(--main-gris);
     grid-row: 2 / span 2;
@@ -16,7 +17,7 @@
     position: relative;
     left: calc(-50vw + 50%);
 }
-
+*/
 .main-container{
     width: 100vw;
     height: 85vh;
@@ -24,5 +25,49 @@
     
     display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+#students-table {
+    font-family: 'Rubik', sans-serif;
+    border-collapse: collapse;
+    width: 85vw;
+}
+  
+#students-table td, #students-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#students-table tr:nth-child(even){background-color: #f2f2f2;}
+#students-table tr:hover {background-color: #ddd;}
+
+#students-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: var(--main-morado);
+    color: #fff;
+}
+
+a{ outline: 0; }
+td > a:visited{
+    color: var(--main-morado);
+  }
+
+td > a:hover {
+    background-color: var(--main-morado);
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.alias-links{
+    color: var(--main-morado);
+    text-decoration: none;
+}
+
+.alias-links:hover{
+    background: none;
+    color: var(--main-azul-claro);
+    padding: 0px;
 }

@@ -24,8 +24,9 @@
                <i class="fas fa-bars"></i>
             </div>
             
-            <!--Lo uso para no tener que marcar el dropdown como absolute-->
+            <!--Se usaría para no tener que marcar el dropdown como absolute
             <div class="drop-filler"></div>
+            -->
             
             <div class="dropdown-content">
                <a href="#">Opción 1</a>

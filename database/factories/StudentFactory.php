@@ -10,7 +10,7 @@ $factory->define(Student::class, function (Faker $faker) {
     return [
         'phone' => '603394934',
         'description' => $faker->text,
-        'alias' => $faker->unique()->uuid,
+        'alias' => '@' . $faker->unique()->userName,
         'name' => $faker->name,
         'lastName' => $faker->lastName,
         'email' => $faker->safeEmail,

@@ -293,11 +293,11 @@
       width: 100vw;
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 0px 2fr 1fr;
+      grid-template-rows: 1fr 0fr 0fr 1fr;
       grid-template-areas: "logo" 
                            "menuDrop"
-                           "busqueda"
-                           "loginRegistro";
+                           "loginRegistro"
+                           "busqueda";
       
     }
 
@@ -335,6 +335,7 @@
     .botonesLogin{
       grid-area: loginRegistro;
       justify-content: center;
+      align-items: flex-end;
       width: 100%;
     }
 

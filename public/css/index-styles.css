@@ -22,7 +22,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 .main-container{
     width: 100vw;
     height: 85vh;
-    background-color: var(--main-azul-claro);
+    background-color: var(--main-gris-oscuro);
     
     display: flex;
     justify-content: center;

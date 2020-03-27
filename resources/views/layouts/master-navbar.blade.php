@@ -18,21 +18,22 @@
 
       @section('nav')
          <nav>
-            <div class="logo"><a href=" {{URL::route('main')}} "><h1>PartnerMe</h1></a></div>
-            
-            <div class="icon-menu">
-               <i class="fas fa-bars"></i>
+
+            <div class="logoBox">
+               <div class="logo"><a href=" {{URL::route('main')}} "><h1>PartnerMe</h1></a></div>
+               <div class="icon-menu">
+                  <i class="fas fa-bars"></i>
+               </div>
+               <div class="dropdown-content">
+                  <a href="#">Opción 1</a>
+                  <a href="#">Opción 2</a>
+                  <a href="#">Opción 3</a>
+               </div>
             </div>
             
             <!--Se usaría para no tener que marcar el dropdown como absolute
             <div class="drop-filler"></div>
             -->
-            
-            <div class="dropdown-content">
-               <a href="#">Opción 1</a>
-               <a href="#">Opción 2</a>
-               <a href="#">Opción 3</a>
-            </div>
 
             <div class="search-container">
                <input type="text" class="search_field" placeholder="Buscar " name="search" id='name' required />
@@ -69,7 +70,7 @@
       <script>
          const btnMenuDrop = document.querySelector('.icon-menu')
          const menuDrop = document.querySelector('.dropdown-content')
-         const logo = document.querySelector('.logo')
+         const logo = document.querySelector('.logoBox')
          const icon = document.querySelector('.icon-menu')
          const main = document.querySelector('.main-container')
 
@@ -77,12 +78,18 @@
 
             if(menuDrop.style.display === "flex"){
                menuDrop.style.display = "none"
-               logo.className = "logo"
+               logo.className = "logoBox"
                icon.className = "icon-menu"
             }else{
                menuDrop.style.display = "flex"
-               logo.className = "logoDrop"
+               logo.className = "logoBoxDrop"
                icon.className = "icon-menuDrop"
+
+               var ancho = 0.000;
+               ancho = logo.offsetWidth;
+               var anchoTexto = ancho + 'px';
+               console.log(anchoTexto)
+               menuDrop.style.width = anchoTexto;
             }
             
          });
@@ -90,7 +97,7 @@
          main.addEventListener('click', async () => {
             if(menuDrop.style.display === "flex"){
                menuDrop.style.display = "none"
-               logo.className = "logo"
+               logo.className = "logoBox"
                icon.className = "icon-menu"
             }
          });

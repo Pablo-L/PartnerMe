@@ -29,13 +29,11 @@
     
   }
   
-  .logo{
-    grid-column: col-start / span 3;
+  .logoBox{
+    grid-column: col-start / span 4;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-  
-    margin-right: -20px;
   }
   
   .logo > a{ text-decoration: none;}
@@ -47,10 +45,10 @@
     cursor: pointer;
   }
   
-  .logoDrop{
-    grid-column: col-start / span 3;
+  .logoBoxDrop{
+    grid-column: col-start / span 4;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
   
     height: 80%;
@@ -58,13 +56,12 @@
   
     background-color: var(--main-morado);
     color: #fff;
-    margin-right: -20px;
   
-    border-radius: 6px 0px 0px 0px;
+    border-radius: 6px 6px 0px 0px;
   }
   
-  .logoDrop > a {text-decoration: none;}
-  .logoDrop > a > h1{
+  .logoBoxDrop > div > a {text-decoration: none;}
+  .logoBoxDrop > div > a > h1{
     font-size: 36px;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
@@ -72,13 +69,10 @@
   }
   
   .icon-menu {
-    grid-column: col-start 4 / span 1;
     
     display: flex;
     align-items: center;
     align-self: center;
-    justify-self: left;
-  
     
     background-color: var(--main-morado);
     border-radius: 6px;
@@ -93,24 +87,9 @@
     background-color: #fff;
     color: var(--main-morado);
   }
-  
-  .icon-menuDrop {
-    grid-column: col-start 4 / span 1;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    height: 80%;
-    align-self: end;
-    
-    margin-right: -20px;
-    padding-right: 20px;
-    background-color: var(--main-morado);
+
+  .icon-menuDrop{
     font-size: 28px;
-    color: #fff;
-  
-    border-radius: 0px 6px 0px 0px;
   }
   
   .icon-menuDrop > i:hover{
@@ -129,7 +108,6 @@
     display: none;
     flex-direction: column;
     
-    margin-right: -20px;
     background-color: var(--main-morado);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 0px 0px 6px 6px;
@@ -148,9 +126,9 @@
     font-weight: bold;
     color: #fff;    
     
-    /*padding: 16px 16px;*/
-    padding: 16px 154px;
     text-decoration: none;
+
+    padding: 16px 0px;
 
   }
   
@@ -315,4 +293,34 @@
     color: var(--main-turquesa);
     background-color: #fff;
     cursor: pointer;
+  }
+
+  @media (max-width: 1400px) {
+
+    nav {
+      width: 100vw;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-areas: "logo" 
+                           "busqueda"
+                           "loginRegistro";
+      
+    }
+
+    .logo, .icon-menu{
+      grid-area: logo;
+    }
+
+    .search-container, .custom-select{
+      grid-area: busqueda;
+    }
+
+    .btnLogin, .btnRegister{
+      grid-area: loginRegistro;
+    }
+
+
+
+
   }

@@ -1,0 +1,28 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+}
+
+/* Usar si se decide otra alternativa de diseño en el dropdown
+Cuando se use en otras vistas simplemente cambiar el color de fondo
+.drop-filler{
+    background-color: var(--main-gris);
+    grid-row: 2 / span 2;
+    width: 100vw;
+    grid-column: 1 / -1;
+    position: relative;
+    left: calc(-50vw + 50%);
+}
+*/
+.main-container{
+    width: 100vw;
+    height: 85vh;
+    background-color: var(--main-gris);
+    
+    display: flex;
+    justify-content: center;
+}

@@ -15,8 +15,10 @@ class StudentController extends Controller{
     }
 
     public function detail($alias){
-        echo "<h1>Hola $alias </h1>";
-        die();
+        $student = DB::table('students')->where('alias', $alias)->first();
+		return view('student.student-detail',[
+			'student' => $student
+		]);
     }
 
 }

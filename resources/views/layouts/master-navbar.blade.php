@@ -88,11 +88,9 @@
                logo.className = "logoBoxDrop"
                icon.className = "icon-menuDrop"
 
-               var ancho = 0.000;
-               ancho = logo.offsetWidth;
-               var anchoTexto = ancho + 'px';
-               console.log(anchoTexto)
-               menuDrop.style.width = anchoTexto;
+               var anchoDecimal = logo.getBoundingClientRect();
+               var anchoDecimalText = anchoDecimal.width + 'px';
+               menuDrop.style.width = anchoDecimalText;
             }
             
          });

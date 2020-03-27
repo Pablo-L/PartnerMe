@@ -20,9 +20,151 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 */
 .main-container{
     width: 100vw;
-    height: 85vh;
     background-color: var(--main-gris);
-    
+
     display: flex;
     justify-content: center;
 }
+
+.student-container{
+    width: 75vw;
+
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 2fr;
+    grid-template-rows: 0fr 0fr 0fr 1fr 0fr 1fr;
+    grid-template-areas: "foto foto foto"
+                         "alias alias alias"
+                         "nomyap nomyap valoracion"
+                         "datos datos datos"
+                         "grpTitle grpTitle grpTitle"
+                         "grupos grupos grupos";
+
+    justify-items: center;
+    align-items: center;
+
+}
+
+.photo{
+    grid-area: foto;
+
+    width: 180px;
+    height: 180px;
+    background-color: #fff;
+    border-radius: 50%;
+
+    background-image: url(../../imgs/default-user-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.alias{
+    grid-area: alias;
+    border-bottom: 1px solid rgba(125, 125, 125, 0.5);
+}
+
+.groupTitle{
+    grid-area: grpTitle;
+}
+
+.alias, .groupTitle{
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--main-morado);
+
+    width: 70%;
+    text-align: center;
+    padding: 15px;
+}
+
+.nya{
+    grid-area: nomyap;
+    padding: 10px;
+
+    justify-self: flex-start;
+}
+
+.nya > div{
+    padding: 5px;
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--main-gris-oscuro);
+}
+
+.data{
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    color: var(--main-gris-oscuro);
+}
+
+.name{
+    margin-top: 10px;
+}
+
+.puntuation{
+    grid-area: valoracion;
+    display: flex;
+    align-self: flex-start;
+    justify-self: left;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 30px;
+
+    height: 100%;
+    width: 70%;
+    background-color: var(--main-gris-oscuro);
+    padding: 20px;
+
+    box-sizing: border-box;
+}
+
+.puntuation > label{
+    color: #fff;
+}
+
+.dContainer{
+    grid-area: datos;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+    border-bottom: 1px solid rgba(125, 125, 125, 0.5);
+}
+
+.dContainer > div{
+    padding: 10px;
+}
+
+@media (max-width: 1300px) {
+    .student-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(7, 0fr);
+        grid-template-areas: "foto"
+                             "alias"
+                             "nomyap"
+                             "valoracion"
+                             "datos"
+                             "grpTitle"
+                             "grupos";
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nya, .puntuation, .dContainer {
+        justify-self: center;
+        text-align: center;
+    }
+
+    .puntuation{
+        margin: 0px;
+    }
+}
+
+

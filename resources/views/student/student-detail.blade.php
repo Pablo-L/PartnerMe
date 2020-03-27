@@ -8,8 +8,53 @@
 @endsection
 
 @section('content')
-    <h1>{{$student->name}}</h1>
-    <p>
-        {{$student->description}}
-    </p>
+
+    <div class="student-container">
+        <div class="photo"></div>
+        <div class="alias">{{ $student->alias }}</div>
+    
+        <div class="nya">
+            <div class="name">
+                <label>Nombre: </label>
+                <span class="data"> {{ $student->name }} </span>
+            </div>
+            
+            <div>
+                <label>Apellidos: </label>
+                <span class="data"> {{ $student->lastName }} </span>
+            </div>
+        </div>
+    
+        <div class="puntuation">
+            <label>Valoracion: </label>
+        </div>
+
+        <div class="dContainer">
+            <div class="description">
+                <label>Descripción: </label>
+                <br>
+                <span class="data"> {{ $student->description }} </span>  
+            </div>
+
+            <div class="phone">
+                <label>Teléfono: </label>
+                <span class="data"> {{ $student->phone }} </span>  
+            </div>
+
+            <div class="email">
+                <label>Correo electrónico: </label>
+                <span class="data"> {{ $student->email }} </span>  
+            </div>
+
+            <div class="degree">
+                <label>Grado Universitario: </label>
+                <span class="data"> {{ $student->studies }} </span>  
+            </div>
+        </div>
+
+        <div class="groupTitle">Grupos a los que pertenece</div>
+    
+    </div>
+
+
 @endsection

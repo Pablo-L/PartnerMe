@@ -24,12 +24,14 @@
                <div class="icon-menu">
                   <i class="fas fa-bars"></i>
                </div>
-               <div class="dropdown-content">
+
+            </div>
+
+            <div class="dropdown-content">
                   <a href="#">Opción 1</a>
                   <a href="#">Opción 2</a>
                   <a href="#">Opción 3</a>
                </div>
-            </div>
             
             <!--Se usaría para no tener que marcar el dropdown como absolute
             <div class="drop-filler"></div>
@@ -51,6 +53,7 @@
                </select>
             </div>
 
+            <div class="botonesLogin">
             <div class="btnLogin">
                <input type="button" name="" value="Iniciar sesión">
             </div>
@@ -58,7 +61,7 @@
             <div class="btnRegister">
                <input type="button" name="" value="Registrarse">
             </div>
-
+            </div>
 
          </nav>
       @show

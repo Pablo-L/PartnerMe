@@ -239,28 +239,20 @@
   
   }
   
-  .btnLogin{
-    grid-column: col-start 13 / span 2;
+  .botonesLogin{
+    grid-column: col-start 13 / span 4;
   
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
-  
-  .btnRegister{
-    grid-column: col-start 15 / span 2;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   
   input[type=button] {
     
     width: 100%;
-    padding: 6px;
+    padding: 8px 10px;
     
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: bold;
     font-size: 20px;
     color: #fff;
@@ -301,24 +293,60 @@
       width: 100vw;
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 0px 2fr 1fr;
       grid-template-areas: "logo" 
+                           "menuDrop"
                            "busqueda"
                            "loginRegistro";
       
     }
 
-    .logo, .icon-menu{
+    .logoBox{
+      background-color: var(--main-morado);
+    }
+
+    .logo > a > h1{
+      color: #fff;
+    }
+
+    .logoBox, .logoBoxDrop{
       grid-area: logo;
     }
 
-    .search-container, .custom-select{
+    .logoBoxDrop{
+      height: 100%;
+    }
+
+    .dropdown-content{
+      display: none;
+      grid-area: menuDrop;
+    }
+
+    .search-container{
       grid-area: busqueda;
+      justify-self: center;
+      width: 75vw;
+    }
+
+    .custom-select{
+      display:none;
+    }
+
+    .botonesLogin{
+      grid-area: loginRegistro;
+      justify-content: center;
+      width: 100%;
     }
 
     .btnLogin, .btnRegister{
-      grid-area: loginRegistro;
+      width: 100%;
     }
+
+    input[type=button]{
+      border-radius: 0px;
+      padding: 16px;
+    }
+
 
 
 

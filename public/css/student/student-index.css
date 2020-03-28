@@ -29,13 +29,10 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
 /*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
 #statusCode{
-    display: flex;
+    display: none;
     justify-content: center;
     align-self: center;
     width: 83vw;
-
-    padding: 15px;
-    margin: 10px;
 
     background-color: var(--main-turquesa);
     border-radius: 8px;
@@ -44,26 +41,25 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     font-size: 20px;
     font-weight: bold;
     color: #fff;
-
-    animation-delay: 1s;
+    
     animation-duration: 0.5s;
     animation-fill-mode: both;
     animation-name: fadeInArriba;
+    animation-timing-function:ease;
 }
 
 @keyframes fadeInArriba {
 	from{
-        opacity: 1;
-		transform: translate3d(0, 0, 0);
+		opacity: 0;
+		transform: translate3d(0, -50%, 0);
 	}
 
 	to{
-        opacity: 0;
-        padding: 0%;
-        margin: 0%;
-        transform: translate3d(0, -10%, 0);
-    }
-    
+        opacity: 1;
+        padding: 15px;
+        margin: 10px;
+		transform: translate3d(0, 0%, 0);
+	}
 }
 
 

@@ -15,8 +15,16 @@ Route::get('/', function () {
     return view('index');
 })->name('main');
 
+Route::get('/login', function() {
+	return view('login');
+})->name('login');
+
+Route::get('/signup', function(){
+	return view('signup');
+})->name('signup');
+
 Route::group(['prefix'=>'students'], function(){
-    Route::get('/', 'StudentController@index');
+    Route::get('/', 'StudentController@index')->name('studentsIndex');
     Route::get('/detail/{alias}', 'StudentController@detail');
     Route::get('delete/{alias}', 'StudentController@delete');
 });

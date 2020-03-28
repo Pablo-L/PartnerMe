@@ -1,0 +1,51 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+}
+
+/* Usar si se decide otra alternativa de diseño en el dropdown
+Cuando se use en otras vistas simplemente cambiar el color de fondo
+.drop-filler{
+    background-color: var(--main-gris);
+    grid-row: 2 / span 2;
+    width: 100vw;
+    grid-column: 1 / -1;
+    position: relative;
+    left: calc(-50vw + 50%);
+}
+*/
+.main-container{
+    width: 100vw;
+    background-color: var(--main-gris);
+
+    display: flex;
+    justify-content: center;
+}
+
+.signup-container{
+    width: 75vw;
+    height: 85vh;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas: "titulo titulo"
+                         "nombre apellidos"
+                         "correo correo"
+                         "pass repass"
+                         "telefono alias"
+                         "grado curso"
+                         "desc desc"
+                         "btn  btn";
+
+    justify-items: center;
+    align-items: center;
+
+}

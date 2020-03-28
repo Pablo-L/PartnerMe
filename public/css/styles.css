@@ -119,7 +119,8 @@
     top: 100px;
   }
   
-  a { outline: 0; }
+  a, a:active, a:focus {outline: none;}
+  a:link {text-decoration: none; outline: none;}
   .dropdown-content a {
     font-family: 'Rubik', sans-serif;
     font-size: 24px;
@@ -247,10 +248,11 @@
     justify-content: space-evenly;
   }
   
-  input[type=button] {
+  button {
     
     width: 100%;
-    padding: 8px 10px;
+    padding: 8px;
+    margin: 0px 10px;
     
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
@@ -263,29 +265,26 @@
     
   }
 
+  button > a{
+    color: #fff;
+    white-space: nowrap;
+  }
+
   input::-moz-focus-inner { 
     border: 0; 
   }
   
-  .btnLogin > input[type=button]{
+  .btnLogin{
     background-color: var(--main-azul-claro);
   }
   
-  .btnRegister > input[type=button]{
+  .btnRegister{
     background-color: var(--main-turquesa);
   }
-  
-  .btnLogin > input[type=button]:hover{
-    color: var(--main-azul-claro);
-    background-color: #fff;
-    cursor: pointer;
-  }
-  
-  .btnRegister > input[type=button]:hover{
-    color: var(--main-turquesa);
-    background-color: #fff;
-    cursor: pointer;
-  }
+
+  .btnLogin:hover, .btnRegister:hover{ background-color: #fff;}
+  .btnLogin:hover > a{color: var(--main-azul-claro);}
+  .btnRegister:hover > a{color: var(--main-turquesa);}
 
   @media (max-width: 1400px) {
 
@@ -343,9 +342,10 @@
       width: 100%;
     }
 
-    input[type=button]{
+    button{
       border-radius: 0px;
       padding: 16px;
+      margin: 0px;
     }
 
 

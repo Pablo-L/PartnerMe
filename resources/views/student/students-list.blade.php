@@ -9,11 +9,11 @@
 
 @section('content')
 
-    @if(session('status'))
-        <div id="statusCode">
-            {{ session('status') }}
-        </div>
-    @endif
+
+    <div id="statusCode">
+        {{ session('status') }}
+    </div>
+
 
     <table id = "students-table">
         <tr>
@@ -24,7 +24,7 @@
             <th>Eliminar</th>
         </tr>
         @foreach($students as $student)
-            <tr>
+            <tr id="{{$student->id}}">
                 <td>
                     <a class="alias-links" href=" {{ action('StudentController@detail', ['alias' => $student->alias]) }} ">
                         {{ @$student->alias }}
@@ -38,7 +38,7 @@
                     </a> 
                 </td>
                 <td> 
-                    <a href="{{ action('StudentController@delete', ['alias' => $student->alias]) }}"> 
+                    <a class="delete-link" alias="{{$student->alias}}" id="{{$student->id}}"> 
                         <i class="fas fa-trash-alt"> </i> 
                     </a> 
                 </td>
@@ -46,6 +46,43 @@
         @endforeach
 
     </table>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        //Uso jQuery para simplificar el uso de AJAX
+        $(document).ready(function() {
+
+            $(".delete-link").click(function(e){
+
+                var alias = this.getAttribute('alias');
+                var id = this.getAttribute('id');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                })
+
+                jQuery.ajax({
+                    url: '/students/delete/' + alias,
+                    method: 'get',
+
+                    success: function(result){
+                        //Elimino la fila de la tabla, puesto que ya se ha eliminado en la base de datos
+                        $('#' + id).remove();
+                        console.log(result.status)
+                        $("#statusCode").html(result.status);
+                        $("#statusCode").css("display", "flex");
+                    }
+                    /*si quiero manejar errores...
+                    error: function () {
+                    }*/
+                })
+            })
+        })
+    </script>
+
 
 
 @endsection

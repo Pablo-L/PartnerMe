@@ -1,0 +1,193 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+  }
+
+body{
+    margin: 0px;
+    background-color: var(--main-gris);
+}
+
+
+.divs-container {
+    background-color: var(--main-gris);
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: minmax(100px,200px) 1fr minmax(100px,150px);
+    /*grid-gap: 0px 20px;*/
+    grid-template-areas: ".  titulo ." 
+                         ".  login  ."
+                         ".   .     .";
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.titulo, .titulo > h1, h1 > a{
+    grid-area: titulo;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 52px;
+    font-weight: bold;
+    color: #00204A;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: inherit;
+}
+
+.titulo > h1 {
+    cursor: pointer;
+    margin: 0px;
+}
+
+a:link{
+    text-decoration: none;
+    outline: none;
+}
+
+.login-box{
+    grid-area: login;
+    width: 60%;
+
+    display: flex;
+    align-items: center;
+    
+    flex-direction: column;
+    justify-self: center;
+
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+
+    padding: 30px 10px;
+
+}
+
+.login-box form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box form > * {
+    padding: 10px;
+}
+
+.login-box h1{
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 36px;
+    color: var(--main-gris-oscuro);
+}
+
+.login-box label {
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-size: 25px;
+    color: rgba(94, 94, 94, 0.8);
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.login-box input {
+    padding: 8px;
+    width: 100%;
+    border-radius: 3px;
+    border: 2px solid rgba(125, 125, 125, 0.6);
+    box-sizing: border-box;
+    align-self: center;
+
+    font-size: 16px;
+
+}
+
+.login-box input:focus{
+    font-size: 18px;
+    border: 2px solid var(--main-azul-claro);
+}
+
+.button {
+    padding: 8px;
+    width: 100%;
+    color: white;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 24px;
+    background-color: rgba(0, 32, 74, 1);
+    border-radius: 10px;
+    text-decoration:none;
+    align-self: center;
+
+    margin-top: 15px;
+}
+
+.button:hover{
+    background-color: rgba(0, 32, 74, 0.9);
+}
+
+.line {
+    margin: 15px 0px 0px 0px;       
+    background-color: #7D7D7D;
+    height: 1px;
+    padding: 0px!important;
+}
+
+.form-links{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+    cursor: pointer;
+}
+
+.form-links span {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.form-links a{
+    font-family: 'Roboto';
+    font-size: 18px;
+    color: rgba(0, 32, 74, 1);
+    text-decoration: none;
+}
+
+.form-links a:hover{
+    color: rgba(0, 32, 74, 0.7);
+}
+
+
+
+
+@media (max-width: 1400px) {
+    .divs-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(100px, 150px) 1fr;
+        grid-template-areas: " titulo" 
+                             " login ";
+    }
+
+    .login-box{
+        width: 100%;
+        border: 0px;
+        box-shadow: none;
+        background-color: var(--main-gris);
+    }
+
+    .line{
+        display: none;
+    }
+
+
+}

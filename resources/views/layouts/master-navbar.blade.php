@@ -28,7 +28,7 @@
             </div>
 
             <div class="dropdown-content">
-                  <a href="#">Opción 1</a>
+                  <a href=" {{URL::route('studentsIndex')}} ">Estudiantes</a>
                   <a href="#">Opción 2</a>
                   <a href="#">Opción 3</a>
                </div>
@@ -54,13 +54,13 @@
             </div>
 
             <div class="botonesLogin">
-            <div class="btnLogin">
-               <input type="button" name="" value="Iniciar sesión">
-            </div>
 
-            <div class="btnRegister">
-               <input type="button" name="" value="Registrarse">
-            </div>
+               <button class="btnLogin"><a href="{{URL::route('login')}}">Iniciar sesión</a></button>
+
+
+
+            <button class="btnRegister"><a>Registrarse</a></button>
+
             </div>
 
          </nav>

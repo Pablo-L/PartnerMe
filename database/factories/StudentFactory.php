@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Student::class, function (Faker $faker) {
     return [
-        'phone' => '603394934',
+        'phone' => $faker->e164PhoneNumber,
         'description' => $faker->text,
         'alias' => '@' . $faker->unique()->userName,
         'name' => $faker->name,

@@ -36,9 +36,9 @@ class StudentsTableSeeder extends Seeder
             'description' => 'Me llamo pedro y PartnerMe es una aplicación genial'
         ]]);*/
 
-        $students = factory(App\Student::class, 20)->make();
+        $students = factory(App\Student::class, 100)->make();
 
-        for($i = 0; $i < 20; $i++){
+        for($i = 0; $i < 100; $i++){
             DB::table('students')->insert([
                 'phone' => $students[$i]->phone,
                 'description' => $students[$i]->description,

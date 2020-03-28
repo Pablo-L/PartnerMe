@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix'=>'students'], function(){
     Route::get('/', 'StudentController@index');
     Route::get('/detail/{alias}', 'StudentController@detail');
+    Route::get('delete/{alias}', 'StudentController@delete');
 });
 
 /*

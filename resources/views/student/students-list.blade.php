@@ -8,6 +8,13 @@
 @endsection
 
 @section('content')
+
+    @if(session('status'))
+        <div id="statusCode">
+            {{ session('status') }}
+        </div>
+    @endif
+
     <table id = "students-table">
         <tr>
             <th>Alias</th>
@@ -25,10 +32,20 @@
                 </td>
                 <td>{{ $student->name }}</td>
                 <td>{{ $student->description }}</td>
-                <td> <a href=""> <i class="fas fa-edit"></i> </a> </td>
-                <td> <a href=""> <i class="fas fa-trash-alt"> </i> </a> </td>
+                <td>
+                    <a href=""> 
+                        <i class="fas fa-edit"></i> 
+                    </a> 
+                </td>
+                <td> 
+                    <a href="{{ action('StudentController@delete', ['alias' => $student->alias]) }}"> 
+                        <i class="fas fa-trash-alt"> </i> 
+                    </a> 
+                </td>
             </tr>
         @endforeach
 
     </table>
+
+
 @endsection

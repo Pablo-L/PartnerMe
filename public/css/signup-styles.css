@@ -52,6 +52,12 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
 }
 
+#signup-form{
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
 .signup-container > div{
     display: flex;
     flex-direction: column;
@@ -88,6 +94,7 @@ label{
     opacity: 80%;
 
     padding: 8px 0px;
+    white-space: nowrap;
 }
 
 .signup-container input, select, textarea{

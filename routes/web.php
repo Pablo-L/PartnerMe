@@ -26,7 +26,9 @@ Route::get('/signup', function(){
 Route::group(['prefix'=>'students'], function(){
     Route::get('/', 'StudentController@index')->name('studentsIndex');
     Route::get('/detail/{alias}', 'StudentController@detail');
-    Route::get('delete/{alias}', 'StudentController@delete');
+	Route::get('delete/{alias}', 'StudentController@delete');
+	Route::post('save', 'StudentController@save');
+	Route::post('update', 'StudentController@update');
 });
 
 /*

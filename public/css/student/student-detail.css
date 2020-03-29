@@ -130,6 +130,7 @@ label{
 .dContainer{
     grid-area: datos;
     align-self: flex-start;
+    justify-self: left;
     display: flex;
     flex-direction: column;
 

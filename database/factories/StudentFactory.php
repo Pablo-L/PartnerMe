@@ -16,10 +16,6 @@ $factory->define(Student::class, function (Faker $faker) {
         'email' => $faker->safeEmail,
         'password' => 'qwerty',
         'studies' => 'Grado en ingeniería informática',
-        'name' => $faker->name,
-        'lastName' => $faker->lastName,
-        'email' => $faker->safeEmail,
-        'password' => 'qwerty',
         'course' => 3,
     ];
 });

@@ -27,6 +27,7 @@ Route::group(['prefix'=>'students'], function(){
     Route::get('/', 'StudentController@index')->name('studentsIndex');
     Route::get('/detail/{alias}', 'StudentController@detail');
 	Route::get('delete/{alias}', 'StudentController@delete');
+	Route::get('edit/{alias}', 'StudentController@edit');
 	Route::post('save', 'StudentController@save');
 	Route::post('update', 'StudentController@update');
 });

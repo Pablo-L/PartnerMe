@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Iniciar sesión</title>
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto|Rubik:400,700|Ubuntu&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/login-styles.css"> 
+	<link rel="stylesheet" type="text/css" href="{{ asset('../css/login-styles.css') }}">
 </head>
 
 <body onload=start()>

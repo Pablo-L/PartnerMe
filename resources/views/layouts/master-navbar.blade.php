@@ -8,7 +8,7 @@
          <title> @yield('title')</title>
 
          <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Rubik:400,700&display=swap" rel="stylesheet">
-         <link rel="stylesheet" type="text/css" href="../../css/styles.css">
+         <link rel="stylesheet" type="text/css" href="{{ asset('../../css/styles.css') }}">
          <link rel="stylesheet" type="text/css" href="../../css/iconos.css">
 
       </head>

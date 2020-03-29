@@ -87,6 +87,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 }
 
 a{ outline: 0; }
+a:link{color: var(--main-morado);}
 td > a:visited{
     color: var(--main-morado);
   }

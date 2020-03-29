@@ -4,10 +4,20 @@
 
 @section('head')
     @parent
-    <link rel="stylesheet" type="text/css" href="../../css/student/student-index.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/student/student-index.css') }}">
+    
 @endsection
 
 @section('content')
+
+    @if(session('status'))
+        <div id="statusCode">
+            {{ session('status') }}
+        </div>
+        <script>
+            document.getElementById("statusCode").style.display = "flex";
+        </script>
+    @endif
 
 
     <div id="statusCode">
@@ -33,7 +43,7 @@
                 <td>{{ $student->name }}</td>
                 <td>{{ $student->description }}</td>
                 <td>
-                    <a href=""> 
+                    <a href=" {{ action('StudentController@edit', ['alias' => $student->alias]) }} "> 
                         <i class="fas fa-edit"></i> 
                     </a> 
                 </td>

@@ -85,6 +85,8 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     font-size: 30px;
     font-weight: bold;
     color: var(--main-morado);
+
+    /*white-space: nowrap;*/
 }
 
 label{

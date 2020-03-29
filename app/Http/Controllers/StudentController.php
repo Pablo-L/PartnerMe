@@ -27,8 +27,31 @@ class StudentController extends Controller{
         return response()->json(['status'=>'El estudiante ' . $alias . ' ha sido borrado correctamente']);
     }
 
-    public function update(Request $request){
+    public function edit($alias){
+		$student = DB::table('students')->where('alias', $alias)->first();
+		
+		return view('signup',[
+			'student' => $student
+		]);
+    }
 
+    public function update(Request $request){
+		$id = $request->input('id');
+		
+		$student = DB::table('students')->where('id', $id)
+									    ->update(array(
+                                            'phone' => $request->input('phone'),
+                                            'description' => $request->input('description'),
+                                            'alias' => $request->input('alias'),
+                                            'name' =>  $request->input('name'),
+                                            'lastName' =>  $request->input('lastName'),
+                                            'email' =>  $request->input('email'),
+                                            'password' =>  $request->input('password'),
+                                            'studies' =>  $request->input('degree'),
+                                            'course' =>  $request->input('course'),
+									    ));
+        return redirect()->action('StudentController@index')
+            ->with('status', 'El estudiante ' . $request->input('alias') . ' ha sido modificado correctamente');
     }
 
     public function save(Request $request){
@@ -45,7 +68,7 @@ class StudentController extends Controller{
 		));
 		
         return redirect()->action('StudentController@index')
-            ->with('status', 'Estudiante ' . "@" . $request->input('alias') . ' creado correctamente');
+            ->with('status', 'El estudiante ' . "@" . $request->input('alias') . ' ha sido creado correctamente');
     }
 
 }

@@ -27,15 +27,14 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 }
 
 .signup-container{
-    width: 75vw;
-    height: 85vh;
-    background-color: rgba(255, 255, 255, 0.4);
+    width: 65vw;
+    background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     border-radius: 8px;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 0fr);
     grid-template-areas: "titulo titulo"
                          "nombre apellidos"
                          "correo correo"
@@ -47,5 +46,164 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
     justify-items: center;
     align-items: center;
+    
+    padding: 20px 0px;
+    margin-bottom: 50px;
 
+}
+
+.signup-container > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65%;
+
+    padding: 10px 0px;
+}
+
+.left{
+    margin-right: 20px;
+    justify-self: right;
+}
+
+.right{
+    margin-left: 20px;
+    justify-self: left;
+}
+
+#title{
+    grid-area: titulo;
+    
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--main-morado);
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    color: var(--main-gris-oscuro);
+    opacity: 80%;
+
+    padding: 8px 0px;
+}
+
+.signup-container input, select, textarea{
+    border-radius: 0px;
+    text-decoration: none;
+    border: 2px solid rgba(125, 125, 125, 0.57);
+    padding: 8px;
+}
+
+.signup-container select{
+    background: #fff;
+}
+
+.signup-container input:focus, textarea:focus{
+    border: 3px solid var(--main-azul-claro);
+    color: var(--main-morado);
+}
+
+.signup-container textarea{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    resize: vertical;
+    min-height: 200px;
+}
+
+#name{grid-area: nombre;}
+#lastName{grid-area: apellidos;}
+#email{grid-area: correo; width: 68.5%;}
+#password{grid-area: pass;}
+#repassword{grid-area: repass;}
+#phone{grid-area: telefono;}
+#alias{grid-area: alias;}
+#degree{
+    grid-area: grado;
+    margin-right: -72px;
+    width: 80%;
+}
+#course{
+    grid-area: curso;
+    justify-self: center;
+    width: 50%;
+    margin-right: 17%;
+}
+#description{grid-area: desc; width: 68.5%;}
+
+#btnSignup{
+    background-color: var(--main-morado);
+    grid-area: btn;
+    justify-self: center;
+    width: 70%;
+    border-radius: 16px;
+    margin-top: 15px;
+    padding: 12px;
+
+    cursor: pointer;
+}
+
+#btnSignup > a{
+    color: #fff;
+    font-size: 24px;
+}
+
+#btnSignup:hover{
+    background-color: #fff;
+}
+
+#btnSignup:hover a{
+    color: var(--main-morado);
+}
+
+@media (max-width: 1400px) {
+
+    .main-container{background-color: var(--main-gris-oscuro);}
+    .signup-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(12, 0fr);
+        grid-template-areas: "titulo"
+                             "nombre"
+                             "apellidos"
+                             "correo"
+                             "pass"
+                             "repass"
+                             "telefono"
+                             "alias"
+                             "grado"
+                             "curso"
+                             "desc"
+                             "btn";
+
+        width: 100vw;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: var(--main-gris-oscuro);
+    }
+
+    #title > h1{
+        color: #fff;
+    }
+
+    .signup-container label{
+        color: #fff;
+        opacity: 100;
+    }
+
+    .left, .right{
+        margin: 0;
+        justify-self: center;
+    }
+
+    #email, #degree, #course, #description{width: 65%; margin: 0;}
+
+    #btnSignup{
+        background-color: #fff;
+        width: 65%;
+        border-radius: 4px;
+    }
+    #btnSignup > a{color: var(--main-gris-oscuro);}
+    #btnSignup > a:hover{color: var(--main-gris);}
 }

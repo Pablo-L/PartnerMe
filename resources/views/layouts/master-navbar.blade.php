@@ -59,7 +59,7 @@
 
 
 
-            <button class="btnRegister"><a>Registrarse</a></button>
+            <button class="btnRegister"><a href="{{URL::route('signup')}}">Registrarse</a></button>
 
             </div>
 

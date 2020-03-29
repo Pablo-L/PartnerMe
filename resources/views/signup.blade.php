@@ -1,6 +1,6 @@
 @extends('layouts.master-navbar')
 
-@section('title', 'Lista de estudiantes')
+@section('title', 'Registro')
 
 @section('head')
     @parent
@@ -12,9 +12,67 @@
 
     <div class="signup-container">
 
-    
-    
-    </div>
+        <div id="title">
+            <h1>Registro</h1>
+        </div>
+
+        <div id="name" class="left">
+            <label>Nombre:</label>
+            <input type="text" name="name">
+        </div>
+
+        <div id="lastName" class="right">
+            <label>Apellidos:</label>
+            <input type="text" name="lastName">
+        </div>
+
+        <div id="email">
+            <label>Correo electrónico:</label>
+            <input type="text" name="email">
+        </div>
+
+        <div id="password" class="left">
+            <label>Contraseña:</label>
+            <input type="password" name="password">
+        </div>
+
+        <div id="repassword" class="right">
+            <label>Repite la contraseña:</label>
+            <input type="password">
+        </div>
+
+        <div id="phone" class="left">
+            <label>Teléfono:</label>
+            <input type="text" name="phone">
+        </div>
+
+        <div id="alias" class="right">
+            <label>Alias (nombre de usuario):</label>
+            <input type="text" name="alias">
+        </div>
+
+        <div id="degree" class="left">
+            <label>Grado universitario:</label>
+            <select>
+                <!-- De momento es estático, en un futuro consultará los grados disponibles y los listará -->
+               <option value="">Ingeniería informática</option>
+               <option value="2">Ingeniería multimedia</option>
+               <option value="3">Derecho</option>
+               <option value="4">Marketing</option>
+            </select>
+        </div>
+
+        <div id="course" class="right">
+            <label>Curso:</label>
+            <input type="text" name="course">
+        </div>
+
+        <div id="description">
+            <label>Descripción</label>
+            <textarea name="description"></textarea>
+        </div>
+
+        <button id="btnSignup"><a>Registrarse</a></button>
 
 
 @endsection

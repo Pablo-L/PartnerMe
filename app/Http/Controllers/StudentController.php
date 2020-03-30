@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\Environment\Console;
 
 class StudentController extends Controller{
 
@@ -15,6 +16,17 @@ class StudentController extends Controller{
 
         $students = DB::table('students')->paginate(20);
         return view('student.students-list', compact('students'));
+    }
+
+    function fetch_data(Request $request){
+       
+        if($request->ajax()){
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+
+            $students = DB::table('students')->orderBy($sort_by, $sort_type)->paginate(20);
+            return view('student.students-list-data', compact('students'))->render();
+        }
     }
 
     public function detail($alias){

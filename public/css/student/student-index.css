@@ -22,12 +22,19 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     width: 100vw;
     background-color: var(--main-gris);
     
-    display: flex;
-    flex-direction: column-reverse;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 0fr);
+    grid-template-areas: "status" "tabla" "paginacion";
+    
+    justify-items: center;
+    
 }
 
 /*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
 #statusCode{
+    grid-area: status;
+
     display: none;
     justify-content: center;
     align-self: center;
@@ -63,6 +70,8 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
 
 #students-table {
+    grid-area: tabla;
+    
     align-self: center;
     font-family: 'Rubik', sans-serif;
     border-collapse: collapse;
@@ -84,6 +93,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     background-color: var(--main-morado);
     color: #fff;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 a{ outline: 0; }
@@ -110,6 +120,7 @@ td > a:hover {
     padding: 0px;
 }
 
+#pagnav{grid-area: paginacion;}
 #pagnav > nav{
     display: flex;
     justify-content: center;

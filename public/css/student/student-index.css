@@ -20,11 +20,10 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 */
 .main-container{
     width: 100vw;
-    height: 85vh;
     background-color: var(--main-gris);
     
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
 }
 
 /*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
@@ -84,10 +83,11 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     padding-bottom: 12px;
     background-color: var(--main-morado);
     color: #fff;
+    white-space: nowrap;
 }
 
 a{ outline: 0; }
-a:link{color: var(--main-morado);}
+td > a:link{color: var(--main-morado);}
 td > a:visited{
     color: var(--main-morado);
   }
@@ -130,6 +130,8 @@ td > a:hover {
 
     border-radius: 2px;
     margin: 4px;
+
+    cursor: pointer;
 }
 
 .page-item:hover{

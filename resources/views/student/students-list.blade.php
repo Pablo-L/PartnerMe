@@ -26,40 +26,22 @@
 
 
     <table id = "students-table">
-        <tr>
-            <th>Alias</th>
-            <th>Nombre del alumno</th>
-            <th>Descripción</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
-        </tr>
-        @foreach($students as $student)
-            <tr id="{{$student->id}}">
-                <td>
-                    <a class="alias-links" href=" {{ action('StudentController@detail', ['alias' => $student->alias]) }} ">
-                        {{ @$student->alias }}
-                    </a>
-                </td>
-                <td>{{ $student->name }}</td>
-                <td>{{ $student->description }}</td>
-                <td>
-                    <a href=" {{ action('StudentController@edit', ['alias' => $student->alias]) }} "> 
-                        <i class="fas fa-edit"></i> 
-                    </a> 
-                </td>
-                <td> 
-                    <a class="delete-link" alias="{{$student->alias}}" id="{{$student->id}}"> 
-                        <i class="fas fa-trash-alt"> </i> 
-                    </a> 
-                </td>
+        
+        <thead>
+            <tr>
+                <th>Alias</th>
+                <th>Nombre del alumno</th>
+                <th>Descripción</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
             </tr>
-        @endforeach
+        </thead>
+
+        <tbody>
+            @include('student.students-list-data')
+        </tbody>
 
     </table>
-
-    <div id="pagnav">
-        {{$students->links()}}
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
@@ -94,6 +76,13 @@
                 })
             })
         })
+
+        $(".page-item").click(function(){
+            if($(this).find("a").attr("href")){
+                window.location=$(this).find("a").attr("href"); 
+                return false;
+            }
+        });
     </script>
 
 

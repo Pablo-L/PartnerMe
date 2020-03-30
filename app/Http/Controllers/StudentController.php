@@ -8,10 +8,13 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller{
 
     public function index(){
+        //$students = DB::table('students')->paginate(20);
+        //return view('student.students-list', [
+        //    'students' => $students
+        //]);
+
         $students = DB::table('students')->paginate(20);
-        return view('student.students-list', [
-            'students' => $students
-        ]);
+        return view('student.students-list', compact('students'));
     }
 
     public function detail($alias){

@@ -167,3 +167,15 @@ td > a:hover {
     font-weight: bold;
     background-color: var(--main-morado-apagado);
 }
+
+@media (max-width: 800px){
+    .description_cells{
+        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .studentname_cells{
+        display: none;
+    }
+}

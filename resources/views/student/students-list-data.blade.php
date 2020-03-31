@@ -5,8 +5,8 @@
                 {{ @$student->alias }}
             </a>
         </td>
-        <td>{{ $student->name }}</td>
-        <td>{{ $student->description }}</td>
+        <td class="studentname_cells">{{ $student->name }}</td>
+        <td class="description_cells">{{ $student->description }}</td>
         <td>
             <a href=" {{ action('StudentController@edit', ['alias' => $student->alias]) }} "> 
                 <i class="fas fa-edit"></i> 

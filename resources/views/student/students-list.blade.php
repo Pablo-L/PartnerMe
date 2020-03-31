@@ -34,11 +34,11 @@
                     Alias
                 </th>
                 
-                <th class="sorting" data-sorting_type="asc" data-column_name="name">
+                <th class="studentname_cells" class="sorting" data-sorting_type="asc" data-column_name="name">
                     Nombre del alumno
                 </th>
                 
-                <th class="sorting" data-sorting_type="asc" data-column_name="description">
+                <th class="description_cells" class="sorting" data-sorting_type="asc" data-column_name="description">
                     Descripción
                 </th>
                 

@@ -1,21 +1,27 @@
-<form action="{{action('SubjectController@update')}}"method='POST'>
-    @csrf
-    {{method_field('POST')}}
+@extends('layouts.master-navbar')
 
-    @if(isset ($subject) && is_object($subject))
-        <input type="hidden" name="id" value="{{$subject->id}}"/>
-    @endif
+@section('content')
 
-    <div id="name" class="left">
-        <label>Nombre de la asignatura:</label>
-        <input type="text" name="subjectName" id="subjectName">
-    </div>
+    <form action="{{action('SubjectController@update')}}"method='POST'>
+        @csrf
+        {{method_field('POST')}}
 
-    <div id="department" class="right">
-        <label>Departamento:</label>
-        <input type="text" name="department"  id="department">
-    </div>
-    
-    <button type="submit">Enviar</button>
+        @if(isset ($subject) && is_object($subject))
+            <input type="hidden" name="id" value="{{$subject->id}}"/>
+        @endif
 
-</form>
+        <div id="name" class="left">
+            <label>Nombre de la asignatura:</label>
+            <input type="text" name="subjectName" id="subjectName">
+        </div>
+
+        <div id="department" class="right">
+            <label>Departamento:</label>
+            <input type="text" name="department"  id="department">
+        </div>
+        
+        <button type="submit" style="background:blue">Enviar</button>
+
+    </form>
+
+@endsection

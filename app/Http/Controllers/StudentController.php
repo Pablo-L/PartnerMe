@@ -20,7 +20,7 @@ class StudentController extends Controller{
             $totalPuntuation += $puntuation->points;
         }
         
-        $averagePuntuation = ( $totalPuntuation / count($puntuations) );        
+        $averagePuntuation = ( $totalPuntuation / (count($puntuations) > 0 ? count($puntuations) : 1));        
         return $averagePuntuation;
     }
 
@@ -32,7 +32,7 @@ class StudentController extends Controller{
         //$students = Student::all()
         
         $students = DB::table('students')->paginate(20);
-        foreach($students as $student){$student->puntuation = $this->calculatePuntuations($student->id);}
+        //foreach($students as $student){$student->puntuation = $this->calculatePuntuations($student->id);}
         return view('student.students-list', compact('students'));
     }
 
@@ -50,8 +50,11 @@ class StudentController extends Controller{
     public function detail($alias){
         
         $student = DB::table('students')->where('alias', $alias)->first();
-        $student->puntuation = $this->calculatePuntuations($student->id);
-        
+        $puntuation = $this->calculatePuntuations($student->id);
+        DB::table('students')->where('alias',$alias)->update(array(
+            'puntuation'=>  number_format($puntuation, 2, '.', ''),
+        ));
+        $student->puntuation = $puntuation;
         return view('student.student-detail',[
 			'student' => $student
 		]);

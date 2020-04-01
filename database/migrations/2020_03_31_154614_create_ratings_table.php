@@ -23,8 +23,8 @@ class CreateRatingsTable extends Migration
             $table->unsignedBigInteger('student_id_creator');
             $table->unsignedBigInteger('student_id_receiver');
 //
-            $table->foreign('student_id_creator')->references('id')->on('students');
-            $table->foreign('student_id_receiver')->references('id')->on('students');
+            $table->foreign('student_id_creator')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('student_id_receiver')->references('id')->on('students')->onDelete('cascade');
             
             $table->double('points');
             $table->string('comment');

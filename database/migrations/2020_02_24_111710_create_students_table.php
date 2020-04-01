@@ -26,7 +26,7 @@ class CreateStudentsTable extends Migration
             $table->string('password');
             $table->string('studies');
             $table->integer('course');
-            $table->integer('puntuation');
+            $table->double('puntuation');
         });
     }
 

@@ -11,6 +11,8 @@
 |
 */
 
+use App\Rating;
+
 Route::get('/', function () {
     return view('index');
 })->name('main');
@@ -23,9 +25,6 @@ Route::get('/signup', function(){
 	return view('signup');
 })->name('signup');
 
-Route::get('/rating', function(){
-	return view('rating.rating-page');
-});
 
 Route::group(['prefix'=>'students'], function(){
     Route::get('/', 'StudentController@index')->name('studentsIndex');
@@ -35,5 +34,7 @@ Route::group(['prefix'=>'students'], function(){
 	Route::get('fetch_data', 'StudentController@fetch_data');
 	Route::post('save', 'StudentController@save');
 	Route::post('update', 'StudentController@update');	
+
+	Route::get('rating/{id}', 'RatingController@detail')->name('student-rating');
 });
 

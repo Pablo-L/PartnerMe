@@ -28,6 +28,10 @@ class Student extends Model{
         'password',
     ];
 
+    protected $casts = [
+        'puntuation' => 'float',
+    ];
+
     public function turns(){
         return $this->belongsToMany('App\Turn');
     }

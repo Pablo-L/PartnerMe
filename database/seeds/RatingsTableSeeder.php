@@ -10,7 +10,6 @@ class RatingsTableSeeder extends Seeder
      * @return void
      */
     public function run(){
-        
         DB::table('ratings')->delete();
 
         $faker = Faker\Factory::create();
@@ -23,7 +22,7 @@ class RatingsTableSeeder extends Seeder
                 'student_id_creator' => $students[$numStudents - $i]->id,
                 'student_id_receiver' => $student->id,
                 //'student_id' => $student->id,
-                'points' => (float) mt_rand(0,100) / 10.0,
+                'points' => (double) mt_rand(0,100) / 10.0,
                 'comment' => $faker->text,
             ]);
             $i++;

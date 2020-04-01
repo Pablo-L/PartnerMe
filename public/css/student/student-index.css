@@ -20,15 +20,21 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 */
 .main-container{
     width: 100vw;
-    height: 85vh;
     background-color: var(--main-gris);
     
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 0fr);
+    grid-template-areas: "status" "tabla" "paginacion";
+    
+    justify-items: center;
+    
 }
 
 /*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
 #statusCode{
+    grid-area: status;
+
     display: none;
     justify-content: center;
     align-self: center;
@@ -64,6 +70,8 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
 
 #students-table {
+    grid-area: tabla;
+    
     align-self: center;
     font-family: 'Rubik', sans-serif;
     border-collapse: collapse;
@@ -84,10 +92,12 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     padding-bottom: 12px;
     background-color: var(--main-morado);
     color: #fff;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
 a{ outline: 0; }
-a:link{color: var(--main-morado);}
+td > a:link{color: var(--main-morado);}
 td > a:visited{
     color: var(--main-morado);
   }
@@ -108,4 +118,64 @@ td > a:hover {
     background: none;
     color: var(--main-azul-claro);
     padding: 0px;
+}
+
+#pagnav{grid-area: paginacion;}
+#pagnav > nav{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.pagination{
+    list-style-type: none;
+    display: flex;
+    justify-self: center;
+    margin: 20px 0px;
+    padding-left: 0px;
+}
+
+.page-item{
+    padding: 15px 20px;
+    background-color: var(--main-morado);
+
+    border-radius: 2px;
+    margin: 4px;
+
+    cursor: pointer;
+}
+
+.page-item:hover{
+    background-color: #fff;
+}
+
+.page-item > a, a:active{
+    color: #fff;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+
+.page-item:hover > a, a:active{
+    color: var(--main-morado);
+}
+
+.page-item + .active{
+    color: #fff;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    background-color: var(--main-morado-apagado);
+}
+
+@media (max-width: 800px){
+    .description_cells{
+        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .studentname_cells{
+        display: none;
+    }
 }

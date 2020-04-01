@@ -99,6 +99,7 @@ label{
     font-family: 'Roboto', sans-serif;
     font-size: 36px;
     color: var(--main-gris-oscuro);
+    word-break: break-all;
 }
 
 .name{

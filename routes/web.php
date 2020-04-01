@@ -28,17 +28,7 @@ Route::group(['prefix'=>'students'], function(){
     Route::get('/detail/{alias}', 'StudentController@detail');
 	Route::get('delete/{alias}', 'StudentController@delete');
 	Route::get('edit/{alias}', 'StudentController@edit');
+	Route::get('fetch_data', 'StudentController@fetch_data');
 	Route::post('save', 'StudentController@save');
-	Route::post('update', 'StudentController@update');
+	Route::post('update', 'StudentController@update');	
 });
-
-/*
-Route::group(['prefix'=>'frutas'], function(){
-	Route::get('index', 'FrutaController@index');
-	Route::get('detail/{id}', 'FrutaController@detail');
-	Route::get('crear', 'FrutaController@create');
-	Route::post('save', 'FrutaController@save');
-	Route::get('delete/{id}', 'FrutaController@delete');
-	Route::get('editar/{id}', 'FrutaController@edit');
-	Route::post('update', 'FrutaController@update');
-});*/

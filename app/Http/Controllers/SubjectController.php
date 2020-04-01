@@ -35,4 +35,10 @@ class SubjectController extends Controller
         }
         return redirect()->action('SubjectController@index');
     }
+
+    public function delete($name){
+        $subject = DB::table('subjects')->where('subjectName',$name)->delete();
+        return redirect()->action('SubjectController@index');
+
+    }
 }

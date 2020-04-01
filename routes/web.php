@@ -33,7 +33,7 @@ Route::group(['prefix'=>'students'], function(){
 	Route::post('update', 'StudentController@update');	
 });
 
-Route::get('subject','SubjectController@index');
+Route::get('subject','SubjectController@index')->name('subjectsIndex');
 Route::get('subject/detail/{subjectName}','SubjectController@detail');
 Route::get('subject/create','SubjectController@create');
 Route::post('subject/create','SubjectController@postForm');

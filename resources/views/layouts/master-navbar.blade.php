@@ -29,7 +29,7 @@
 
             <div class="dropdown-content">
                   <a href=" {{URL::route('studentsIndex')}} ">Estudiantes</a>
-                  <a href="#">Opción 2</a>
+                  <a href=" {{URL::route('subjectsIndex')}} ">Asignaturas</a>
                   <a href="#">Opción 3</a>
                </div>
             

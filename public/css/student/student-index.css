@@ -120,6 +120,10 @@ td > a:hover {
     padding: 0px;
 }
 
+.delete-link{
+    cursor: pointer;
+}
+
 #pagnav{grid-area: paginacion;}
 #pagnav > nav{
     display: flex;
@@ -169,13 +173,13 @@ td > a:hover {
 }
 
 @media (max-width: 800px){
-    .description_cells{
+    .description_cells, #description_cells{
         display: none;
     }
 }
 
 @media (max-width: 650px) {
-    .studentname_cells{
+    .studentname_cells, #studentname_cells{
         display: none;
     }
 }

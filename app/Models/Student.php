@@ -18,9 +18,10 @@ class Student extends Model{
     private $password;
     private $studies;
     private $course;
+    private $puntuation;
 
     protected $fillable = [
-        'phone', 'description', 'alias', 'name', 'lastName', 'email', 'password', 'studies', 'course'
+        'phone', 'description', 'alias', 'name', 'lastName', 'email', 'password', 'studies', 'course', 'puntuation',
     ];
 
     protected $hidden = [
@@ -30,6 +31,19 @@ class Student extends Model{
     public function turns(){
         return $this->belongsToMany('App\Turn');
     }
+
+    public static function puntuation($s){
+        return $s->ratings;
+    }
+
+    public function created_ratings(){
+        return $this->hasMany('App\Rating', 'student_id_creator', 'id');
+    }
+
+    public function received_ratings(){
+        return $this->hasMany('App\Rating', 'student_id_receiver', 'id');
+    }
+
 /*
     public function __construct(){
         $this->phone = "634563726";
@@ -57,9 +71,9 @@ class Student extends Model{
     }
 */
 
-    public function __destruct(){
-        echo 'Destruyendo: ' . $this->alias . PHP_EOL;
-    }
+    //public function __destruct(){
+    //    echo 'Destruyendo: ' . $this->alias . PHP_EOL;
+    //}
 
 
 

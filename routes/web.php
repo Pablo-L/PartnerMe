@@ -23,6 +23,10 @@ Route::get('/signup', function(){
 	return view('signup');
 })->name('signup');
 
+Route::get('/rating', function(){
+	return view('rating.rating-page');
+});
+
 Route::group(['prefix'=>'students'], function(){
     Route::get('/', 'StudentController@index')->name('studentsIndex');
     Route::get('/detail/{alias}', 'StudentController@detail');
@@ -32,3 +36,4 @@ Route::group(['prefix'=>'students'], function(){
 	Route::post('save', 'StudentController@save');
 	Route::post('update', 'StudentController@update');	
 });
+

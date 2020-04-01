@@ -34,13 +34,19 @@
                     Alias
                 </th>
                 
-                <th class="studentname_cells" class="sorting" data-sorting_type="asc" data-column_name="name">
+                <th id="studentname_cells" class="sorting" data-sorting_type="asc" data-column_name="name">
                     Nombre del alumno
                 </th>
                 
-                <th class="description_cells" class="sorting" data-sorting_type="asc" data-column_name="description">
+                <th id="description_cells" class="sorting" data-sorting_type="asc" data-column_name="description">
                     Descripción
                 </th>
+
+                <!-- No incluir hasta arreglar paginación con AJAX
+                    <th class="sorting" data-sorting_type="asc" data-column_name="puntuation">
+                        Valoración
+                    </th>
+                -->
                 
                 <th>Modificar</th>
                 <th>Eliminar</th>
@@ -65,7 +71,7 @@
         $(document).ready(function() {
 
             //Para eliminar un estudiante...
-            $(".delete-link").click(function(e){
+            $(document).on('click', '.delete-link', function(){
 
                 var alias = this.getAttribute('alias');
                 var id = this.getAttribute('id');

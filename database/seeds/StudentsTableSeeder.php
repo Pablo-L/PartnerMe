@@ -49,6 +49,7 @@ class StudentsTableSeeder extends Seeder
                 'password' => $students[$i]->password,
                 'studies' => $students[$i]->studies,
                 'course' => $students[$i]->course,
+                'puntuation' => $students[$i]->puntuation,
             ]);
         }
 

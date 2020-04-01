@@ -17,6 +17,7 @@ $factory->define(Student::class, function (Faker $faker) {
         'password' => 'qwerty',
         'studies' => 'Grado en ingeniería informática',
         'course' => 3,
+        'puntuation' => 0.0,
     ];
 });
 

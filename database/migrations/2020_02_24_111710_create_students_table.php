@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->string('password');
             $table->string('studies');
             $table->integer('course');
+            $table->integer('puntuation');
         });
     }
 
@@ -36,6 +37,7 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('ratings');
         Schema::dropIfExists('students');
     }
 }

@@ -27,6 +27,7 @@
     
         <div class="puntuation">
             <label>Valoracion: </label>
+            <span class="puntuation_data"> {{$student->puntuation }} </span>
         </div>
 
         <div class="dContainer">

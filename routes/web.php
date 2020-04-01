@@ -32,3 +32,11 @@ Route::group(['prefix'=>'students'], function(){
 	Route::post('save', 'StudentController@save');
 	Route::post('update', 'StudentController@update');	
 });
+
+Route::get('subject','SubjectController@index');
+Route::get('subject/detail/{subjectName}','SubjectController@detail');
+Route::get('subject/create','SubjectController@create');
+Route::post('subject/create','SubjectController@postForm');
+Route::get('subject/delete/{name}','SubjectController@delete');
+Route::get('subject/edit/{name}','SubjectController@edit');
+Route::post('subject/edit/','SubjectController@update');

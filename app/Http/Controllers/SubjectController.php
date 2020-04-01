@@ -41,4 +41,18 @@ class SubjectController extends Controller
         return redirect()->action('SubjectController@index');
 
     }
+    public function edit($name){
+        $subject = DB::table('subjects')->where('subjectName',$name)->first();
+        return view('subject.subject-edit',['subject'=>$subject]);
+    }
+
+    public function update(Request $request){
+        $id = $request->input('id');
+
+        $subject = DB::table('subjects')->where('id',$id)->update(array(
+            'subjectName' => $request->input('subjectName'),
+            'department' => $request->input('department'),
+        ));
+        return redirect()->action('SubjectController@index');
+    }
 }

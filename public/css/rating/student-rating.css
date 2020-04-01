@@ -9,7 +9,7 @@
 
 
 .main-container{
-
+    width: 80%;
     display: grid;
     height: 200vh;
     grid-template-columns: 0fr 1fr;
@@ -28,9 +28,8 @@
     border-bottom: 1px solid rgba(125, 125, 125, 0.5);
     grid-area: header;
     display: flex;
-    width: 80%;
+    width: 95%;
     align-items: center;
-    justify-content: center;
 
     margin-bottom: 20px;
 }
@@ -136,6 +135,15 @@ label{
     background-size: cover;
 }
 
+.comment_text_containter{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_text_containter > span{
+    padding: 5px 20px;
+}
+
 .comment_text{
     font-family: 'Rubik';
     color: #707070;
@@ -155,7 +163,7 @@ label{
     grid-area: publicar;
 
     width: 100%;
-    padding: 30px 0px;
+    padding: 20px 0px;
 
 }
 
@@ -198,7 +206,48 @@ label{
 
 }
 
+#btn_comment{
+    border-radius: 4px;
+    background-color: var(--main-morado-apagado);
+    font-family: 'Roboto';
+    font-size: 26px;
+    cursor: pointer;
+}
+
+#btn_comment:hover{
+    background-color: var(--main-morado);
+}
+
+.alert.alert-danger{
+    background-color: #c00;
+    color: white;
+    font-family: 'Rubik';
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.alert.alert-danger > ul{
+    list-style-type: none;
+    padding: 20px;
+}
+
+.alert.alert-danger > ul li{
+    padding: 5px 0px;
+}
+
 @media (max-width: 1300px){
+    
+    .main-container{
+        width: 90%;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5,0fr);
+        grid-template-areas: "foto"
+                             "header"
+                             "valoracion"
+                             "comentarios"
+                             "publicar";
+    }
+    
     .header{
         flex-direction: column;
         padding-bottom: 20px;

@@ -48,12 +48,8 @@ class StudentController extends Controller{
     }
 
     public function detail($alias){
-        
         $student = DB::table('students')->where('alias', $alias)->first();
         $puntuation = $this->calculatePuntuations($student->id);
-        DB::table('students')->where('alias',$alias)->update(array(
-            'puntuation'=>  number_format($puntuation, 2, '.', ''),
-        ));
         $student->puntuation = $puntuation;
         return view('student.student-detail',[
 			'student' => $student

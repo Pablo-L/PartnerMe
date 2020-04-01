@@ -21,7 +21,6 @@ class RatingsTableSeeder extends Seeder
             DB::table('ratings')->insert([
                 'student_id_creator' => $students[$numStudents - $i]->id,
                 'student_id_receiver' => $student->id,
-                //'student_id' => $student->id,
                 'points' => (double) mt_rand(0,100) / 10.0,
                 'comment' => $faker->text,
             ]);

@@ -36,5 +36,6 @@ Route::group(['prefix'=>'students'], function(){
 	Route::post('update', 'StudentController@update');	
 
 	Route::get('rating/{id}', 'RatingController@detail')->name('student-rating');
+	Route::post('rating/upload', 'RatingController@upload')->name('upload-comment');
 });
 

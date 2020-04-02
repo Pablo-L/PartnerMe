@@ -36,6 +36,11 @@ class Student extends Model{
         return $this->belongsToMany('App\Turn');
     }
 
+    //relación con Group
+    public function groups(){
+        return $this->belongsToMany('App\Group');
+    }
+
     public static function puntuation($s){
         return $s->ratings;
     }

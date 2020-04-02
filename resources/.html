@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta charset="UTF-8">
+
+         <title> Grupo de @anabelle84</title>
+
+         <link href="_files/css.css" rel="stylesheet">
+         <link rel="stylesheet" type="text/css" href="_files/styles.css">
+         <link rel="stylesheet" type="text/css" href="_files/iconos.css">
+
+      <link rel="stylesheet" type="text/css" href="_files/group-detail.css"><script src="_files/prompt.js"></script></head>
+   
+    
+
+   <body>
+
+               <nav>
+
+            <div class="logoBox">
+               <div class="logo"><a href="http://localhost:8000/"><h1>PartnerMe</h1></a></div>
+               <div class="icon-menu">
+                  <i class="fas fa-bars"></i>
+               </div>
+
+            </div>
+
+            <div class="dropdown-content">
+                  <a href="http://localhost:8000/students">Estudiantes</a>
+                  <a href="http://localhost:8000/subject">Asignaturas</a>
+                  <a href="#">Opción 3</a>
+               </div>
+            
+            <!--Se usaría para no tener que marcar el dropdown como absolute
+            <div class="drop-filler"></div>
+            -->
+
+            <div class="search-container">
+               <input type="text" class="search_field" placeholder="Buscar " name="search" id="name" required="">
+               <div class="icon-search">
+                  <i class="fas fa-search"></i>
+               </div>
+            </div>
+
+            <div class="custom-select">
+               <select>
+               <option value="1" selected="selected">Alumno</option>
+               <option value="2">Grupo</option>
+               <option value="3">Profesor</option>
+               <option value="4">Asignatura</option>
+               </select>
+            </div>
+
+            <div class="botonesLogin">
+
+               <button class="btnLogin"><a href="http://localhost:8000/login">Iniciar sesión</a></button>
+
+
+
+            <button class="btnRegister"><a href="http://localhost:8000/signup">Registrarse</a></button>
+
+            </div>
+
+         </nav>
+      
+      <div class="main-container">
+         
+    <!-- <div class="group-container">
+        <div class="group-name">Grupo de @anabelle84</div>
+        <div>
+            <div class="group-image" style="background-image:url('/storage/group_img/none (por ahora)')"></div>
+            <div class="group-description ">¡Mira, @anabelle84 tiene un grupo!</div>
+        </div>
+        <div class="group-integrantes">Integrantes</div>
+        <div>
+                            <div class="group-student">
+                    <div class="group-student-photo">foto</div>
+                    <div class="group-student-info">Tressie Wintheiser<br>Valoración: 9.5</div>
+                </div>
+                    </div>
+        <div class="group-turn">
+            <label>Turno:</label>
+            <span>Lunes 13:00:00-15:00:00</span>
+        </div>
+        <div class="group-subject">
+            <label>Asignatura:</label>
+            <span> Estadística </span>
+        </div>
+    </div>
+    -->
+
+    <div class="group-container">
+        <div class="group-name">
+            Grupo de @anabelle84
+        </div>
+
+        <div class="group-image"></div>
+        <div class="group-description">¡Mira, @anabelle84 tiene un 
+grupo!description description description description description 
+description description description description description description 
+description description description description description description 
+description description </div>
+
+        <div class="students-title">Integrantes</div>
+
+        <div class="group-integrantes" style="display: contents;">
+                                <div class="group-student" style="">
+                        <div class="group-student-photo">foto</div>
+                        <div class="group-student-info">Tressie Wintheiser<br>Valoración: 9.5</div>
+                    </div>
+
+                    <div class="group-student">
+                        <div class="group-student-photo">foto</div>
+                        <div class="group-student-info">Tressie Wintheiser<br>Valoración: 9.5</div>
+                    </div>
+
+                    <div class="group-student">
+                        <div class="group-student-photo">foto</div>
+                        <div class="group-student-info">Tressie Wintheiser<br>Valoración: 9.5</div>
+                    </div>
+
+                    <div class="group-student">
+                        <div class="group-student-photo">foto</div>
+                        <div class="group-student-info">Tressie Wintheiser<br>Valoración: 9.5</div>
+                    </div>
+                    </div>
+
+
+    </div>
+
+      </div>   
+      
+      <script>
+         const btnMenuDrop = document.querySelector('.icon-menu')
+         const menuDrop = document.querySelector('.dropdown-content')
+         const logo = document.querySelector('.logoBox')
+         const icon = document.querySelector('.icon-menu')
+         const main = document.querySelector('.main-container')
+
+         btnMenuDrop.addEventListener('click', async () => {
+
+            if(menuDrop.style.display === "flex"){
+               menuDrop.style.display = "none"
+               logo.className = "logoBox"
+               icon.className = "icon-menu"
+            }else{
+               menuDrop.style.display = "flex"
+               logo.className = "logoBoxDrop"
+               icon.className = "icon-menuDrop"
+
+               var anchoDecimal = logo.getBoundingClientRect();
+               var anchoDecimalText = anchoDecimal.width + 'px';
+               menuDrop.style.width = anchoDecimalText;
+            }
+            
+         });
+
+         main.addEventListener('click', async () => {
+            if(menuDrop.style.display === "flex"){
+               menuDrop.style.display = "none"
+               logo.className = "logoBox"
+               icon.className = "icon-menu"
+            }
+         });
+
+      </script>
+  
+   
+
+</body></html>

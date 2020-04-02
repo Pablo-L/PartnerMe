@@ -47,12 +47,21 @@ Route::get('subject/delete/{name}','SubjectController@delete');
 Route::get('subject/edit/{name}','SubjectController@edit');
 Route::post('subject/edit/','SubjectController@update');
 
+
+/*
+|--------------------------------------------------------------
+| Rutas de los grupos
+|--------------------------------------------------------------
+*/
 Route::group(['prefix'=>'group'], function(){
-	Route::get('/', 'GroupController@index')->name('groupsIndex');
-    Route::get('/detail/{id}', 'GroupController@detail');
-	Route::get('/delete/{id}', 'GroupController@delete');
-	Route::get('/edit/{id}', 'GroupController@edit');
-	Route::get('fetch_data', 'GroupController@fetch_data');
-	Route::post('save', 'GroupController@save');
+	Route::get('delete/{id}', 'GroupController@delete');
+	Route::get('edit/{id}', 'GroupController@edit');
+	Route::get('create', 'GroupController@create');
 	Route::post('update', 'GroupController@update');
+	Route::post('save', 'GroupController@save');
+	Route::get('detail/{id}', 'GroupController@detail');
 });
+
+Route::get('my_groups','GroupController@list');
+Route::get('groups', 'GroupController@index')->name('groupsIndex');
+

@@ -1,7 +1,7 @@
 @foreach($groups as $group)
     <tr>
         <td>
-            {{ @$group->image }}
+            <img src="/storage/group_img/{{ @$group->image }}">
         </td>
         <td>
             {{ @$group->id }}

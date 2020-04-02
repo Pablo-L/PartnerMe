@@ -5,16 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SebastianBergmann\Environment\Console;
+use App\Student;
 
 class StudentController extends Controller{
+
+
+    public function calculatePuntuations($id){
+        $student = Student::find($id);
+        $puntuations = $student->received_ratings;
+        
+        $totalPuntuation = 0.0;
+
+        foreach($puntuations as $puntuation){
+            $totalPuntuation += $puntuation->points;
+        }
+        
+        $averagePuntuation = ( $totalPuntuation / (count($puntuations) > 0 ? count($puntuations) : 1));        
+        return $averagePuntuation;
+    }
 
     public function index(){
         //$students = DB::table('students')->paginate(20);
         //return view('student.students-list', [
         //    'students' => $students
         //]);
-
+        //$students = Student::all()
+        
         $students = DB::table('students')->paginate(20);
+        //foreach($students as $student){$student->puntuation = $this->calculatePuntuations($student->id);}
         return view('student.students-list', compact('students'));
     }
 
@@ -31,13 +49,22 @@ class StudentController extends Controller{
 
     public function detail($alias){
         $student = DB::table('students')->where('alias', $alias)->first();
-		return view('student.student-detail',[
+        $puntuation = $this->calculatePuntuations($student->id);
+        $student->puntuation = $puntuation;
+        return view('student.student-detail',[
 			'student' => $student
 		]);
     }
 
     public function delete($alias){
-		$student = DB::table('students')->where('alias', $alias)->delete();
+
+        $student = DB::table('students')->where('alias', $alias)->first();
+
+        //Eliminamos todos los ratings creados y recibidos por el ususario
+        DB::table('ratings')->where('student_id_creator', $student->id)->delete();
+        DB::table('ratings')->where('student_id_receiver', $student->id)->delete();
+        
+        DB::table('students')->where('alias', $alias)->delete();
 		//return redirect()->action('StudentController@index')->with('status', 'El estudiante ' . $alias . ' ha sido borrado correctamente');
         return response()->json(['status'=>'El estudiante ' . $alias . ' ha sido borrado correctamente']);
     }

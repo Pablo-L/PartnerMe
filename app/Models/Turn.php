@@ -18,4 +18,9 @@ class Turn extends Model
     public function students(){
         return $this->belongsToMany('App\Student');
     }
+    
+    //relación con Group
+    public function groups(){
+        return $this->hasMany('App\Group');
+    }
 } 

@@ -1,6 +1,6 @@
 @extends('layouts.master-navbar')
 
-@section('title', 'Lista de estudiantes')
+@section('title', $student->alias)
 
 @section('head')
     @parent
@@ -27,6 +27,8 @@
     
         <div class="puntuation">
             <label>Valoracion: </label>
+            <a href=" {{ action('RatingController@detail', ['id' => $student->id, 'puntuation' => $student->puntuation]) }} " 
+                class="puntuation_data"> {{number_format($student->puntuation, 2) }} </a>
         </div>
 
         <div class="dContainer">

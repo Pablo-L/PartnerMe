@@ -1,0 +1,124 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+}
+
+.main-container{
+    width: 100vw;
+    background-color: var(--main-gris);
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 0fr);
+    grid-template-areas: "status" "tabla" "paginacion";
+    
+    justify-items: center;
+    
+}
+
+#list-table {
+    grid-area: tabla;
+    
+    align-self: center;
+    font-family: 'Rubik', sans-serif;
+    border-collapse: collapse;
+    width: 85vw;
+}
+  
+#list-table td, #list-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#list-table tr:nth-child(even){background-color: #f2f2f2;}
+#list-table tr:hover {background-color: #ddd;}
+
+#list-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: var(--main-morado);
+    color: #fff;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+a{ outline: 0; }
+td > a:link{color: var(--main-morado);}
+td > a:visited{
+    color: var(--main-morado);
+  }
+
+td > a:hover {
+    background-color: var(--main-morado);
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.item-links{
+    color: var(--main-morado);
+    text-decoration: none;
+}
+
+.item-links:hover{
+    background: none;
+    color: var(--main-azul-claro);
+    padding: 0px;
+}
+
+.delete-link{
+    cursor: pointer;
+}
+
+#pagnav{grid-area: paginacion;}
+#pagnav > nav{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.pagination{
+    list-style-type: none;
+    display: flex;
+    justify-self: center;
+    margin: 20px 0px;
+    padding-left: 0px;
+}
+
+.page-item{
+    padding: 15px 20px;
+    background-color: var(--main-morado);
+
+    border-radius: 2px;
+    margin: 4px;
+
+    cursor: pointer;
+}
+
+.page-item:hover{
+    background-color: #fff;
+}
+
+.page-item > a, a:active{
+    color: #fff;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+
+.page-item:hover > a, a:active{
+    color: var(--main-morado);
+}
+
+.page-item + .active{
+    color: #fff;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    background-color: var(--main-morado-apagado);
+}

@@ -1,0 +1,181 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+}
+
+/* Usar si se decide otra alternativa de diseño en el dropdown
+Cuando se use en otras vistas simplemente cambiar el color de fondo
+.drop-filler{
+    background-color: var(--main-gris);
+    grid-row: 2 / span 2;
+    width: 100vw;
+    grid-column: 1 / -1;
+    position: relative;
+    left: calc(-50vw + 50%);
+}
+*/
+.main-container{
+    width: 100vw;
+    background-color: var(--main-gris);
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 0fr);
+    grid-template-areas: "status" "tabla" "paginacion";
+    
+    justify-items: center;
+    
+}
+
+/*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
+#statusCode{
+    grid-area: status;
+
+    display: none;
+    justify-content: center;
+    align-self: center;
+    width: 83vw;
+
+    background-color: var(--main-turquesa);
+    border-radius: 8px;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInArriba;
+    animation-timing-function:ease;
+}
+
+@keyframes fadeInArriba {
+	from{
+		opacity: 0;
+		transform: translate3d(0, -50%, 0);
+	}
+
+	to{
+        opacity: 1;
+        padding: 15px;
+        margin: 10px;
+		transform: translate3d(0, 0%, 0);
+	}
+}
+
+
+#subjects-table {
+    grid-area: tabla;
+    
+    align-self: center;
+    font-family: 'Rubik', sans-serif;
+    border-collapse: collapse;
+    width: 85vw;
+}
+  
+#subjects-table td, #subjects-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#subjects-table tr:nth-child(even){background-color: #f2f2f2;}
+#subjects-table tr:hover {background-color: #ddd;}
+
+#subjects-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: var(--main-morado);
+    color: #fff;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+a{ outline: 0; }
+td > a:link{color: var(--main-morado);}
+td > a:visited{
+    color: var(--main-morado);
+  }
+
+td > a:hover {
+    background-color: var(--main-morado);
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.alias-links{
+    color: var(--main-morado);
+    text-decoration: none;
+}
+
+.alias-links:hover{
+    background: none;
+    color: var(--main-azul-claro);
+    padding: 0px;
+}
+
+#pagnav{grid-area: paginacion;}
+#pagnav > nav{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.pagination{
+    list-style-type: none;
+    display: flex;
+    justify-self: center;
+    margin: 20px 0px;
+    padding-left: 0px;
+}
+
+.page-item{
+    padding: 15px 20px;
+    background-color: var(--main-morado);
+
+    border-radius: 2px;
+    margin: 4px;
+
+    cursor: pointer;
+}
+
+.page-item:hover{
+    background-color: #fff;
+}
+
+.page-item > a, a:active{
+    color: #fff;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+
+.page-item:hover > a, a:active{
+    color: var(--main-morado);
+}
+
+.page-item + .active{
+    color: #fff;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    background-color: var(--main-morado-apagado);
+}
+
+@media (max-width: 800px){
+    .description_cells{
+        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .studentname_cells{
+        display: none;
+    }
+}

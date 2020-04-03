@@ -42,8 +42,11 @@
                 <div class="comment_profile">
                     <div class="comment_photo"></div>
                     <span class="comment_alias">{{DB::table('students')->where('id', $rating->student_id_creator)->first()->alias}}</span>
-                    <span>{{DB::table('students')->where('id', $rating->student_id_creator)->first()->name}},
-                    {{DB::table('students')->where('id', $rating->student_id_creator)->first()->lastName}}</span>
+                    
+                    <span>
+                        {{DB::table('students')->where('id', $rating->student_id_creator)->first()->name}},
+                        {{DB::table('students')->where('id', $rating->student_id_creator)->first()->lastName}}
+                    </span>
 
                 </div>
                 

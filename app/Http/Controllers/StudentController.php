@@ -51,6 +51,7 @@ class StudentController extends Controller{
         $student = DB::table('students')->where('alias', $alias)->first();
         $puntuation = $this->calculatePuntuations($student->id);
         $student->puntuation = $puntuation;
+
         return view('student.student-detail',[
 			'student' => $student
 		]);
@@ -59,12 +60,11 @@ class StudentController extends Controller{
     public function delete($alias){
 
         $student = DB::table('students')->where('alias', $alias)->first();
-
         //Eliminamos todos los ratings creados y recibidos por el ususario
         DB::table('ratings')->where('student_id_creator', $student->id)->delete();
         DB::table('ratings')->where('student_id_receiver', $student->id)->delete();
-        
-        DB::table('students')->where('alias', $alias)->delete();
+
+        DB::table('students')->where('id', $student->id)->delete();
 		//return redirect()->action('StudentController@index')->with('status', 'El estudiante ' . $alias . ' ha sido borrado correctamente');
         return response()->json(['status'=>'El estudiante ' . $alias . ' ha sido borrado correctamente']);
     }

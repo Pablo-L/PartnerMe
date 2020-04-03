@@ -86,6 +86,8 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     font-size: 1em;
     box-sizing: border-box;
     padding: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .group-integrantes{
@@ -94,6 +96,8 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
+
+    width: 100%;
 }
 
 .group-student{

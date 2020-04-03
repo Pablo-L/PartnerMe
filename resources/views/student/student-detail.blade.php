@@ -56,6 +56,10 @@
 
         <div class="groupTitle">Grupos a los que pertenece</div>
     
+        <div class="groups">
+
+        </div>
+
     </div>
 
 

@@ -13,14 +13,14 @@ class CreateStudentsTurnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students_turns', function (Blueprint $table) {
+        Schema::create('student_turn', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('students_id');
-            $table->foreign('students_id')->references('id')->on('students');
-            $table->unsignedBigInteger('turns_id');
-            $table->foreign('turns_id')->references('id')->on('turns');
-            $table->unique(['students_id','turns_id']);
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->unsignedBigInteger('turn_id');
+            $table->foreign('turn_id')->references('id')->on('turns')->onDelete('cascade');
+            $table->unique(['student_id','turn_id']);
         });
     }
 
@@ -31,6 +31,6 @@ class CreateStudentsTurnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students_turns');
+        Schema::dropIfExists('student_turn');
     }
 }

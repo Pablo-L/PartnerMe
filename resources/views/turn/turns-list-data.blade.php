@@ -4,7 +4,7 @@
         <td >{{ @$turn->day }}</td>
         <td >{{ @$turn->beginHour }}</td>
         <td >{{ @$turn->endHour }}</td>
-        <td >{{ @$subject->subjectName }}</td>
+        <td >{{ @$turn->subjectName }}</td>
         <td>
             <a href=" {{ action('TurnController@edit', ['id' => $turn->id]) }} "> 
                 <i class="fas fa-edit"></i> 

@@ -39,7 +39,7 @@ class GroupController extends Controller
         $group->turn_id=$request->input('turn');
         if($request->file('image')->isValid()){
             $path='/public/group_img';
-            $fileName=$group->id . date('_m_d_y_H_i_s') . '.png';
+            $fileName=$group->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
             $request->file('image')->storeAs($path, $fileName);
             $group->image=$fileName;
         }
@@ -65,7 +65,7 @@ class GroupController extends Controller
         $group->save();
         if($request->file('image')->isValid()){
             $path='/public/group_img';
-            $fileName=$group->id . date('_m_d_y_H_i_s') . '.png';
+            $fileName=$group->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
             $request->file('image')->storeAs($path, $fileName);
             $group->image=$fileName;
             $group->save();

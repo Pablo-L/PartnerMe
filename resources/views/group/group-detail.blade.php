@@ -47,10 +47,10 @@
 
         <div class="group-integrantes">
             @foreach($students as $student)
-                    <div class="group-student">
-                        <div class="group-student-photo"></div>
-                        <div class="group-student-info">{{ $student->name }}<br>Valoración: {{ $student->avgRating }}</div>
-                    </div>
+                <div class="group-student">
+                    <div class="group-student-photo"></div>
+                    <div class="group-student-info">{{$student->alias}} <br> {{ $student->name }}<br>Valoración: {{ $student->avgRating }}</div>
+                </div>
             @endforeach
 
         </div>

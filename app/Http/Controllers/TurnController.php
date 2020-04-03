@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Subject;
 class TurnController extends Controller
 {
     public function index(){
-        $turns = DB::table('turns')->paginate(20);
+        $turns =DB::table('turns')
+                    ->join('subjects','turns.subject_id','=','subjects.id')
+                    ->select('turns.*','subjects.subjectName')
+                    ->paginate(20);
         return view('turn.turns-list', [
             'turns' => $turns
         ]);
@@ -18,13 +21,14 @@ class TurnController extends Controller
         $turn=DB::table('turns')
                     ->join('subjects','turns.subject_id','=','subjects.id')
                     ->select('turns.*','subjects.subjectName')
-                    ->where('id',$id)
+                    ->where('turns.id',$id)
                     ->first();
         return view('turn.turns-detail',['turn'=>$turn]);
     }
 
     public function create(){
-        return view('turn.turns-create');
+        $subjects = Subject::all();
+        return view('turn.turns-create',['subjects'=>$subjects]);
     }
 
 
@@ -47,8 +51,9 @@ class TurnController extends Controller
     }
 
     public function edit($id){
-		$turn = DB::table('turns')->where('id',$id)->first();
-        return view('turn.turns-edit',['turn'=>$turn]);
+        $turn = DB::table('turns')->where('id',$id)->first();
+        $subjects = Subject::all();
+        return view('turn.turns-edit',['turn'=>$turn],['subjects'=>$subjects]);
     }
 
     public function update(Request $request){

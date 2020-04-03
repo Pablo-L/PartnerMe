@@ -20,6 +20,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 */
 .main-container{
     width: 100vw;
+    height: 150vh;
     background-color: var(--main-gris);
 
     display: flex;
@@ -31,7 +32,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
     display: grid;
     grid-template-columns: 1fr 0.5fr 2fr;
-    grid-template-rows: 0fr 0fr 0fr 1fr 0fr 1fr;
+    grid-template-rows: 0fr 0fr 0fr 0fr 0fr 0fr;
     grid-template-areas: "foto foto foto"
                          "alias alias alias"
                          "nomyap nomyap valoracion"
@@ -149,6 +150,57 @@ label{
 
 .dContainer > div{
     padding: 10px;
+}
+
+.groups{
+    grid-area: grupos;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.group_card{
+    display: flex;
+
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 15px;
+    padding: 35px 20px;
+    margin: 20px;
+
+    min-width: 40%;
+    justify-content: space-evenly;
+    
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+
+    color: var(--main-gris-oscuro);
+}
+
+.group_photo{
+    background-image: url(../../imgs/default-user-image.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+
+    margin-right: 20px;
+}
+
+.group_data{
+    display: flex;
+    flex-direction: column;
+}
+
+.group_data > div{
+    padding: 5px 0px;
+}
+
+.group_turn, .group_subject{
+    color: #7D7D7D;
 }
 
 @media (max-width: 1300px) {

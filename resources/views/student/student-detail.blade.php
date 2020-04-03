@@ -57,10 +57,53 @@
         <div class="groupTitle">Grupos a los que pertenece</div>
     
         <div class="groups">
+            @foreach($groups as $group)
+                <div class="group_card" onclick="redirectGroup( {{$group->id}} )">
+                    
+                    @if($group->image == 'none (por ahora)')
+                        <div class="group_photo"></div>
+                    @else
+                        <div class="group_photo" style="background-image:url('/storage/group_img/{{ $group->image }}')"></div>
+                    @endif
+                    
+                    <div class="group_data">
+                        <div class="group_name"> {{ $group->groupName }} </div>
+                        @php
+                            $turn = DB::table('turns')->where('id', DB::table('groups')->where('id', $group->id)->first()->turn_id)->first();
+                            $subject = DB::table('subjects')->where('id', $turn->subject_id)->first();
+                            $beginDate = date_create_from_format('H:i:s', $turn->beginHour);
+                            $EndDate = date_create_from_format('H:i:s', $turn->endHour);
+                        @endphp
+                        
+                        <div class="group_turn">
+                            {{$turn->classroomName}} 
+                            {{$turn->day }} 
+                            {{DATE_FORMAT($beginDate, 'H:i')}} - {{DATE_FORMAT($EndDate, 'H:i')}}
+                        </div>
 
+                        <div class="group_subject">
+                            {{$subject->subjectName}} 
+                            <!--{{$subject->department}}-->
+                        </div>
+                      
+
+
+                    </div>
+                </div>
+            @endforeach
         </div>
 
     </div>
+
+
+    <script>
+        function redirectGroup(id){
+            console.log(id);
+            window.location.href = "/group/detail/" + id;
+        }
+    </script>
+
+    
 
 
 @endsection

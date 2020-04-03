@@ -52,8 +52,11 @@ class StudentController extends Controller{
         $puntuation = $this->calculatePuntuations($student->id);
         $student->puntuation = $puntuation;
 
+        $s = Student::find($student->id);
+        $groups = $s->groups;
         return view('student.student-detail',[
-			'student' => $student
+            'student' => $student,
+            'groups' => $groups
 		]);
     }
 

@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\DB;
 class TurnController extends Controller
 {
     public function index(){
-        $turns = DB::table('turns')->paginate(20);
+        $turns =DB::table('turns')
+                    ->join('subjects','turns.subject_id','=','subjects.id')
+                    ->select('turns.*','subjects.subjectName')
+                    ->paginate(20);
         return view('turn.turns-list', [
             'turns' => $turns
         ]);
@@ -18,9 +21,9 @@ class TurnController extends Controller
         $turn=DB::table('turns')
                     ->join('subjects','turns.subject_id','=','subjects.id')
                     ->select('turns.*','subjects.subjectName')
-                    ->where('id',$id)
+                    ->where('turns.id',$id)
                     ->first();
-        return view('turn.turns-detail',['turn'=>$turn]);
+        return view('turn.turns-list-data',['turn'=>$turn]);
     }
 
     public function create(){

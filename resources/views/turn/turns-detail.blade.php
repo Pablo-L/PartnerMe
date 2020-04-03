@@ -10,8 +10,7 @@
 @section('content')
 
     <div class="turn-container">
-        <div class="subject_id">{{ $turn->subjectName }}</div>
-    
+        
         <div class="classroomName">
             <label>Aula: </label>
             <span class="data"> {{ $turn->classroomName }} </span>
@@ -29,6 +28,7 @@
                 <label>Hora de fin: </label>
                 <span class="data"> {{ $turn->endHour }} </span>
             </div>
+            <div class="subject_id">{{ $turn->subjectName }}</div>
         </div>
     
     </div>

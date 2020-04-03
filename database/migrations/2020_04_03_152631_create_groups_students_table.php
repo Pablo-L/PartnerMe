@@ -18,10 +18,10 @@ class CreateGroupsStudentsTable extends Migration
             $table->timestamps();
             
             $table->unsignedBigInteger('student_id')->nullable();
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('set null');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             
             $table->unsignedBigInteger('group_id')->nullable();
-            $table->foreign('group_id')->references('id')->on('groups')->onDelete('set null');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             
             $table->unique(['student_id','group_id']);
         });

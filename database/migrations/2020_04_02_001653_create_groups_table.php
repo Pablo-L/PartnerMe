@@ -20,7 +20,7 @@ class CreateGroupsTable extends Migration
             $table->string('description');
             $table->string('image');
             $table->unsignedBigInteger('turn_id');
-            $table->foreign('turn_id')->references('id')->on('turns');
+            $table->foreign('turn_id')->references('id')->on('turns')->onDelete('cascade');;
         });
     }
 

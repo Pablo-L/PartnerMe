@@ -17,9 +17,9 @@ class CreateStudentsTurnsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->unsignedBigInteger('turn_id');
-            $table->foreign('turn_id')->references('id')->on('turns');
+            $table->foreign('turn_id')->references('id')->on('turns')->onDelete('cascade');
             $table->unique(['student_id','turn_id']);
         });
     }

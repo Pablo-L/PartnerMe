@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Subject;
 class TurnController extends Controller
 {
     public function index(){
@@ -27,7 +27,8 @@ class TurnController extends Controller
     }
 
     public function create(){
-        return view('turn.turns-create');
+        $subjects = Subject::all();
+        return view('turn.turns-create',['subjects'=>$subjects]);
     }
 
 

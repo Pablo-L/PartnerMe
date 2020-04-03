@@ -21,9 +21,14 @@
         <label>Hora de final:</label>
         <input type="text" name="endHour"  id="endHour">
     </div>
-    <div id="subject_id" class="left">
-        <label>Asignatura:</label>
-        <input type="text" name="subject_id"  id="subject_id">
+    <div class="form-group">
+        <label>Asignatura</label>
+        <select name="subject_id"  id="subject_id" class="form-control">
+        @foreach ($subjects as $subject)
+            <option value="{{$subject->id}}">
+                    {{$subject['subjectName']}}
+            </option>
+        @endforeach
     </div>
     <button type="submit" style="background:blue">Enviar</button>
 

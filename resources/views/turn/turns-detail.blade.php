@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="turn-container">
-        <div class="subject_id">{{ $turn->subject_id }}</div>
+        <div class="subject_id">{{ $subject->subjectName }}</div>
     
         <div class="classroomName">
             <label>Aula: </label>

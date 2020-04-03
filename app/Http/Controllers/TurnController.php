@@ -15,10 +15,12 @@ class TurnController extends Controller
     }
 
     public function detail($id){
-        $student = DB::table('turns')->where('id', $id)->first();
-		return view('turn.turn-turn',[
-			'turn' => $turn
-		]);
+        $turn = DB::table('turns')->where('id',$id)->first();
+        $subject = DB::table('subjects')->where('id',$turn->subject_id)
+                        ->join('subjects','turns.subject_id','=','subject.id')
+                        ->select('subjects.*')
+                        ->get();
+        return view('turn.turns-detail',['turn'=>$turn,'subject'=>$subject]);
     }
 
     public function create(){

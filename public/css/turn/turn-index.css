@@ -109,3 +109,51 @@ td > a:hover {
     color: var(--main-azul-claro);
     padding: 0px;
 }
+
+#pagnav{grid-area: paginacion;}
+#pagnav > nav{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.pagination{
+    list-style-type: none;
+    display: flex;
+    justify-self: center;
+    margin: 20px 0px;
+    padding-left: 0px;
+}
+
+.page-item{
+    padding: 15px 20px;
+    background-color: var(--main-morado);
+
+    border-radius: 2px;
+    margin: 4px;
+
+    cursor: pointer;
+}
+
+.page-item:hover{
+    background-color: #fff;
+}
+
+.page-item > a, a:active{
+    color: #fff;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+
+.page-item:hover > a, a:active{
+    color: var(--main-morado);
+}
+
+.page-item + .active{
+    color: #fff;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    background-color: var(--main-morado-apagado);
+}

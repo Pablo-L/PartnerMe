@@ -30,7 +30,8 @@
             <div class="dropdown-content">
                   <a href=" {{URL::route('studentsIndex')}} ">Estudiantes</a>
                   <a href=" {{URL::route('subjectsIndex')}} ">Asignaturas</a>
-                  <a href="#">Opción 3</a>
+                  <a href=" {{URL::route('groupsIndex')}} ">Grupos</a>
+                  <a href=" # ">Turnos</a>
                </div>
             
             <!--Se usaría para no tener que marcar el dropdown como absolute

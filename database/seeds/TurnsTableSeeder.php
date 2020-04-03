@@ -14,37 +14,23 @@ class TurnsTableSeeder extends Seeder
         //borramos datos de la tabla
         DB::table('turns')->delete();
         //rellenamos la tabla
-        $subject = DB::table('subjects')->where('subjectName','Estadística')->first();
-        DB::table('turns')->insert([
-            'classRoomName' => 'L02',
-            'day' => 'Lunes',
-            'beginHour' => '13:00:00',
-            'endHour' => '15:00:00',
-            'subject_id' => $subject->id
-        ]);
-        $subject = DB::table('subjects')->where('subjectName','Programación 1')->first();
-        DB::table('turns')->insert([
-            'classRoomName' => 'L24',
-            'day' => 'Martes',
-            'beginHour' => '09:00:00',
-            'endHour' => '11:00:00',
-            'subject_id' => $subject->id
-        ]);
-        $subject = DB::table('subjects')->where('subjectName','Matemáticas 1')->first();
-        DB::table('turns')->insert([
-            'classRoomName' => 'L21',
-            'day' => 'Jueves',
-            'beginHour' => '11:00:00',
-            'endHour' => '13:00:00',
-            'subject_id' => $subject->id
-        ]);
-        $subject = DB::table('subjects')->where('subjectName','Sistemas operativos')->first();
-        DB::table('turns')->insert([
-            'classRoomName' => 'L14',
-            'day' => 'Viernes',
-            'beginHour' => '15:00:00',
-            'endHour' => '17:00:00',
-            'subject_id' => $subject->id
-        ]);
+        $subjects=DB::table('subjects')->get();
+        $days=['Lunes','Martes','Miércoles','Jueves','Viernes'];
+        foreach($subjects as $subject){
+            for($i=0;$i<5;$i++){
+                $bH=random_int(8,19);
+                $eH=$bH+2;
+                if($bH==8||$bH==9){
+                    $bH='0' . $bH;
+                }
+                DB::table('turns')->insert([
+                    'classRoomName' => 'L' . random_int(0,9) . random_int(0,9),
+                    'day' => $days[random_int(0,4)],
+                    'beginHour' => $bH . ':00:00',
+                    'endHour' => $eH. ':00:00',
+                    'subject_id' => $subject->id
+                ]);
+            }
+        }
     }
 }

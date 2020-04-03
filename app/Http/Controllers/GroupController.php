@@ -26,7 +26,7 @@ class GroupController extends Controller
     }
 
     public function delete($id){
-        $groups_students=DB::table('groups_students')->where('groups_id',$id)->delete();
+        $groups_students=DB::table('group_student')->where('group_id',$id)->delete();
         $group=Group::find($id);
         $group->delete();
         return back();
@@ -77,8 +77,8 @@ class GroupController extends Controller
         $group = DB::table('groups')->where('id',$id)->first();
         $turn = DB::table('turns')->where('id',$group->turn_id)->first();
         $subject = DB::table('subjects')->where('id',$turn->subject_id)->first();
-        $students = DB::table('groups_students')->where('groups_id',$id)
-                        ->join('students','groups_students.students_id','=','students.id')
+        $students = DB::table('group_student')->where('group_id',$id)
+                        ->join('students','group_student.student_id','=','students.id')
                         ->select('students.*')
                         ->get();
         foreach($students as $student){

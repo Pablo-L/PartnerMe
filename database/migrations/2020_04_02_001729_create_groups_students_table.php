@@ -16,10 +16,13 @@ class CreateGroupsStudentsTable extends Migration
         Schema::create('groups_students', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('students_id');
-            $table->foreign('students_id')->references('id')->on('students');
-            $table->unsignedBigInteger('groups_id');
-            $table->foreign('groups_id')->references('id')->on('groups');
+            
+            $table->unsignedBigInteger('students_id')->nullable();
+            $table->foreign('students_id')->references('id')->on('students')->onDelete('set null');
+            
+            $table->unsignedBigInteger('groups_id')->nullable();
+            $table->foreign('groups_id')->references('id')->on('groups')->onDelete('set null');
+            
             $table->unique(['students_id','groups_id']);
         });
     }

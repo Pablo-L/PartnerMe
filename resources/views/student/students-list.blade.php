@@ -72,10 +72,9 @@
 
             //Para eliminar un estudiante...
             $(document).on('click', '.delete-link', function(){
-
                 var alias = this.getAttribute('alias');
-                var id = this.getAttribute('id');
-
+                var id = this.getAttribute('student_id');
+                console.log("entro con id " + id + " y alias " + alias);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -85,14 +84,13 @@
                 jQuery.ajax({
                     url: '/students/delete/' + alias,
                     method: 'get',
-
                     success: function(result){
                         //Elimino la fila de la tabla, puesto que ya se ha eliminado en la base de datos
                         $('#' + id).remove();
-                        console.log(result.status)
                         $("#statusCode").html(result.status);
                         $("#statusCode").css("display", "flex");
-                    }
+                    },
+
                     /*si quiero manejar errores...
                     error: function () {
                     }*/

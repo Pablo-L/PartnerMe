@@ -1,0 +1,139 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+}
+
+.main-container{
+    width: 100vw;
+    background-color: var(--main-gris);
+
+    display: flex;
+    justify-content: center;
+}
+
+.group-form-container{
+    width: 65vw;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 0fr);
+    grid-template-areas: "titulo titulo"
+                         "nom turn"
+                         "img desc"
+                         "btn btn";
+
+    justify-items: center;
+    align-items: center;
+    
+    padding: 20px 0px;
+    margin-bottom: 50px;
+
+}
+
+#group-form{
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.group-form-container > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65%;
+
+    padding: 10px 0px;
+}
+
+.group-form-title{
+    grid-area: titulo;
+    
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--main-morado);
+}
+
+.group-form-name{
+    grid-area: nom;
+}
+
+.group-form-upload{
+    grid-area: img;
+}
+
+.group-form-desc{
+    grid-area: desc;
+}
+
+.group-form-turn{
+    grid-area: turn;
+}
+
+.group-form-btn{
+    background-color: var(--main-morado);
+    grid-area: btn;
+    justify-self: center;
+    width: 70%;
+    border-radius: 16px;
+    margin-top: 15px;
+    padding: 12px;
+    color: #fff;
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+.group-form-btn:hover{
+    background-color: #fff;
+    color: var(--main-morado);
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    color: var(--main-gris-oscuro);
+    opacity: 80%;
+
+    padding: 8px 0px;
+    white-space: nowrap;
+}
+
+.group-form-container input, select, textarea{
+    border-radius: 0px;
+    text-decoration: none;
+    border: 2px solid rgba(125, 125, 125, 0.57);
+    padding: 8px;
+}
+
+.group-form-container select{
+    background: #fff;
+}
+
+.group-form-container input:focus, textarea:focus{
+    border: 3px solid var(--main-azul-claro);
+    color: var(--main-morado);
+}
+
+.group-form-container textarea{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    resize: vertical;
+    min-height: 110px;
+}
+
+.group-form-upload input{
+    border:none;
+}
+
+.group-form-upload input:focus{
+    border:none;
+}

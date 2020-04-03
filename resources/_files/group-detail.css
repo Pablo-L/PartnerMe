@@ -26,32 +26,80 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     justify-content: center;
 }
 
-.signup-container{
-    width: 65vw;
+.group-container{
+    height: 120vh;
+    width: 60%;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     border-radius: 8px;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(8, 0fr);
-    grid-template-areas: "titulo titulo"
-                         "nombre apellidos"
-                         "correo correo"
-                         "pass repass"
-                         "telefono alias"
-                         "grado curso"
-                         "desc desc"
-                         "btn  btn";
+    grid-template-columns: 0fr repeat(3, 1fr);
+    grid-template-rows: repeat(3, 0fr) 1fr;
+    grid-template-areas: "nombre nombre nombre nombre"
+                        "imagen descripcion descripcion descripcion"
+                        "title_intg title_intg title_intg title_intg"
+                        "integrantes integrantes integrantes integrantes";
 
     justify-items: center;
     align-items: center;
     
-    padding: 20px 0px;
+    padding: 50px;
+    box-sizing: border-box;
     margin-bottom: 50px;
 
 }
 
+.group-name{grid-area: nombre;}
+.students-title{grid-area: title_intg;}
+
+.group-name, .students-title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    color: var(--main-morado);
+}
+
+.group-info-container > div{
+    padding: 0px 10px;
+    margin-top: 20px;
+}
+
+.group-description{
+    grid-area: descripcion;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: var(--main-gris-oscuro);
+    padding: 20px;
+}
+
+.group-image{
+    grid-area: imagen;
+    height: 150px;
+    width: 150px;
+    background-color: grey;
+    font-size: 1em;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.group-integrantes{
+    grid-area: integrantes;
+    display: contents;
+}
+
+@media (max-width: 900px){
+    .group-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 0fr);
+        grid-template-areas:  "nombre"
+                              "imagen"
+                              "descripcion"
+                              "integrantes";
+    }
+}
+
+/*
 #signup-form{
     border-radius: 0;
     box-shadow: none;
@@ -86,7 +134,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     font-weight: bold;
     color: var(--main-morado);
 
-    /*white-space: nowrap;*/
+    /*white-space: nowrap;
     word-break: break-all;
 }
 
@@ -217,3 +265,5 @@ label{
     #btnSignup > a{color: var(--main-gris-oscuro);}
     #btnSignup > a:hover{color: var(--main-gris);}
 }
+
+*/

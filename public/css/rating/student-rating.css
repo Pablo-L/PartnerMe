@@ -1,0 +1,261 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+}
+
+
+.main-container{
+    width: 80%;
+    display: grid;
+    height: 200vh;
+    grid-template-columns: 0fr 1fr;
+    grid-template-rows: repeat(4,0fr);
+    grid-template-areas: "foto header"
+                         "foto valoracion"
+                         "comentarios comentarios"
+                         "publicar publicar";
+
+    justify-items: center;
+    align-items: center;
+
+}
+
+.header{
+    border-bottom: 1px solid rgba(125, 125, 125, 0.5);
+    grid-area: header;
+    display: flex;
+    width: 95%;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.header > div{
+    padding: 30px;
+}
+
+.photo{
+
+    grid-area: foto;
+
+    padding: 0px !important;
+    width: 180px;
+    height: 180px;
+    background-color: #fff;
+    border-radius: 50%;
+
+    background-image: url(../../imgs/default-user-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.alias{
+    font-family: 'Roboto', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: var(--main-morado);
+}
+
+.nya > div{
+    padding: 10px;
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--main-gris-oscuro);
+}
+
+.data{
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    color: var(--main-gris-oscuro);
+}
+
+.puntuation{
+    display: flex;
+    align-items: center;
+    background-color: var(--main-gris-oscuro);
+    box-sizing: border-box;
+}
+
+.puntuation_data{
+    font-size: 60px;
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #fff;
+    padding: 0px 20px;
+}
+
+.puntuation > label{
+    color: #fff;
+}
+
+.comments_container{
+    grid-area: comentarios;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(125, 125, 125, 0.5);
+    width: 100%;
+}
+
+.comment{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #707070;
+    margin: 10px 0px;
+}
+
+.comment_profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #707070;
+}
+
+.comment_photo{
+    width: 120px;
+    height: 120px;
+    background-color:var(--main-gris);
+    border-radius: 50%;
+
+    background-image: url(../../imgs/default-user-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.comment_text_containter{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_text_containter > span{
+    padding: 5px 20px;
+}
+
+.comment_text{
+    font-family: 'Rubik';
+    color: #707070;
+}
+
+.comment_profile > span{
+    padding: 2px 0px;
+    white-space: nowrap;
+}
+
+.comment_alias{
+    color: var(--main-morado);
+    margin-top: 5px;
+}
+
+.publish_comment{
+    grid-area: publicar;
+
+    width: 100%;
+    padding: 20px 0px;
+
+}
+
+.publish_comment > div{
+    display: block;
+}
+
+#puntuation_input{
+    padding: 7px 0px;
+    border: none;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-left: 10px;
+    border-radius: 3px;
+    width: 10%;
+    border: 2px solid rgba(125, 125, 125, 0.57);
+}
+
+#comment_text_input{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+}
+
+#comment_text_input textarea{
+    
+    width: 100%;
+    text-decoration: none;
+    margin: 10px 0px;
+    padding: 8px;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    resize: vertical;
+    min-height: 200px;
+
+    border-radius: 0px;
+    border: 2px solid rgba(125, 125, 125, 0.57);
+
+}
+
+#btn_comment{
+    border-radius: 4px;
+    background-color: var(--main-morado-apagado);
+    font-family: 'Roboto';
+    font-size: 26px;
+    cursor: pointer;
+}
+
+#btn_comment:hover{
+    background-color: var(--main-morado);
+}
+
+.alert.alert-danger{
+    background-color: #c00;
+    color: white;
+    font-family: 'Rubik';
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.alert.alert-danger > ul{
+    list-style-type: none;
+    padding: 20px;
+}
+
+.alert.alert-danger > ul li{
+    padding: 5px 0px;
+}
+
+@media (max-width: 1300px){
+    
+    .main-container{
+        width: 90%;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5,0fr);
+        grid-template-areas: "foto"
+                             "header"
+                             "valoracion"
+                             "comentarios"
+                             "publicar";
+    }
+    
+    .header{
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width: 900px){
+    .comment{
+        flex-direction: column;
+    }
+}

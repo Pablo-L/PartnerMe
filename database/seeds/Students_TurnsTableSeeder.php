@@ -11,6 +11,7 @@ class Students_TurnsTableSeeder extends Seeder
      */
     public function run()
     {
+        
         //borramos datos de la tabla
         DB::table('students_turns')->delete();
         //rellenamos la tabla

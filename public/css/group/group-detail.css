@@ -26,32 +26,145 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     justify-content: center;
 }
 
-.signup-container{
-    width: 65vw;
+.group-container{
+    width: 60%;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     border-radius: 8px;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(8, 0fr);
-    grid-template-areas: "titulo titulo"
-                         "nombre apellidos"
-                         "correo correo"
-                         "pass repass"
-                         "telefono alias"
-                         "grado curso"
-                         "desc desc"
-                         "btn  btn";
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: repeat(5, 0fr);
+    grid-template-areas: "nombre nombre"
+                        "imagen descripcion"
+                        "title_intg title_intg"
+                        "integrantes integrantes"
+                        "turnoAsig   turnoAsig";
 
     justify-items: center;
     align-items: center;
     
-    padding: 20px 0px;
+    padding: 50px;
+    box-sizing: border-box;
     margin-bottom: 50px;
 
 }
 
+.group-name{grid-area: nombre;}
+.students-title{grid-area: title_intg;}
+
+.group-name, .students-title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: var(--main-morado);
+
+    margin: 15px 0px;
+}
+
+.group-info-container > div{
+    padding: 0px 10px;
+    margin-top: 20px;
+}
+
+.group-description{
+    grid-area: descripcion;
+    justify-self: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: var(--main-gris-oscuro);
+    padding: 20px;
+
+}
+
+.group-image{
+    grid-area: imagen;
+    justify-self: right;
+    height: 150px;
+    width: 150px;
+    background-color: var(--main-gris);
+    font-size: 1em;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.group-integrantes{
+    grid-area: integrantes;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.group-student{
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sanse-serif;
+    color: var(--main-gris-oscuro);
+
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 2px;
+
+    min-width: 35%;
+    margin: 1%;
+}
+
+.group-student-info{
+    padding: 0px 10px;
+}
+
+.group-student-photo{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--main-gris);
+}
+
+.turno_asig{
+    grid-area: turnoAsig;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.turno_asig > div{
+    padding: 10px 0px;
+}
+
+.group-turn, .group-subject{
+    display: flex;
+    align-items: center;
+}
+
+.turno_asig label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--main-gris-oscuro);
+    margin: 0px 5px;
+}
+
+.turno_asig span{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    color: var(--main-morado);
+}
+
+@media (max-width: 900px){
+    .group-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 0fr);
+        grid-template-areas:  "nombre"
+                              "imagen"
+                              "descripcion"
+                              "integrantes";
+    }
+}
+
+/*
 #signup-form{
     border-radius: 0;
     box-shadow: none;
@@ -86,7 +199,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     font-weight: bold;
     color: var(--main-morado);
 
-    /*white-space: nowrap;*/
+    /*white-space: nowrap;
     word-break: break-all;
 }
 
@@ -217,3 +330,5 @@ label{
     #btnSignup > a{color: var(--main-gris-oscuro);}
     #btnSignup > a:hover{color: var(--main-gris);}
 }
+
+*/

@@ -39,7 +39,6 @@ class SubjectController extends Controller
     public function delete($name){
         $subject = DB::table('subjects')->where('subjectName',$name)->delete();
         return redirect()->action('SubjectController@index');
-
     }
     public function edit($name){
         $subject = DB::table('subjects')->where('subjectName',$name)->first();

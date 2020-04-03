@@ -57,9 +57,7 @@
         <div class="groupTitle">Grupos a los que pertenece</div>
     
         <div class="groups">
-            @foreach($student->groups as $group)
-                <li>{{ $group->name }}</li>
-            @endforeach
+
         </div>
 
     </div>

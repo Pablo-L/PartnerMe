@@ -1,0 +1,111 @@
+:root {
+    --main-morado: #00204A;
+    --main-morado-apagado: #334E73;
+    --main-gris: #E1E2E4;
+    --main-gris-oscuro: #474747;
+    --main-azul-claro: #3686E6;
+    --main-turquesa: #3ACACE;
+}
+
+/* Usar si se decide otra alternativa de diseño en el dropdown
+Cuando se use en otras vistas simplemente cambiar el color de fondo
+.drop-filler{
+    background-color: var(--main-gris);
+    grid-row: 2 / span 2;
+    width: 100vw;
+    grid-column: 1 / -1;
+    position: relative;
+    left: calc(-50vw + 50%);
+}
+*/
+.main-container{
+    width: 100vw;
+    height: 85vh;
+    background-color: var(--main-gris);
+    
+    display: flex;
+    flex-direction: column;
+}
+
+/*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
+#statusCode{
+    display: none;
+    justify-content: center;
+    align-self: center;
+    width: 83vw;
+
+    background-color: var(--main-turquesa);
+    border-radius: 8px;
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: fadeInArriba;
+    animation-timing-function:ease;
+}
+
+@keyframes fadeInArriba {
+	from{
+		opacity: 0;
+		transform: translate3d(0, -50%, 0);
+	}
+
+	to{
+        opacity: 1;
+        padding: 15px;
+        margin: 10px;
+		transform: translate3d(0, 0%, 0);
+	}
+}
+
+
+#turns-table {
+    align-self: center;
+    font-family: 'Rubik', sans-serif;
+    border-collapse: collapse;
+    width: 85vw;
+}
+  
+#turns-table td, #turns-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#turns-table tr:nth-child(even){background-color: #f2f2f2;}
+#turns-table tr:hover {background-color: #ddd;}
+
+#turns-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: var(--main-morado);
+    color: #fff;
+}
+
+a{ outline: 0; }
+a:link{color: var(--main-morado);}
+td > a:visited{
+    color: var(--main-morado);
+  }
+
+td > a:hover {
+    background-color: var(--main-morado);
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.alias-links{
+    color: var(--main-morado);
+    text-decoration: none;
+}
+
+.alias-links:hover{
+    background: none;
+    color: var(--main-azul-claro);
+    padding: 0px;
+}

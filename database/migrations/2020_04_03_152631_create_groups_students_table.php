@@ -13,17 +13,17 @@ class CreateGroupsStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups_students', function (Blueprint $table) {
+        Schema::create('group_student', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             
-            $table->unsignedBigInteger('students_id')->nullable();
-            $table->foreign('students_id')->references('id')->on('students')->onDelete('set null');
+            $table->unsignedBigInteger('student_id')->nullable();
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             
-            $table->unsignedBigInteger('groups_id')->nullable();
-            $table->foreign('groups_id')->references('id')->on('groups')->onDelete('set null');
+            $table->unsignedBigInteger('group_id')->nullable();
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             
-            $table->unique(['students_id','groups_id']);
+            $table->unique(['student_id','group_id']);
         });
     }
 
@@ -34,6 +34,6 @@ class CreateGroupsStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groups_students');
+        Schema::dropIfExists('group_student');
     }
 }

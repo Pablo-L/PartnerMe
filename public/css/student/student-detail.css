@@ -180,7 +180,7 @@ label{
 }
 
 .group_photo{
-    background-image: url(../../imgs/default-user-image.png);
+    /*background-image: url(../../imgs/default-user-image.png);*/
     background-repeat: no-repeat;
     background-size: contain;
     width: 150px;

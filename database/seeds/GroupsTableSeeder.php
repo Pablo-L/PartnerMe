@@ -20,7 +20,7 @@ class GroupsTableSeeder extends Seeder
             DB::table('groups')->insert([
                 'groupName' => 'Grupo de ' . $student->alias,
                 'description' => '¡Mira, ' . $student->alias . ' tiene un grupo!',
-                'image' => 'none (por ahora)',
+                'image' => 'default.png',
                 'turn_id' => $turn->id
             ]);
         }

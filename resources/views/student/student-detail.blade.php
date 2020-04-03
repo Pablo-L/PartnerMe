@@ -60,11 +60,9 @@
             @foreach($groups as $group)
                 <div class="group_card" onclick="redirectGroup( {{$group->id}} )">
                     
-                    @if($group->image == 'none (por ahora)')
-                        <div class="group_photo"></div>
-                    @else
-                        <div class="group_photo" style="background-image:url('/storage/group_img/{{ $group->image }}')"></div>
-                    @endif
+
+                    <div class="group_photo" style="background-image:url('/storage/group_img/{{ $group->image }}')"></div>
+
                     
                     <div class="group_data">
                         <div class="group_name"> {{ $group->groupName }} </div>

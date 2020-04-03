@@ -60,6 +60,11 @@ td > a:hover {
     border-radius: 6px;
 }
 
+td img{
+    width: 100px;
+    height: 100px;
+}
+
 .item-links{
     color: var(--main-morado);
     text-decoration: none;

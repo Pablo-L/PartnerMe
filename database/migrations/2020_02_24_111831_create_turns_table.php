@@ -20,8 +20,8 @@ class CreateTurnsTable extends Migration
             $table->string('day');
             $table->time('beginHour');
             $table->time('endHour');
-            $table->unsignedBigInteger('subject_id');
-            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->unsignedBigInteger('subject_id')->nullable();
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('set null');
         });
     }
 

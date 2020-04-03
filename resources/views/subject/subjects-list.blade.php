@@ -1,41 +1,47 @@
 @extends('layouts.master-navbar')
 
-@section('title', 'Lista de asignaturas')
+@section('title','lista de asignaturas')
 
 @section('head')
-    @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/student/student-index.css') }}">
-    
+    @parent 
+    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/subject/subject-index.css') }}">
+
 @endsection
 
 @section('content')
 
     @if(session('status'))
         <div id="statusCode">
-            {{ session('status') }}
+            {{session('status')}}
         </div>
         <script>
             document.getElementById("statusCode").style.display = "flex";
         </script>
     @endif
 
-
     <div id="statusCode">
-        {{ session('status') }}
+        {{ session('status')}}
     </div>
 
-
-    <table id = "subjects-table">
-        <tr>
-            <th>Nombre Asignatura</th>
-            <th>Departamento</th>
-        </tr>
-        @foreach($subjects as $subject)
-            <tr id="{{$subject->id}}">
-                <td>{{ $subject->subjectName}}</td>
-                <td>{{ $subject->department }}</td>
+    <table id="subjects-table">
+        <thead>
+            <tr>
+                <th>
+                    Nombre de la asignatura
+                </th>
+                <th>
+                    Departamento
+                </th>
+                <th>
+                    Modificar
+                </th>
+                <th>
+                    Eliminar
+                </th>
             </tr>
-        @endforeach
-
+        </thead>
+        <tbody>
+            @include('subject.subject-list-data')
+        </tbody>
     </table>
 @endsection

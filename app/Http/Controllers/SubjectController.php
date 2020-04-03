@@ -9,7 +9,7 @@ class SubjectController extends Controller
 {
     //
     public function index(){
-        $subjects = DB::table('subjects')->get();
+        $subjects = DB::table('subjects')->paginate(20);
         return view('subject.subjects-list',['subjects'=> $subjects]);
         //return 'Hola mundo';
     }

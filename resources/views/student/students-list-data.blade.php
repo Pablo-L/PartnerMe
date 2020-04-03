@@ -17,7 +17,7 @@
             </a> 
         </td>
         <td> 
-            <a class="delete-link" alias="{{$student->alias}}" id="{{$student->id}}"> 
+            <a class="delete-link" alias="{{$student->alias}}" student_id="{{$student->id}}"> 
                 <i class="fas fa-trash-alt"> </i> 
             </a> 
         </td>

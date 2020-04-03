@@ -12,16 +12,16 @@ class Groups_StudentsTableSeeder extends Seeder
     public function run()
     {
         //borramos datos de la tabla
-        DB::table('groups_students')->delete();
+        DB::table('group_student')->delete();
         //rellenamos la tabla
-        $student;
+        //$student;
         $groups=DB::table('groups')->get();
         $id=1;
         foreach($groups as $group){
             $student=DB::table('students')->where('id',$id)->first();
-            DB::table('groups_students')->insert([
-                'groups_id' => $group->id,
-                'students_id' => $student->id
+            DB::table('group_student')->insert([
+                'group_id' => $group->id,
+                'student_id' => $student->id
             ]);
             $id++;
         }

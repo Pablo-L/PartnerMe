@@ -44,4 +44,5 @@
             @include('subject.subject-list-data')
         </tbody>
     </table>
+    
 @endsection

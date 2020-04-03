@@ -51,6 +51,7 @@ class StudentController extends Controller{
         $student = DB::table('students')->where('alias', $alias)->first();
         $puntuation = $this->calculatePuntuations($student->id);
         $student->puntuation = $puntuation;
+
         return view('student.student-detail',[
 			'student' => $student
 		]);

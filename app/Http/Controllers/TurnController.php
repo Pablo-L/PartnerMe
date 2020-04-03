@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class StudentController extends Controller{
-
+class TurnController extends Controller
+{
     public function index(){
-        $students = DB::table('turns')->get();
+        $turns = DB::table('turns')->paginate(20);
         return view('turn.turns-list', [
             'turns' => $turns
         ]);
@@ -21,18 +21,32 @@ class StudentController extends Controller{
 		]);
     }
 
+    public function create(){
+        return view('turn.turns-create');
+    }
+
+
+    public function postForm(Request $request){
+        if($request->has('classroomName')){//admitimos que el resto de campos se rellenan
+            $subject = DB::table('turns')->insert(array(
+            'classroomName' => $request->input('classroomName'),
+            'day' => $request->input('day'),
+            'beginHour' => $request->input('beginHour'),
+            'endHour' => $request->input('endHour'),
+            'subject_id'=> $request->input('subject_id')
+            ));
+        }
+        return redirect()->action('TurnController@index');
+    }
+
     public function delete($id){
 		$student = DB::table('turns')->where('id', $id)->delete();
-		//return redirect()->action('StudentController@index')->with('status', 'El estudiante ' . $alias . ' ha sido borrado correctamente');
-        return response()->json(['status'=>'El turno ' . $id . ' ha sido borrado correctamente']);
+        return redirect()->action('TurnController@index');
     }
 
     public function edit($id){
-		$student = DB::table('turns')->where('id', $id)->first();
-		
-		return view('signup',[
-			'turn' => $turn
-		]);
+		$turn = DB::table('turns')->where('id',$id)->first();
+        return view('turn.turns-edit',['turn'=>$turn]);
     }
 
     public function update(Request $request){
@@ -62,5 +76,4 @@ class StudentController extends Controller{
         return redirect()->action('TurnController@index')
             ->with('status', 'El turno '. $request->input('id') . ' ha sido creado correctamente');
     }
-
 }

@@ -63,23 +63,23 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 }
 
 
-#students-table {
+#turns-table {
     align-self: center;
     font-family: 'Rubik', sans-serif;
     border-collapse: collapse;
     width: 85vw;
 }
   
-#students-table td, #students-table th {
+#turns-table td, #turns-table th {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
-#students-table tr:nth-child(even){background-color: #f2f2f2;}
-#students-table tr:hover {background-color: #ddd;}
+#turns-table tr:nth-child(even){background-color: #f2f2f2;}
+#turns-table tr:hover {background-color: #ddd;}
 
-#students-table th {
+#turns-table th {
     padding-top: 12px;
     padding-bottom: 12px;
     background-color: var(--main-morado);

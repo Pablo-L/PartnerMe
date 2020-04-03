@@ -65,3 +65,19 @@ Route::group(['prefix'=>'group'], function(){
 Route::get('my_groups','GroupController@list');
 Route::get('groups', 'GroupController@index')->name('groupsIndex');
 
+/*
+|--------------------------------------------------------------
+| Rutas de los turnos
+|--------------------------------------------------------------
+*/
+Route::group(['prefix'=>'turn'], function(){
+	Route::get('delete/{id}', 'TurnController@delete');
+	Route::get('edit/{id}', 'TurnController@edit');
+	Route::get('create', 'TurnController@create');
+	Route::post('create', 'TurnController@postForm');
+	Route::post('update', 'TurnController@update');
+	Route::post('save', 'TurnController@save');
+	Route::get('detail/{id}', 'TurnController@detail');
+});
+
+Route::get('turns', 'TurnController@index')->name('turnsIndex');

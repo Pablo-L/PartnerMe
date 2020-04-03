@@ -31,7 +31,7 @@
                   <a href=" {{URL::route('studentsIndex')}} ">Estudiantes</a>
                   <a href=" {{URL::route('subjectsIndex')}} ">Asignaturas</a>
                   <a href=" {{URL::route('groupsIndex')}} ">Grupos</a>
-                  <a href=" # ">Turnos</a>
+                  <a href=" {{URL::route('turnsIndex')}} ">Turnos</a>
                </div>
             
             <!--Se usaría para no tener que marcar el dropdown como absolute
@@ -51,6 +51,7 @@
                <option value="2">Grupo</option>
                <option value="3">Profesor</option>
                <option value="4">Asignatura</option>
+               <option value="5">Turno</option>
                </select>
             </div>
 

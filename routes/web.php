@@ -41,7 +41,7 @@ Route::group(['prefix'=>'students'], function(){
 
 Route::get('subject','SubjectController@index')->name('subjectsIndex');
 Route::get('subject/detail/{subjectName}','SubjectController@detail');
-Route::get('subject/create','SubjectController@create');
+Route::get('subject/create','SubjectController@create')->name('subjectCreate');
 Route::post('subject/create','SubjectController@postForm');
 Route::get('subject/delete/{name}','SubjectController@delete');
 Route::get('subject/edit/{name}','SubjectController@edit');
@@ -56,7 +56,7 @@ Route::post('subject/edit/','SubjectController@update');
 Route::group(['prefix'=>'group'], function(){
 	Route::get('delete/{id}', 'GroupController@delete');
 	Route::get('edit/{id}', 'GroupController@edit');
-	Route::get('create', 'GroupController@create');
+	Route::get('create', 'GroupController@create')->name('groupCreate');
 	Route::post('update', 'GroupController@update');
 	Route::post('save', 'GroupController@save');
 	Route::get('detail/{id}', 'GroupController@detail');
@@ -73,7 +73,7 @@ Route::get('groups', 'GroupController@index')->name('groupsIndex');
 Route::group(['prefix'=>'turn'], function(){
 	Route::get('delete/{id}', 'TurnController@delete');
 	Route::get('edit/{id}', 'TurnController@edit');
-	Route::get('create', 'TurnController@create');
+	Route::get('create', 'TurnController@create')->name('turnCreate');
 	Route::post('create', 'TurnController@postForm');
 	Route::post('update', 'TurnController@update');
 	Route::post('save', 'TurnController@save');

@@ -9,6 +9,14 @@
 
 @section('content')
     <div class="titulo">
-        Inicio en construcción
+        <button class="btnLogin">
+            <a href="{{ URL::route('groupCreate') }}">Crear grupo</a>
+        </button>
+        <button class="btnLogin">
+            <a href="{{ URL::route('subjectCreate') }}">Crear asignatura</a>
+        </button>
+        <button class="btnLogin">
+            <a href="{{ URL::route('turnCreate') }}">Crear turno</a>
+        </button>
     </div>
 @endsection

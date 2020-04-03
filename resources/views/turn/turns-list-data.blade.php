@@ -1,7 +1,7 @@
 @foreach($turns as $turn)
     <tr id = "{{ $turn->id}}">
         <td >{{ @$turn->classroomName}}</td>
-        <td >{{ @$turn->day }}</td>
+        <td ><a href=" {{ action('TurnController@detail', ['id' => $turn->id]) }} ">{{ @$turn->day }}</a></td>
         <td >{{ @$turn->beginHour }}</td>
         <td >{{ @$turn->endHour }}</td>
         <td >{{ @$turn->subjectName }}</td>

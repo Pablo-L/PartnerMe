@@ -1,6 +1,6 @@
 @foreach($subjects as $subject)
     <tr id = "{{ $subject->id}}">
-        <td >{{ @$subject->subjectName }}</td>
+        <td ><a href=" {{ action('SubjectController@detail', ['subjectName' => $subject->subjectName]) }} ">{{ @$subject->subjectName }}</a></td>
         <td >{{ @$subject->department }}</td>
         <td>
             <a href=" {{ action('SubjectController@edit', ['name' => $subject->subjectName]) }} "> 

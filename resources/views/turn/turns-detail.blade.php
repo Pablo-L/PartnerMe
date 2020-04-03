@@ -10,14 +10,13 @@
 @section('content')
 
     <div class="turn-container">
-        <div class="subject_id">{{ $turn->subjectName }}</div>
-    
+        
         <div class="classroomName">
             <label>Aula: </label>
             <span class="data"> {{ $turn->classroomName }} </span>
         </div>
         <div class="time">
-            <div class="beginHour">
+            <div class="day">
                 <label>dia: </label>
                 <span class="data"> {{ $turn->day }} </span>
             </div>
@@ -28,6 +27,10 @@
             <div class="endHour">
                 <label>Hora de fin: </label>
                 <span class="data"> {{ $turn->endHour }} </span>
+            </div>
+            <div class="subject_id">
+                <label>Asignatura</label>
+                <span class="data">{{ $turn->subjectName }}</span>
             </div>
         </div>
     

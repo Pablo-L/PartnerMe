@@ -12,12 +12,12 @@
 
         <div id="name" class="left">
             <label>Nombre de la asignatura:</label>
-            <input type="text" name="subjectName" id="subjectName">
+            <input type="text" name="subjectName" id="subjectName" value="{{$subject->subjectName ?? ''}}">
         </div>
 
         <div id="department" class="right">
             <label>Departamento:</label>
-            <input type="text" name="department"  id="department">
+            <input type="text" name="department"  id="department" value="{{$subject->department ?? ''}}">
         </div>
         
         <button type="submit" style="background:blue">Enviar</button>

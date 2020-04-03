@@ -29,6 +29,7 @@
                     {{$subject['subjectName']}}
             </option>
         @endforeach
+        </select>
     </div>
     <button type="submit" style="background:blue">Enviar</button>
 

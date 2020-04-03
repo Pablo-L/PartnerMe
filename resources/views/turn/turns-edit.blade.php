@@ -15,16 +15,22 @@
         <input type="text" name="classroomName" id="classroomName">
     </div>
     <div id="day" class="left">
-        <label>Día:</label>
-        <input type="text" name="day" id="day">
+        <label>Día</label>
+        <select name="day">
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miercoles">Miercoles</option>
+            <option value="Jueves" selected>Jueves</option>
+            <option value="Viernes" selected>Viernes</option>
+        </select>
     </div>
     <div id="beginHour" class="right">
         <label>Hora de comienzo:</label>
-        <input type="text" name="beginHour"  id="beginHour">
+        <input type="time" name="beginHour" value="08:00" max="22:30" min="08:00" step="1">
     </div>
     <div id="endHour" class="right">
         <label>Hora de final:</label>
-        <input type="text" name="endHour"  id="endHour">
+        <input type="time" name="endHour" value="08:00" max="22:30" min="08:00" step="1">
     </div>
     <div class="form-group">
         <label>Asignatura</label>

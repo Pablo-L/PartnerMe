@@ -23,7 +23,7 @@ class TurnController extends Controller
                     ->select('turns.*','subjects.subjectName')
                     ->where('turns.id',$id)
                     ->first();
-        return view('turn.turns-list-data',['turn'=>$turn]);
+        return view('turn.turns-detail',['turn'=>$turn]);
     }
 
     public function create(){
@@ -51,8 +51,9 @@ class TurnController extends Controller
     }
 
     public function edit($id){
-		$turn = DB::table('turns')->where('id',$id)->first();
-        return view('turn.turns-edit',['turn'=>$turn]);
+        $turn = DB::table('turns')->where('id',$id)->first();
+        $subjects = Subject::all();
+        return view('turn.turns-edit',['turn'=>$turn],['subjects'=>$subjects]);
     }
 
     public function update(Request $request){

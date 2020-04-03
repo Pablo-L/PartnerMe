@@ -1,5 +1,7 @@
 @extends('layouts.master-navbar')
 
+@section('title', 'Editar turno')
+
 @section('content')
 
     <form action="{{action('TurnController@update')}}"method='POST'>

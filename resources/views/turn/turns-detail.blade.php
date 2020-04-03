@@ -1,6 +1,6 @@
 @extends('layouts.master-navbar')
 
-@section('title', 'Lista de turnos')
+@section('title', 'Detalles del turno')
 
 @section('head')
     @parent

@@ -1,5 +1,7 @@
 @extends('layouts.master-navbar')
 
+@section('title', 'Crear asignatura')
+
 @section('content')
 <form action="{{action('SubjectController@postForm')}}"method='POST'>
     @csrf

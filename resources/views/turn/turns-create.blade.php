@@ -1,5 +1,7 @@
 @extends('layouts.master-navbar')
 
+@section('title', 'Crear turno')
+
 @section('content')
 <form action="{{action('TurnController@postForm')}}"method='POST'>
     @csrf

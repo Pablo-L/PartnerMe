@@ -1,5 +1,7 @@
 @extends('layouts.master-navbar')
 
+@section('title', 'Editar asignatura')
+
 @section('content')
 
     <form action="{{action('SubjectController@update')}}"method='POST'>

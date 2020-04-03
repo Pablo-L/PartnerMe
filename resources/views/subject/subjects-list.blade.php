@@ -1,6 +1,6 @@
 @extends('layouts.master-navbar')
 
-@section('title','lista de asignaturas')
+@section('title','Lista de asignaturas')
 
 @section('head')
     @parent 

@@ -143,7 +143,7 @@ label{
 }
 
 @media (max-width: 1300px) {
-    .student-container{
+    .user-container{
         grid-template-columns: 1fr;
         grid-template-rows: repeat(7, 0fr);
         grid-template-areas: "foto"

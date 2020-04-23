@@ -69,7 +69,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 }
 
 
-#students-table {
+#users-table {
     grid-area: tabla;
     
     align-self: center;
@@ -78,16 +78,16 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     width: 85vw;
 }
   
-#students-table td, #students-table th {
+#users-table td, #users-table th {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
-#students-table tr:nth-child(even){background-color: #f2f2f2;}
-#students-table tr:hover {background-color: #ddd;}
+#users-table tr:nth-child(even){background-color: #f2f2f2;}
+#users-table tr:hover {background-color: #ddd;}
 
-#students-table th {
+#users-table th {
     padding-top: 12px;
     padding-bottom: 12px;
     background-color: var(--main-morado);
@@ -179,7 +179,7 @@ td > a:hover {
 }
 
 @media (max-width: 650px) {
-    .studentname_cells, #studentname_cells{
+    .username_cells, #username_cells{
         display: none;
     }
 }

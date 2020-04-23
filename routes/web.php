@@ -11,32 +11,31 @@
 |
 */
 
-use App\Rating;
 
 Route::get('/', function () {
     return view('index');
 })->name('main');
 
 Route::get('/login', function() {
-	return view('login');
+    return view('login');
 })->name('login');
 
 Route::get('/signup', function(){
-	return view('signup');
+    return view('signup');
 })->name('signup');
 
 
-Route::group(['prefix'=>'students'], function(){
-    Route::get('/', 'StudentController@index')->name('studentsIndex');
-    Route::get('/detail/{alias}', 'StudentController@detail');
-	Route::get('delete/{alias}', 'StudentController@delete');
-	Route::get('edit/{alias}', 'StudentController@edit');
-	Route::get('fetch_data', 'StudentController@fetch_data');
-	Route::post('save', 'StudentController@save');
-	Route::post('update', 'StudentController@update');	
+Route::group(['prefix'=>'users'], function(){
+    Route::get('/', 'UserController@index')->name('usersIndex');
+    Route::get('/detail/{alias}', 'UserController@detail');
+    Route::get('delete/{alias}', 'UserController@delete');
+    Route::get('edit/{alias}', 'UserController@edit');
+    Route::get('fetch_data', 'UserController@fetch_data');
+    Route::post('save', 'UserController@save');
+    Route::post('update', 'UserController@update');  
 
-	Route::get('rating/{id}', 'RatingController@detail')->name('student-rating');
-	Route::post('rating/upload', 'RatingController@upload')->name('upload-comment');
+    Route::get('rating/{id}', 'RatingController@detail')->name('user-rating');
+    Route::post('rating/upload', 'RatingController@upload')->name('upload-comment');
 });
 
 Route::get('subject','SubjectController@index')->name('subjectsIndex');
@@ -54,12 +53,12 @@ Route::post('subject/edit/','SubjectController@update');
 |--------------------------------------------------------------
 */
 Route::group(['prefix'=>'group'], function(){
-	Route::get('delete/{id}', 'GroupController@delete');
-	Route::get('edit/{id}', 'GroupController@edit');
-	Route::get('create', 'GroupController@create')->name('groupCreate');
-	Route::post('update', 'GroupController@update');
-	Route::post('save', 'GroupController@save');
-	Route::get('detail/{id}', 'GroupController@detail');
+    Route::get('delete/{id}', 'GroupController@delete');
+    Route::get('edit/{id}', 'GroupController@edit');
+    Route::get('create', 'GroupController@create')->name('groupCreate');
+    Route::post('update', 'GroupController@update');
+    Route::post('save', 'GroupController@save');
+    Route::get('detail/{id}', 'GroupController@detail');
 });
 
 Route::get('my_groups','GroupController@list');
@@ -71,13 +70,13 @@ Route::get('groups', 'GroupController@index')->name('groupsIndex');
 |--------------------------------------------------------------
 */
 Route::group(['prefix'=>'turn'], function(){
-	Route::get('delete/{id}', 'TurnController@delete');
-	Route::get('edit/{id}', 'TurnController@edit');
-	Route::get('create', 'TurnController@create')->name('turnCreate');
-	Route::post('create', 'TurnController@postForm');
-	Route::post('update', 'TurnController@update');
-	Route::post('save', 'TurnController@save');
-	Route::get('detail/{id}', 'TurnController@detail');
+    Route::get('delete/{id}', 'TurnController@delete');
+    Route::get('edit/{id}', 'TurnController@edit');
+    Route::get('create', 'TurnController@create')->name('turnCreate');
+    Route::post('create', 'TurnController@postForm');
+    Route::post('update', 'TurnController@update');
+    Route::post('save', 'TurnController@save');
+    Route::get('detail/{id}', 'TurnController@detail');
 });
 
 Route::get('turns', 'TurnController@index')->name('turnsIndex');

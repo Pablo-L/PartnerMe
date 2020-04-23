@@ -51,9 +51,9 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 }
 
 .group-name{grid-area: nombre;}
-.students-title{grid-area: title_intg;}
+.users-title{grid-area: title_intg;}
 
-.group-name, .students-title{
+.group-name, .users-title{
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 36px;
@@ -100,7 +100,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     width: 100%;
 }
 
-.group-student{
+.group-user{
     display: flex;
     align-items: center;
     font-family: 'Roboto', sanse-serif;
@@ -114,11 +114,11 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     margin: 1%;
 }
 
-.group-student-info{
+.group-user-info{
     padding: 0px 10px;
 }
 
-.group-student-photo{
+.group-user-photo{
     width: 50px;
     height: 50px;
     border-radius: 50%;

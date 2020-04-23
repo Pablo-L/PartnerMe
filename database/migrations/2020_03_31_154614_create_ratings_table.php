@@ -20,11 +20,11 @@ class CreateRatingsTable extends Migration
             //$table->unsignedBigInteger('student_id');
             //$table->foreign('student_id')->references('id')->on('students');
             
-            $table->unsignedBigInteger('student_id_creator')->nullable();
-            $table->unsignedBigInteger('student_id_receiver')->nullable();
+            $table->unsignedBigInteger('user_id_creator')->nullable();
+            $table->unsignedBigInteger('user_id_receiver')->nullable();
 //
-            $table->foreign('student_id_creator')->references('id')->on('students')->onDelete('cascade');
-            $table->foreign('student_id_receiver')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('user_id_creator')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id_receiver')->references('id')->on('users')->onDelete('cascade');
             
             $table->double('points');
             $table->string('comment');

@@ -16,8 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'description', 'alias', 'lastName','studies', 'course', 'puntuation',
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -35,5 +36,29 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'puntuation' => 'float',
     ];
+
+    public function turns(){
+        return $this->belongsToMany('App\Turn');
+    }
+
+    //relación con Group
+    public function groups(){
+        return $this->belongsToMany('App\Group');
+    }
+
+    public static function puntuation($s){
+        return $s->ratings;
+    }
+
+    public function created_ratings(){
+        return $this->hasMany('App\Rating', 'user_id_creator', 'id');
+    }
+
+    public function received_ratings(){
+        return $this->hasMany('App\Rating', 'user_id_receiver', 'id');
+    }
+
+
 }

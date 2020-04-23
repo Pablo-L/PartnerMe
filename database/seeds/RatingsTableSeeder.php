@@ -13,14 +13,14 @@ class RatingsTableSeeder extends Seeder
         DB::table('ratings')->delete();
 
         $faker = Faker\Factory::create();
-        $students = DB::table('students')->get();
+        $users = DB::table('users')->get();
         
-        $numStudents = count($students);
+        $numUsers = count($users);
         $i=1;
-        foreach($students as $student){
+        foreach($users as $user){
             DB::table('ratings')->insert([
-                'student_id_creator' => $students[$numStudents - $i]->id,
-                'student_id_receiver' => $student->id,
+                'user_id_creator' => $users[$numUsers - $i]->id,
+                'user_id_receiver' => $user->id,
                 'points' => (double) mt_rand(0,100) / 10.0,
                 'comment' => $faker->text,
             ]);

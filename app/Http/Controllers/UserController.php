@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SebastianBergmann\Environment\Console;
-use App\Student;
+use App\User;
 
-class StudentController extends Controller{
+class UserController extends Controller{
 
 
     public function calculatePuntuations($id){
-        $student = Student::find($id);
-        $puntuations = $student->received_ratings;
+        $user = User::find($id);
+        $puntuations = $user->received_ratings;
         
         $totalPuntuation = 0.0;
 
@@ -25,15 +25,15 @@ class StudentController extends Controller{
     }
 
     public function index(){
-        //$students = DB::table('students')->paginate(20);
-        //return view('student.students-list', [
-        //    'students' => $students
+        //$users = DB::table('users')->paginate(20);
+        //return view('user.users-list', [
+        //    'users' => $users
         //]);
-        //$students = Student::all()
+        //$users = User::all()
         
-        $students = DB::table('students')->paginate(20);
-        //foreach($students as $student){$student->puntuation = $this->calculatePuntuations($student->id);}
-        return view('student.students-list', compact('students'));
+        $users = DB::table('users')->paginate(20);
+        //foreach($users as $user){$user->puntuation = $this->calculatePuntuations($user->id);}
+        return view('user.users-list', compact('users'));
     }
 
     function fetch_data(Request $request){
@@ -42,48 +42,48 @@ class StudentController extends Controller{
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
 
-            $students = DB::table('students')->orderBy($sort_by, $sort_type)->paginate(20);
-            return view('student.students-list-data', compact('students'))->render();
+            $users = DB::table('users')->orderBy($sort_by, $sort_type)->paginate(20);
+            return view('user.users-list-data', compact('users'))->render();
         }
     }
 
     public function detail($alias){
-        $student = DB::table('students')->where('alias', $alias)->first();
-        $puntuation = $this->calculatePuntuations($student->id);
-        $student->puntuation = $puntuation;
+        $user = DB::table('users')->where('alias', $alias)->first();
+        $puntuation = $this->calculatePuntuations($user->id);
+        $user->puntuation = $puntuation;
 
-        $s = Student::find($student->id);
+        $s = User::find($user->id);
         $groups = $s->groups;
-        return view('student.student-detail',[
-            'student' => $student,
+        return view('user.user-detail',[
+            'user' => $user,
             'groups' => $groups
 		]);
     }
 
     public function delete($alias){
 
-        $student = DB::table('students')->where('alias', $alias)->first();
+        $user = DB::table('users')->where('alias', $alias)->first();
         //Eliminamos todos los ratings creados y recibidos por el ususario
-        DB::table('ratings')->where('student_id_creator', $student->id)->delete();
-        DB::table('ratings')->where('student_id_receiver', $student->id)->delete();
+        DB::table('ratings')->where('user_id_creator', $user->id)->delete();
+        DB::table('ratings')->where('user_id_receiver', $user->id)->delete();
 
-        DB::table('students')->where('id', $student->id)->delete();
-		//return redirect()->action('StudentController@index')->with('status', 'El estudiante ' . $alias . ' ha sido borrado correctamente');
+        DB::table('users')->where('id', $user->id)->delete();
+		//return redirect()->action('UserController@index')->with('status', 'El estudiante ' . $alias . ' ha sido borrado correctamente');
         return response()->json(['status'=>'El estudiante ' . $alias . ' ha sido borrado correctamente']);
     }
 
     public function edit($alias){
-		$student = DB::table('students')->where('alias', $alias)->first();
+		$user = DB::table('users')->where('alias', $alias)->first();
 		
 		return view('signup',[
-			'student' => $student
+			'user' => $user
 		]);
     }
 
     public function update(Request $request){
 		$id = $request->input('id');
 		
-		$student = DB::table('students')->where('id', $id)
+		$user = DB::table('users')->where('id', $id)
 									    ->update(array(
                                             'phone' => $request->input('phone'),
                                             'description' => $request->input('description'),
@@ -95,12 +95,12 @@ class StudentController extends Controller{
                                             'studies' =>  $request->input('degree'),
                                             'course' =>  $request->input('course'),
 									    ));
-        return redirect()->action('StudentController@index')
+        return redirect()->action('UserController@index')
             ->with('status', 'El estudiante ' . $request->input('alias') . ' ha sido modificado correctamente');
     }
 
     public function save(Request $request){
-        $student = DB::table('students')->insert(array(
+        $user = DB::table('users')->insert(array(
             'phone' => $request->input('phone'),
             'description' => $request->input('description'),
             'alias' => "@" . $request->input('alias'),
@@ -112,7 +112,7 @@ class StudentController extends Controller{
             'course' =>  $request->input('course'),
 		));
 		
-        return redirect()->action('StudentController@index')
+        return redirect()->action('UserController@index')
             ->with('status', 'El estudiante ' . "@" . $request->input('alias') . ' ha sido creado correctamente');
     }
 

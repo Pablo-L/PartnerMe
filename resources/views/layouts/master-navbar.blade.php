@@ -28,7 +28,7 @@
             </div>
 
             <div class="dropdown-content">
-                  <a href=" {{URL::route('studentsIndex')}} ">Estudiantes</a>
+                  <a href=" {{URL::route('usersIndex')}} ">Estudiantes</a>
                   <a href=" {{URL::route('subjectsIndex')}} ">Asignaturas</a>
                   <a href=" {{URL::route('groupsIndex')}} ">Grupos</a>
                   <a href=" {{URL::route('turnsIndex')}} ">Turnos</a>

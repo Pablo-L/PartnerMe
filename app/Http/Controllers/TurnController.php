@@ -46,7 +46,7 @@ class TurnController extends Controller
     }
 
     public function delete($id){
-		$student = DB::table('turns')->where('id', $id)->delete();
+		$user = DB::table('turns')->where('id', $id)->delete();
         return redirect()->action('TurnController@index');
     }
 
@@ -72,7 +72,7 @@ class TurnController extends Controller
     }
 
     public function save(Request $request){
-        $student = DB::table('turns')->insert(array(
+        $user = DB::table('turns')->insert(array(
                                     'classroomName' => $request->input('classroomName'),
                                     'day' => $request->input('day'),
                                     'beginHour' => $request->input('beginHour'),

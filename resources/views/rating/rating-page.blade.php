@@ -1,10 +1,10 @@
 @extends('layouts.master-navbar')
 
-@section('title', 'Rating de ' . $student->alias)
+@section('title', 'Rating de ' . $user->alias)
 
 @section('head')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/rating/student-rating.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/rating/user-rating.css') }}">
 @endsection
 
 @section('content')
@@ -14,22 +14,22 @@
     <div class="header">
     
         <div class="nya">
-            <div class="alias">{{ $student->alias }}</div>
+            <div class="alias">{{ $user->alias }}</div>
             
             <div class="name">
                 <label>Nombre: </label>
-                <span class="data"> {{ $student->name }} </span>
+                <span class="data"> {{ $user->name }} </span>
             </div>
             
             <div>
                 <label>Apellidos: </label>
-                <span class="data"> {{ $student->lastName }} </span>
+                <span class="data"> {{ $user->lastName }} </span>
             </div>
         </div>
 
         <div class="puntuation">
             <label>Valoracion: </label>
-            <span class="puntuation_data"> {{ number_format($student->puntuation, 2) }} </span>
+            <span class="puntuation_data"> {{ number_format($user->puntuation, 2) }} </span>
         </div>
     </div>
 
@@ -41,11 +41,11 @@
             <div class="comment">
                 <div class="comment_profile">
                     <div class="comment_photo"></div>
-                    <span class="comment_alias">{{DB::table('students')->where('id', $rating->student_id_creator)->first()->alias}}</span>
+                    <span class="comment_alias">{{DB::table('users')->where('id', $rating->user_id_creator)->first()->alias}}</span>
                     
                     <span>
-                        {{DB::table('students')->where('id', $rating->student_id_creator)->first()->name}},
-                        {{DB::table('students')->where('id', $rating->student_id_creator)->first()->lastName}}
+                        {{DB::table('users')->where('id', $rating->user_id_creator)->first()->name}},
+                        {{DB::table('users')->where('id', $rating->user_id_creator)->first()->lastName}}
                     </span>
 
                 </div>
@@ -65,15 +65,15 @@
         <!-- El creador sería el usuario que tiene abierta la sesión, 
         como esta función todavía no esta implementada escogeremos un usuario aleatorio
         un id entre el primer id y el número de ids que hay-->
-        <input type="hidden" name="student_creator_id" 
-        value="{{DB::table('students')->where('id', 
+        <input type="hidden" name="user_creator_id" 
+        value="{{DB::table('users')->where('id', 
             mt_rand(
-                DB::table('students')->first()->id,
-                DB::table('students')->first()->id + count(DB::table('students')->get())
+                DB::table('users')->first()->id,
+                DB::table('users')->first()->id + count(DB::table('users')->get())
             ))->first()->id}}" />
         
-        <input type="hidden" name="student_receiver_id" value="{{$student->id}}" /> 
-        <input type="hidden" name="student_alias" value="{{$student->alias}}" /> 
+        <input type="hidden" name="user_receiver_id" value="{{$user->id}}" /> 
+        <input type="hidden" name="user_alias" value="{{$user->alias}}" /> 
 
         @if ($errors->any())
                 <div class="alert alert-danger">

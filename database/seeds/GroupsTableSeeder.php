@@ -14,13 +14,13 @@ class GroupsTableSeeder extends Seeder
         //borramos datos de la tabla
         DB::table('groups')->delete();
         //rellenamos la tabla
-        $students=DB::table('students')->get();
+        $users=DB::table('users')->get();
         $turns=DB::table('turns')->get();
         $nTurns=DB::table('turns')->select('id')->count();
-        foreach($students as $student){
+        foreach($users as $user){
             DB::table('groups')->insert([
-                'groupName' => 'Grupo de ' . $student->alias,
-                'description' => '¡Mira, ' . $student->alias . ' tiene un grupo!',
+                'groupName' => 'Grupo de ' . $user->alias,
+                'description' => '¡Mira, ' . $user->alias . ' tiene un grupo!',
                 'image' => 'default.png',
                 'turn_id' => $turns[random_int(0,$nTurns-1)]->id
             ]);

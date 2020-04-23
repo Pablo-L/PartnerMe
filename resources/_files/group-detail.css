@@ -51,9 +51,9 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 }
 
 .group-name{grid-area: nombre;}
-.students-title{grid-area: title_intg;}
+.users-title{grid-area: title_intg;}
 
-.group-name, .students-title{
+.group-name, .users-title{
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 28px;

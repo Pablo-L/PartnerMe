@@ -17,13 +17,13 @@
         <div class="group-image" style="background-image:url('/storage/group_img/{{ $group->image }}')"></div>
         <div class="group-description">{{ $group->description }}</div>
 
-        <div class="students-title">Integrantes</div>
+        <div class="users-title">Integrantes</div>
 
         <div class="group-integrantes">
-            @foreach($students as $student)
-                <div class="group-student">
-                    <div class="group-student-photo"></div>
-                    <div class="group-student-info">{{$student->alias}} <br> {{ $student->name }}<br>Valoración: {{ $student->avgRating }}</div>
+            @foreach($users as $user)
+                <div class="group-user">
+                    <div class="group-user-photo"></div>
+                    <div class="group-user-info">{{$user->alias}} <br> {{ $user->name }}<br>Valoración: {{ $user->avgRating }}</div>
                 </div>
             @endforeach
 

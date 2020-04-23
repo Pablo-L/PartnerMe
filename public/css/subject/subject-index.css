@@ -175,7 +175,7 @@ td > a:hover {
 }
 
 @media (max-width: 650px) {
-    .studentname_cells{
+    .username_cells{
         display: none;
     }
 }

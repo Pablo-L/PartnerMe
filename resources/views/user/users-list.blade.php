@@ -4,7 +4,7 @@
 
 @section('head')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/student/student-index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/user/user-index.css') }}">
     
 @endsection
 
@@ -25,7 +25,7 @@
     </div>
 
 
-    <table id = "students-table">
+    <table id = "users-table">
         
         <thead>
             <tr>
@@ -34,7 +34,7 @@
                     Alias
                 </th>
                 
-                <th id="studentname_cells" class="sorting" data-sorting_type="asc" data-column_name="name">
+                <th id="username_cells" class="sorting" data-sorting_type="asc" data-column_name="name">
                     Nombre del alumno
                 </th>
                 
@@ -54,7 +54,7 @@
         </thead>
 
         <tbody>
-            @include('student.students-list-data')
+            @include('user.users-list-data')
         </tbody>
 
     </table>
@@ -73,7 +73,7 @@
             //Para eliminar un estudiante...
             $(document).on('click', '.delete-link', function(){
                 var alias = this.getAttribute('alias');
-                var id = this.getAttribute('student_id');
+                var id = this.getAttribute('user_id');
                 console.log("entro con id " + id + " y alias " + alias);
                 $.ajaxSetup({
                     headers: {
@@ -82,7 +82,7 @@
                 })
 
                 jQuery.ajax({
-                    url: '/students/delete/' + alias,
+                    url: '/users/delete/' + alias,
                     method: 'get',
                     success: function(result){
                         //Elimino la fila de la tabla, puesto que ya se ha eliminado en la base de datos
@@ -101,8 +101,8 @@
             function fetchData(page, sort_type, sort_by){
                 
                 $.ajax({
-                    //Realmente podría añadir un parámetro para sustituir students y generalizarlo (?)
-                    url:"/students/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type,
+                    //Realmente podría añadir un parámetro para sustituir users y generalizarlo (?)
+                    url:"/users/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type,
                     success:function(data){
                         $('tbody').html('');
                         $('tbody').html(data);

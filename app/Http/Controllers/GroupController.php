@@ -26,7 +26,7 @@ class GroupController extends Controller
     }
 
     public function delete($id){
-        $groups_students=DB::table('group_student')->where('group_id',$id)->delete();
+        $groups_users=DB::table('group_user')->where('group_id',$id)->delete();
         $group=Group::find($id);
         $group->delete();
         return back();
@@ -37,11 +37,13 @@ class GroupController extends Controller
         $group->groupName=$request->input('groupName');
         $group->description=$request->input('description');
         $group->turn_id=$request->input('turn');
-        if($request->file('image')->isValid()){
-            $path='/public/group_img';
-            $fileName=$group->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
-            $request->file('image')->storeAs($path, $fileName);
-            $group->image=$fileName;
+        if($request->file('image')){
+            if($request->file('image')->isValid()){
+                $path='/public/group_img';
+                $fileName=$group->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
+                $request->file('image')->storeAs($path, $fileName);
+                $group->image=$fileName;
+            }
         }
         $group->save();
         return redirect()->action('GroupController@detail',[$group->id]);
@@ -77,13 +79,13 @@ class GroupController extends Controller
         $group = DB::table('groups')->where('id',$id)->first();
         $turn = DB::table('turns')->where('id',$group->turn_id)->first();
         $subject = DB::table('subjects')->where('id',$turn->subject_id)->first();
-        $students = DB::table('group_student')->where('group_id',$id)
-                        ->join('students','group_student.student_id','=','students.id')
-                        ->select('students.*')
+        $users = DB::table('group_user')->where('group_id',$id)
+                        ->join('users','group_user.user_id','=','users.id')
+                        ->select('users.*')
                         ->get();
-        foreach($students as $student){
-            $student->avgRating=app('App\Http\Controllers\StudentController')->calculatePuntuations($student->id);
+        foreach($users as $user){
+            $user->avgRating=app('App\Http\Controllers\UserController')->calculatePuntuations($user->id);
         }
-        return view('group.group-detail',['group'=>$group,'turn'=>$turn,'subject'=>$subject,'students'=>$students]);
+        return view('group.group-detail',['group'=>$group,'turn'=>$turn,'subject'=>$subject,'users'=>$users]);
     }
 }

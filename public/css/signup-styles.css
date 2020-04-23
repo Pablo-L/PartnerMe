@@ -125,32 +125,45 @@ label{
 
 #name{grid-area: nombre;}
 #lastName{grid-area: apellidos;}
-#email{grid-area: correo; width: 68.5%;}
+#email{
+    grid-area: correo; 
+    justify-self: right;
+    width: 82.5%;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
 #password{grid-area: pass;}
 #repassword{grid-area: repass;}
 #phone{grid-area: telefono;}
 #alias{grid-area: alias;}
 #degree{
     grid-area: grado;
-    margin-right: -72px;
+    margin-right: -84px;
     width: 80%;
 }
 #course{
     grid-area: curso;
     justify-self: center;
-    width: 50%;
-    margin-right: 17%;
+    width: 70%;
 }
-#description{grid-area: desc; width: 68.5%;}
+#description{grid-area: desc; width: 68%;}
+.description_text{
+    display: flex;
+    justify-content: center;
+}
+
+textarea#description{
+    width: 100%;
+}
 
 #btnSignup{
     background-color: var(--main-morado);
     grid-area: btn;
     justify-self: center;
-    width: 70%;
-    border-radius: 16px;
+    width: 68%;
+    border-radius: 6px;
     margin-top: 15px;
-    padding: 12px;
+    padding: 12px 0px;
 
     cursor: pointer;
 }
@@ -166,6 +179,19 @@ label{
 
 #btnSignup:hover a{
     color: var(--main-morado);
+}
+
+.error_message{
+    background-color: #c00;
+    border-radius: 4px;
+
+    padding: 10px;
+    margin-top: 10px;
+    
+    font-family: 'Rubik';
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
 }
 
 @media (max-width: 1400px) {

@@ -80,3 +80,6 @@ Route::group(['prefix'=>'turn'], function(){
 });
 
 Route::get('turns', 'TurnController@index')->name('turnsIndex');
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

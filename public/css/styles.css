@@ -247,6 +247,45 @@
     align-items: center;
     justify-content: space-evenly;
   }
+
+  .BoxBtnUsuario{
+    grid-column: col-start 13 / span 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+  }
+
+  .dropdown-user{
+    width: 94%;
+
+    position: absolute;
+    top: 80px;
+
+    text-align: center;
+  }
+
+  .dropdown-user-item{
+    display: block;
+    width: 100%;
+    padding: 10px;
+
+    background-color: var(--main-azul-claro);
+    box-sizing: border-box;
+
+    font-family: 'Rubik',sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color:#fff;
+  }
+
+  .btnUsuario{
+    background-color: var(--main-azul-claro);
+    padding: 20px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
   
   button {
     

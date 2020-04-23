@@ -55,15 +55,43 @@
                </select>
             </div>
 
-            <div class="botonesLogin">
+            @guest
+               <div class="botonesLogin">
+                  <button class="btnLogin"><a href="{{URL::route('login')}}">Iniciar sesión</a></button>
+                  <button class="btnRegister"><a href="{{URL::route('register')}}">Registrarse</a></button>
+               </div>
+            @else
+               <div class="BoxBtnUsuario">
+                  <button class="btnUsuario"><a>Bienvenido {{ Auth::user()->alias }}</a></button>
 
-               <button class="btnLogin"><a href="{{URL::route('login')}}">Iniciar sesión</a></button>
+                  <div class="dropdown-user">
+                     <a class="dropdown-user-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                     </a>
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                     </form>
+                  </div>
+               </div>
 
 
 
-            <button class="btnRegister"><a href="{{URL::route('signup')}}">Registrarse</a></button>
-
-            </div>
+               <!--
+               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+                  
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                     @csrf
+                  </form>
+               </div>
+               -->
+            @endguest
 
          </nav>
       @show

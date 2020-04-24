@@ -11,6 +11,12 @@ return [
     'Studies' => 'Estudios (Grado universitario)',
     'Course' => 'Curso',
     'Description' => 'Descripción',
-
+    'Register' => 'Registrarse',
+    
+    'Login' => 'Iniciar sesión',
+    'Logout' => 'Cerrar sesión',
+    'Edit Profile' => 'Editar perfil',
+    'Remember Me' => 'Recuerdame',
+    'Forgot Your Password?' => 'Olvidó su contraseña',
 
 ];

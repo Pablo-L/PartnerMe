@@ -120,6 +120,7 @@
   }
   
   a, a:active, a:focus {outline: none;}
+  button::-moz-focus-inner{border: 0;}
   a:link {text-decoration: none; outline: none;}
   .dropdown-content a {
     font-family: 'Rubik', sans-serif;
@@ -260,18 +261,19 @@
   .dropdown-user{
     width: 94%;
 
+    display: none;
     position: absolute;
     top: 80px;
 
     text-align: center;
-  }
+  }  
 
   .dropdown-user-item{
     display: block;
     width: 100%;
     padding: 10px;
 
-    background-color: var(--main-azul-claro);
+    background-color: var(--main-morado);
     box-sizing: border-box;
 
     font-family: 'Rubik',sans-serif;
@@ -280,8 +282,17 @@
     color:#fff;
   }
 
+  .dropdown-user-item:hover{
+    background-color: var(--main-morado-apagado);
+  }
+
+  .dropdown-user a:last-of-type{
+    border-radius: 0px 0px 8px 8px;
+    padding-bottom: 16px;
+  }
+
   .btnUsuario{
-    background-color: var(--main-azul-claro);
+    background-color: var(--main-morado);
     padding: 20px 30px;
     border-radius: 4px;
     cursor: pointer;
@@ -330,17 +341,17 @@
     nav {
       width: 100vw;
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 0fr 0fr 1fr;
-      grid-template-areas: "logo" 
-                           "menuDrop"
-                           "loginRegistro"
-                           "busqueda";
-      
+      grid-template-areas: "logo usuario" 
+                           "menuDrop menuDrop"
+                           "loginRegistro loginRegistro"
+                           "busqueda busqueda";
+      grid-gap: 0px;
     }
 
     .logoBox{
-      background-color: var(--main-morado);
+      background-color: var(--main-morado-apagado);
     }
 
     .logo > a > h1{
@@ -354,6 +365,8 @@
     .logoBoxDrop{
       height: 100%;
     }
+
+    .icon-menu{background-color: initial;}
 
     .dropdown-content{
       display: none;
@@ -387,8 +400,33 @@
       margin: 0px;
     }
 
+    .BoxBtnUsuario{
+      grid-area: usuario;
+    }
 
+    .btnUsuario{
+      background-color: var(--main-turquesa);
+      cursor: pointer;
+      height: 100%;
+      font-size: 28px;
+      border-radius: 0px;
+    }
 
+    .dropdown-user{
+      top: 103px;
+    }
 
+    .dropdown-user-item{
+      background-color: var(--main-turquesa);
+      padding: 16px 2px;
+      font-size: 24px;
+    }
 
+    .dropdown-user a:last-of-type{
+      border-radius: 0px 0px 0px 8px;
+    }
+
+    .dropdown-user-item:hover{
+      background-color:rgb(10, 193, 200);
+    }
   }

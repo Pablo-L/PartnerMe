@@ -1,7 +1,69 @@
-@extends('layouts.app')
+@extends('layouts.master-navbar')
+
+@section('head')
+    @parent
+    @section('title', __('messages.Login'))
+	<link rel="stylesheet" type="text/css" href="{{ asset('../../css/login-styles.css') }}">
+@endsection
+
 
 @section('content')
-<div class="container">
+
+    <div class="divs-container">
+		<div class="titulo">
+			<h1 id = "btnInicio"><a href="{{URL::route('main')}}">PartnerMe</a></h1>
+        </div>
+        
+		<div class="login-box">
+
+			<div>
+				<h1> {{__('messages.Login')}}</h1>
+			</div>
+
+			<form action="{{ route('login') }}" method="post">
+                @csrf
+
+ 				<label for="email"> {{ __('messages.E-Mail Address') }} </label>
+				<input type="email" id="email" name="email" class="@error('email') input_error @enderror" value="{{ old('email') }}" > 
+                @error('email')
+                    <div class="error_message">
+                        <span>
+                            {{ $message }}
+                        </span>
+                    </div>
+                @enderror
+
+ 				<label for="password"> {{ __('messages.Password') }} </label>
+                <input type="password" id="password" name="password"  class="@error('email') input_error @enderror">
+                @error('password')
+                    <div class="error_message">
+                        <span>
+                            {{ $message }}
+                        </span>
+                    </div>
+                @enderror 
+
+                <div class="remember-box">
+                    <input type="checkbox" name="remember" id="remember" value=" {{ old('remember') ? 'checked' : '' }} ">
+                    <label for="remember">{{ __('messages.Remember Me') }}</label>
+                </div>
+
+                <button class="button">{{ __('messages.Login') }}</button>
+
+                <hr class="line">
+                <div class="form-links">
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}">
+                            {{ __('messages.Forgot Your Password?') }}
+                        </a>
+                    @endif
+                </div>
+			</form>
+		</div>
+	</div>
+
+<!-- 
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -70,4 +132,5 @@
         </div>
     </div>
 </div>
+-->
 @endsection

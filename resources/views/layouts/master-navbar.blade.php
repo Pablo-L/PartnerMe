@@ -65,10 +65,11 @@
                   <button class="btnUsuario"><a>Bienvenido {{ Auth::user()->alias }}</a></button>
 
                   <div class="dropdown-user">
+                     <a class="dropdown-user-item">{{ __('messages.Edit Profile') }}</a>
                      <a class="dropdown-user-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        {{ __('messages.Logout') }}
                      </a>
                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -106,6 +107,23 @@
          const logo = document.querySelector('.logoBox')
          const icon = document.querySelector('.icon-menu')
          const main = document.querySelector('.main-container')
+
+         const btnMenuUser = document.querySelector('.BoxBtnUsuario')
+         const btnUser = document.querySelector('.btnUsuario')
+         const menuUser = document.querySelector('.dropdown-user')
+
+         if(btnMenuUser){
+            btnMenuUser.addEventListener('click', async () =>{
+               if(menuUser.style.display === "block"){
+                  menuUser.style.display = "none"
+               }else{
+                  menuUser.style.display = "block"
+                  var anchoDecimal = btnUser.getBoundingClientRect();
+                  var anchoDecimalText = anchoDecimal.width + 'px';
+                  menuUser.style.width = anchoDecimalText;
+               }
+            });
+         }
 
          btnMenuDrop.addEventListener('click', async () => {
 

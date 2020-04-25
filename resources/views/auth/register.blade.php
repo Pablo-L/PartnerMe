@@ -20,12 +20,44 @@
         </div>
 
         <form class="signup-container" id="signup-form" 
-            method="POST" action="{{ route('register') }}">
-           @csrf
+            method="POST" 
+            @if(isset($user) && is_object($user))
+                action="{{ route('admin.users.update', $user) }}">
+	        @else
+                action="{{ route('register') }}">
+            @endif
+            
+            @csrf
+
+            @if(isset($user) && is_object($user))
+                {{ method_field('PUT') }}
+	        @endif            
 
             @if(isset($user) && is_object($user))
 		        <input type="hidden" name="id" value="{{ $user->id }}"/>
-	        @endif
+            @endif
+            
+            @php
+                if(isset($user) && is_object($user)){
+                    $userRoles = $user->roles()->get()->pluck('rolName')->toArray();
+                    $existsUser = true;
+                }else{
+                    $existsUser = false;
+                }
+            @endphp
+
+            @if($existsUser)
+                <!-- Solo el admin debe ver esta parte -->
+                <div class="rol-box">
+                    @foreach($roles as $role)
+                        <div class="roles">
+                            <input id="{{$role}}" type="checkbox" name="roles[]" value="{{$role->id}}" 
+                            @if(isset($user) && in_array($role->rolName, $userRoles)) checked @endif>
+                            <label for="{{$role}}">{{ $role->rolName }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
 
             <div id="name" class="left">
                 <label for="name">{{__('messages.Name')}}</label>
@@ -65,7 +97,7 @@
 
             <div id="password" class="left">
                 <label for="password">{{ __('messages.Password') }}</label>
-                <input id="password" class="@error('password') input_error @enderror" type="password" name="password" value="{{ $user->password ?? ''}}">
+                <input id="password" class="@error('password') input_error @enderror" type="password" name="password">
                 @error('password')
                     <div class="error_message">
                         <span>
@@ -148,11 +180,17 @@
                 @enderror
             </div>
 
+
+
             <button id="btnSignup" type="submit">
-                <a>
-                    {{ __('messages.Register') }}
-                </a>
+                @if(isset($user) && is_object($user))
+                    <a>{{ __('messages.Edit Profile') }}</a>
+                @else
+                    <a>{{ __('messages.Register') }}</a>
+                @endif
             </button>
+
+            
 
         </form>
 

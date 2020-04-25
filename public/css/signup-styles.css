@@ -34,8 +34,9 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(8, 0fr);
+    grid-template-rows: repeat(9, 0fr);
     grid-template-areas: "titulo titulo"
+                         "roles roles"
                          "nombre apellidos"
                          "correo correo"
                          "pass repass"
@@ -123,6 +124,16 @@ label{
     min-height: 200px;
 }
 
+div.rol-box{
+    grid-area: roles;
+    display: flex;
+    flex-direction: row;
+}
+
+div.roles{
+    margin: 0px 10px;
+}
+
 #name{grid-area: nombre;}
 #lastName{grid-area: apellidos;}
 #email{
@@ -194,13 +205,46 @@ textarea#description{
     color: white;
 }
 
+/* Oculto la checkbox original*/
+.roles input[type=checkbox] {
+    display: none;
+}
+
+/* Dibujo una custom check box */
+.roles {line-height: 20px; margin: 20px 0px;}
+.roles label {cursor: pointer;}
+.roles label:after {
+    display: inline-block;
+    width: 20px;
+    margin-left: 10px;
+    content: "\00a0";
+    text-align: center;
+
+    font-size: 20px;
+    padding: 5px;
+    background: #ccc;
+}
+
+.roles label:hover:after{
+    background: #bbb;
+}
+
+.roles input:checked ~ label::after {
+    content: "\f00c";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900; 
+    background: #3f6cb5;
+    color: #fff;
+}
+
 @media (max-width: 1400px) {
 
     .main-container{background-color: var(--main-gris-oscuro);}
     .signup-container{
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(12, 0fr);
+        grid-template-rows: repeat(13, 0fr);
         grid-template-areas: "titulo"
+                             "roles"
                              "nombre"
                              "apellidos"
                              "correo"

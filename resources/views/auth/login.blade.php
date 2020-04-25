@@ -24,7 +24,7 @@
                 @csrf
 
  				<label for="email"> {{ __('messages.E-Mail Address') }} </label>
-				<input type="email" id="email" name="email" class="@error('email') input_error @enderror" value="{{ old('email') }}" > 
+				<input type="email" id="email" name="email" class="@error('email') input_error @enderror" value="{{ old('email') ?? '' }}" > 
                 @error('email')
                     <div class="error_message">
                         <span>

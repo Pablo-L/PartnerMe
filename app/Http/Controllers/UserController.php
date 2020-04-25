@@ -99,6 +99,7 @@ class UserController extends Controller{
             ->with('status', 'El estudiante ' . $request->input('alias') . ' ha sido modificado correctamente');
     }
 
+    /*
     public function save(Request $request){
         $user = DB::table('users')->insert(array(
             'phone' => $request->input('phone'),
@@ -115,5 +116,6 @@ class UserController extends Controller{
         return redirect()->action('UserController@index')
             ->with('status', 'El estudiante ' . "@" . $request->input('alias') . ' ha sido creado correctamente');
     }
+    */
 
 }

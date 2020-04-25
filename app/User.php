@@ -60,5 +60,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Rating', 'user_id_receiver', 'id');
     }
 
+    public function roles(){
+        return $this->belongsToMany('App\Role');
+    }
+
 
 }

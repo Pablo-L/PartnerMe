@@ -10,6 +10,11 @@ use App\Subject;
 
 class GroupController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         $groups = DB::table('groups')->paginate(20);
         return view('group.groups-list',['groups'=>$groups]);

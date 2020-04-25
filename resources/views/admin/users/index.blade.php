@@ -33,6 +33,10 @@
                 <th class="sorting" data-sorting_type="asc" data-column_name="alias">
                     Alias
                 </th>
+
+                <th class="sorting" data-sorting_type="asc" data-column_name="alias">
+                    Roles
+                </th>
                 
                 <th id="username_cells" class="sorting" data-sorting_type="asc" data-column_name="name">
                     Nombre del alumno
@@ -54,7 +58,7 @@
         </thead>
 
         <tbody>
-            @include('user.users-list-data')
+            @include('admin.users.index_data')
         </tbody>
 
     </table>
@@ -102,7 +106,7 @@
                 
                 $.ajax({
                     //Realmente podría añadir un parámetro para sustituir users y generalizarlo (?)
-                    url:"/users/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type,
+                    url:"/admin/users/fetchData?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type,
                     success:function(data){
                         $('tbody').html('');
                         $('tbody').html(data);
@@ -111,6 +115,7 @@
                         console.log(data);
                     }
                 })
+
             }
 
             $(document).on('click', '.sorting', function(){

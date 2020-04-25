@@ -414,6 +414,7 @@
 
     .dropdown-user{
       top: 103px;
+      z-index: 1;
     }
 
     .dropdown-user-item{

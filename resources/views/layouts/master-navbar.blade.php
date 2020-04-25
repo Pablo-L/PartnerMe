@@ -9,7 +9,7 @@
 
          <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Rubik:400,700&display=swap" rel="stylesheet">
          <link rel="stylesheet" type="text/css" href="{{ asset('../../css/styles.css') }}">
-         <link rel="stylesheet" type="text/css" href="../../css/iconos.css">
+         <link rel="stylesheet" type="text/css" href="{{ asset('../../css/iconos.css') }}">
 
       </head>
    @show
@@ -28,7 +28,8 @@
             </div>
 
             <div class="dropdown-content">
-                  <a href=" {{URL::route('usersIndex')}} ">Estudiantes</a>
+                  <!-- <a href=" {{URL::route('usersIndex')}} ">Estudiantes</a> -->
+                  <a href=" {{URL::route('admin.users.index')}} ">Usuarios</a>
                   <a href=" {{URL::route('subjectsIndex')}} ">Asignaturas</a>
                   <a href=" {{URL::route('groupsIndex')}} ">Grupos</a>
                   <a href=" {{URL::route('turnsIndex')}} ">Turnos</a>

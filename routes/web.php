@@ -16,13 +16,18 @@ Route::get('/', function () {
     return view('index');
 })->name('main');
 
-Route::get('/login', function() {
-    return view('login');
-})->name('login');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/signup', function(){
-    return view('signup');
-})->name('signup');
+
+
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+    //No necesito crear ni guardar usuarios puesto que pueden registrarse
+    Route::get('/users/fetchData', 'UsersController@fetchData');
+    Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
+    
+});
 
 
 Route::group(['prefix'=>'users'], function(){
@@ -37,6 +42,12 @@ Route::group(['prefix'=>'users'], function(){
     Route::get('rating/{id}', 'RatingController@detail')->name('user-rating');
     Route::post('rating/upload', 'RatingController@upload')->name('upload-comment');
 });
+
+/*
+|--------------------------------------------------------------
+| Rutas de las asignaturas
+|--------------------------------------------------------------
+*/
 
 Route::get('subject','SubjectController@index')->name('subjectsIndex');
 Route::get('subject/detail/{subjectName}','SubjectController@detail');
@@ -81,5 +92,13 @@ Route::group(['prefix'=>'turn'], function(){
 
 Route::get('turns', 'TurnController@index')->name('turnsIndex');
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+
+/*
+Route::get('/login', function() {
+    return view('login');
+})->name('login');
+
+Route::get('/signup', function(){
+    return view('signup');
+})->name('signup');
+*/

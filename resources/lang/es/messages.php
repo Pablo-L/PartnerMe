@@ -18,5 +18,5 @@ return [
     'Edit Profile' => 'Editar perfil',
     'Remember Me' => 'Recuerdame',
     'Forgot Your Password?' => 'Olvidó su contraseña',
-
+    'Edit Profile' => 'Editar perfil',
 ];

@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 use App\Subject;
 class TurnController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         $turns =DB::table('turns')
                     ->join('subjects','turns.subject_id','=','subjects.id')

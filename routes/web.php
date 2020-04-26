@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     //No necesito crear ni guardar usuarios puesto que pueden registrarse
     Route::get('/users/delete/{id}', 'UsersController@delete');
     Route::get('/users/fetchData', 'UsersController@fetchData');

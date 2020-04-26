@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller{
 
+    //Comprueba si el usuario ha iniciado sesion
     public function __construct(){
         $this->middleware('auth');
     }

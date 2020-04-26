@@ -122,7 +122,11 @@ class UsersController extends Controller{
         $user->studies = $request->degree;
         $user->course = $request->course;
 
-        $user->save();
+        if($user->save()){
+            $request->session()->flash('success',  'El usuario ' . $request->input('alias') . ' ha sido modificado correctamente');
+        }else{
+            $request->session()->flash('error',  'El usuario ' . $request->input('alias') . ' no se pudo modificar');
+        }
 
         //$id = $request->input('id');
         /*
@@ -140,8 +144,7 @@ class UsersController extends Controller{
             ));
         */
 
-        return redirect()->route('admin.users.index')
-            ->with('status', 'El usuario ' . $request->input('alias') . ' ha sido modificado correctamente');
+        return redirect()->route('admin.users.index');
     }
 
     /*Uso delete para usar AJAX*/

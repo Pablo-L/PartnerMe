@@ -184,7 +184,7 @@ td > a:hover {
     font-weight: bold;
 }
 
-.page-item:hover > a, a:active{
+.page-item:hover > a{
     color: var(--main-morado);
 }
 

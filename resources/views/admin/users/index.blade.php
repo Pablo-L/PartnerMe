@@ -5,12 +5,31 @@
 @section('head')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('../../css/user/user-index.css') }}">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 @endsection
 
 @section('content')
 
-    <div class="notify"><span id="notifyType" class=""></span></div>
+    <div class="notify"><span id="notifyType" class="">
+        @if(session('success'))
+            {{session('success')}}
+            <script>
+
+                function showNotification(text){
+                    $(".notify").toggleClass("active");
+                    $("#notifyType").toggleClass("success");
+                
+                    $("#notifyType").html(text);
+                    setTimeout(function(){
+                      $(".notify").removeClass("active");
+                      $("#notifyType").removeClass("success");
+                    },2000);
+                }
+
+                showNotification()
+            </script>
+        @endif
+    </span></div>
 
     <div class="user-search-container">
         <form id="search-form" method="GET" action="{{ route('admin.users.index') }}">
@@ -67,7 +86,6 @@
     <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="alias" />
     <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
 
         //Uso jQuery para simplificar el uso de AJAX
@@ -118,13 +136,7 @@
                             $('#' + id).remove();
                         }
 
-                        $(".notify").toggleClass("active");
-                        $("#notifyType").toggleClass("success");
-                        $("#notifyType").html(result.status);
-                        setTimeout(function(){
-                          $(".notify").removeClass("active");
-                          $("#notifyType").removeClass("success");
-                        },2000);
+                        showNotification(result.status);
                     },
 
                     //si quiero manejar errores...

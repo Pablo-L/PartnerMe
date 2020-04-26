@@ -64,5 +64,22 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
+    //Comprobamos si el usuario tiene algunos de roles pasados por parámetro
+    public function hasAnyRoles($roles){
+        if($this->roles()->whereIn('rolName', $roles)->first()){
+            return true;
+        }
+
+        return false;
+    }
+
+    //Comprueba si el usuaio tiene el rol pasado por parámetro
+    public function hasRole($role){
+        if($this->roles()->where('rolName', $role)->first()){
+            return true;
+        }
+
+        return false;
+    }
 
 }

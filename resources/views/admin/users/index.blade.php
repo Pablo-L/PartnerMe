@@ -77,10 +77,10 @@
                     method: 'get',
                     success: function(result){
                         //Elimino la fila de la tabla, puesto que ya se ha eliminado en la base de datos
-                        $('#' + id).remove();
+                        if(! (result.status === "El usuario " + alias + " no se pudo borrar, permiso denegado")){
+                            $('#' + id).remove();
+                        }
 
-                        result.status
-                        
                         $(".notify").toggleClass("active");
                         $("#notifyType").toggleClass("success");
                         $("#notifyType").html(result.status);

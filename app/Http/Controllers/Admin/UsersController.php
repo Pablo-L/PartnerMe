@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use Gate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -55,6 +56,11 @@ class UsersController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user){
+        //Compruebo si el ususrio tiene los permisos para editar, si no lo redirigo al inicio
+        if(Gate::denies('edit-users')){
+            return redirect(route('admin.users.index'));
+        }
+        
         $roles = Role::all();
 
         return view('auth.register')->with([
@@ -100,7 +106,7 @@ class UsersController extends Controller{
                 'course' =>  $request->input('course'),
 			));
         return redirect()->route('admin.users.index')
-            ->with('status', 'El estudiante ' . $request->input('alias') . ' ha sido modificado correctamente');
+            ->with('status', 'El usuario ' . $request->input('alias') . ' ha sido modificado correctamente');
     }
 
     /*Uso delete para usar AJAX*/
@@ -108,6 +114,10 @@ class UsersController extends Controller{
 
         $user = User::find($id);
         $alias = $user->alias;
+
+        if(Gate::denies('delete-users', $user)){
+            return response()->json(['status'=>'El usuario ' . $alias . ' no se pudo borrar, permiso denegado']);
+        }
         
         $user->roles()->detach();
         //$user->received_ratings()->detach();
@@ -115,7 +125,7 @@ class UsersController extends Controller{
 
         $user->delete();
 
-        return response()->json(['status'=>'El estudiante ' . $alias . ' ha sido borrado correctamente']);
+        return response()->json(['status'=>'El usuario ' . $alias . ' ha sido borrado correctamente']);
     }
 
     /**

@@ -98,7 +98,6 @@ $(document).ready(function() {
     //Pequeño script para que los divs contenedores de links 
     //tambien dirigan donde el link (más cómodo para la paginación)
     $('.page-item').click(function(){
-        console.log("funciona?")
         link = $(this).find("a").attr("href");
         if(link)
             window.location.href = link;

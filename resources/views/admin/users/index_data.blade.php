@@ -25,14 +25,9 @@
             -->
         </td>
         <td> 
-            <a href=" {{ route('admin.users.destroy', $user->id) }} ">
-                <i class="fas fa-trash-alt"></i>
-            </a>
-            <!-- 
-                <a class="delete-link" alias="{{$user->alias}}" user_id="{{$user->id}}"> 
-                    <i class="fas fa-trash-alt"> </i> 
-                </a> 
-            -->
+            <a class="delete-link" alias="{{$user->alias}}" user_id="{{$user->id}}"> 
+                <i class="fas fa-trash-alt"> </i> 
+            </a> 
         </td>
     </tr>
     

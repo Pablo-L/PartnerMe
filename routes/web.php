@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     //No necesito crear ni guardar usuarios puesto que pueden registrarse
+    Route::get('/users/delete/{id}', 'UsersController@delete');
     Route::get('/users/fetchData', 'UsersController@fetchData');
     Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
     

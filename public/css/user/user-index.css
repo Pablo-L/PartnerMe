@@ -24,50 +24,39 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 0fr);
-    grid-template-areas: "status" "tabla" "paginacion";
+    grid-template-rows: repeat(2, 0fr);
+    grid-template-areas: "tabla" "paginacion";
     
     justify-items: center;
     
 }
 
-/*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
-#statusCode{
-    grid-area: status;
+.notify{  
+    position:absolute;
+    top:0px;
 
-    display: none;
+    width:100%;
+    height:0;  
+    box-sizing:border-box;
+
+    display: flex;
     justify-content: center;
-    align-self: center;
-    width: 83vw;
-
-    background-color: var(--main-turquesa);
-    border-radius: 8px;
-
-    font-family: 'Rubik', sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
+    align-items: center;
     
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-    animation-name: fadeInArriba;
-    animation-timing-function:ease;
+    font-family: 'Rubik';
+    font-weight: bold;
+    font-size: 20px;
+    color:white;  
+    background:#3ACACE;
+    
+    overflow:hidden;
+    transition:height .2s;
+
 }
 
-@keyframes fadeInArriba {
-	from{
-		opacity: 0;
-		transform: translate3d(0, -50%, 0);
-	}
-
-	to{
-        opacity: 1;
-        padding: 15px;
-        margin: 10px;
-		transform: translate3d(0, 0%, 0);
-	}
+.active{  
+  height:50px;
 }
-
 
 #users-table {
     grid-area: tabla;
@@ -142,6 +131,7 @@ td > a:hover {
 .page-item{
     padding: 15px 20px;
     background-color: var(--main-morado);
+    height: auto;
 
     border-radius: 2px;
     margin: 4px;
@@ -171,6 +161,8 @@ td > a:hover {
     font-weight: bold;
     background-color: var(--main-morado-apagado);
 }
+
+
 
 @media (max-width: 800px){
     .description_cells, #description_cells{

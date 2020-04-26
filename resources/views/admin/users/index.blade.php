@@ -10,20 +10,7 @@
 
 @section('content')
 
-    @if(session('status'))
-        <div id="statusCode">
-            {{ session('status') }}
-        </div>
-        <script>
-            document.getElementById("statusCode").style.display = "flex";
-        </script>
-    @endif
-
-
-    <div id="statusCode">
-        {{ session('status') }}
-    </div>
-
+    <div class="notify"><span id="notifyType" class=""></span></div>
 
     <table id = "users-table">
         
@@ -86,18 +73,27 @@
                 })
 
                 jQuery.ajax({
-                    url: '/users/delete/' + alias,
+                    url: '/admin/users/delete/' + id,
                     method: 'get',
                     success: function(result){
                         //Elimino la fila de la tabla, puesto que ya se ha eliminado en la base de datos
                         $('#' + id).remove();
-                        $("#statusCode").html(result.status);
-                        $("#statusCode").css("display", "flex");
+
+                        result.status
+                        
+                        $(".notify").toggleClass("active");
+                        $("#notifyType").toggleClass("success");
+                        $("#notifyType").html(result.status);
+                        setTimeout(function(){
+                          $(".notify").removeClass("active");
+                          $("#notifyType").removeClass("success");
+                        },2000);
                     },
 
-                    /*si quiero manejar errores...
-                    error: function () {
-                    }*/
+                    //si quiero manejar errores...
+                    error: function (error) {
+                        console.log(error);
+                    }
                 })
             })
 

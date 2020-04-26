@@ -103,14 +103,37 @@ class UsersController extends Controller{
             ->with('status', 'El estudiante ' . $request->input('alias') . ' ha sido modificado correctamente');
     }
 
+    /*Uso delete para usar AJAX*/
+    public function delete($id){
+
+        $user = User::find($id);
+        $alias = $user->alias;
+        
+        $user->roles()->detach();
+        //$user->received_ratings()->detach();
+        //$user->received_created()->detach();
+
+        $user->delete();
+
+        return response()->json(['status'=>'El estudiante ' . $alias . ' ha sido borrado correctamente']);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
-    {
-        //
+    public function destroy(User $user){
+        /*
+        $alias = $user->alias;
+
+        $user->roles()->detach();
+        //$user->received_ratings()->detach();
+        //$user->received_created()->detach();
+        
+        $user->delete();
+        return redirect()->route('admin.users.index');
+        */
     }
 }

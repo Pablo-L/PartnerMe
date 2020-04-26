@@ -134,38 +134,25 @@ div.roles{
     margin: 0px 10px;
 }
 
-#name{grid-area: nombre;}
-#lastName{grid-area: apellidos;}
-#email{
+#name-box{grid-area: nombre;}
+#lastName-box{grid-area: apellidos;}
+#email-box{
     grid-area: correo; 
-    justify-self: right;
-    width: 82.5%;
-    margin-right: 20px;
     box-sizing: border-box;
+    width: 68.3%;
 }
-#password{grid-area: pass;}
-#repassword{grid-area: repass;}
-#phone{grid-area: telefono;}
-#alias{grid-area: alias;}
-#degree{
-    grid-area: grado;
-    margin-right: -84px;
-    width: 80%;
-}
-#course{
-    grid-area: curso;
-    justify-self: center;
-    width: 70%;
-}
-#description{grid-area: desc; width: 68%;}
+#password-box{grid-area: pass;}
+#repassword-box{grid-area: repass;}
+#phone-box{grid-area: telefono;}
+#alias-box{grid-area: alias;}
+#degree-box{grid-area: grado;}
+#course-box{grid-area: curso;}
+#description-box{grid-area: desc;width: 68.3%;}
 .description_text{
     display: flex;
     justify-content: center;
 }
-
-textarea#description{
-    width: 100%;
-}
+#description{width: 100%;}
 
 #btnSignup{
     background-color: var(--main-morado);
@@ -277,7 +264,7 @@ textarea#description{
         justify-self: center;
     }
 
-    #email, #degree, #course, #description{width: 65%; margin: 0;}
+    #email-box, #description-box{width: 65%;}
 
     #btnSignup{
         background-color: #fff;

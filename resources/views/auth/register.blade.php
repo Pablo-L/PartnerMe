@@ -9,8 +9,16 @@
 
     <div class="signup-container">
 
+            @php
+                if(isset($user) && is_object($user)){
+                    $existsUser = true;
+                }else{
+                    $existsUser = false;
+                }
+            @endphp
+
         <div id="title">
-            @if(isset($user) && is_object($user))
+            @if($existsUser)
                 <h1> Editar perfil de {{$user->alias}}</h1>
                 @section('title', $user->alias)
             @else
@@ -21,7 +29,7 @@
 
         <form class="signup-container" id="signup-form" 
             method="POST" 
-            @if(isset($user) && is_object($user))
+            @if($existsUser)
                 action="{{ route('admin.users.update', $user) }}">
 	        @else
                 action="{{ route('register') }}">
@@ -29,22 +37,13 @@
             
             @csrf
 
-            @if(isset($user) && is_object($user))
+            @if($existsUser)
                 {{ method_field('PUT') }}
 	        @endif            
 
-            @if(isset($user) && is_object($user))
+            @if($existsUser)
 		        <input type="hidden" name="id" value="{{ $user->id }}"/>
             @endif
-            
-            @php
-                if(isset($user) && is_object($user)){
-                    $userRoles = $user->roles()->get()->pluck('rolName')->toArray();
-                    $existsUser = true;
-                }else{
-                    $existsUser = false;
-                }
-            @endphp
 
             @if($existsUser)
                 <!-- Solo el admin debe ver esta parte -->
@@ -52,14 +51,14 @@
                     @foreach($roles as $role)
                         <div class="roles">
                             <input id="{{$role}}" type="checkbox" name="roles[]" value="{{$role->id}}" 
-                            @if(isset($user) && in_array($role->rolName, $userRoles)) checked @endif>
+                            @if($user->roles->pluck('id')->contains($role->id)) checked @endif>
                             <label for="{{$role}}">{{ $role->rolName }}</label>
                         </div>
                     @endforeach
                 </div>
             @endif
 
-            <div id="name" class="left">
+            <div id="name-box" class="left">
                 <label for="name">{{__('messages.Name')}}</label>
                 <input id="name" class="@error('name') input_error @enderror" type="text" name="name" value="{{ $user->name ?? old('name') }}">
                 @error('name')
@@ -71,7 +70,7 @@
                 @enderror
             </div>
 
-            <div id="lastName" class="right">
+            <div id="lastName-box" class="right">
                 <label for="lastName">{{__('messages.Last Name')}}</label>
                 <input id="lastName" class="@error('lastName') input_error @enderror" type="text" name="lastName" value="{{ $user->lastName ?? old('lastName') }}">
                 @error('lastName')
@@ -83,7 +82,7 @@
                 @enderror
             </div>
 
-            <div id="email" >
+            <div id="email-box" >
                 <label for="email">{{__('messages.E-Mail Address')}}</label>
                 <input id="email" class="@error('email') input_error @enderror" type="text" name="email" value="{{ $user->email ?? old('email')}}">
                 @error('email')
@@ -95,7 +94,7 @@
                 @enderror
             </div>
 
-            <div id="password" class="left">
+            <div id="password-box" class="left">
                 <label for="password">{{ __('messages.Password') }}</label>
                 <input id="password" class="@error('password') input_error @enderror" type="password" name="password">
                 @error('password')
@@ -107,12 +106,12 @@
                 @enderror
             </div>
 
-            <div id="repassword" class="right">
+            <div id="repassword-box" class="right">
                 <label for="password-confirm">{{ __('messages.Confirm Password') }}</label>
                 <input id="password-confirm" type="password" name="password_confirmation">
             </div>
 
-            <div id="phone" class="left">
+            <div id="phone-box" class="left">
                 <label for="phone">{{__('messages.Phone')}}</label>
                 <input id="phone" class="@error('phone') input_error @enderror" type="text" name="phone" value="{{ $user->phone ?? old('phone')}}">
                 @error('phone')
@@ -124,7 +123,7 @@
                 @enderror
             </div>
 
-            <div id="alias" class="right">
+            <div id="alias-box" class="right">
                 <label for="alias">{{__('messages.Alias')}}</label>
                 <input id="alias" class="@error('alias') input_error @enderror" type="text" name="alias" value="{{ $user->alias ?? old('alias')}}">
                 @error('alias')
@@ -136,7 +135,7 @@
                 @enderror
             </div>
 
-            <div id="degree" class="left">
+            <div id="degree-box" class="left">
                 <label for="studies">{{__('messages.Studies')}}</label>
                 <select name="studies" value="{{ $user->studies ?? old('studies')}}">
                     <option value="Ingeniería informática">Ingeniería informática</option>
@@ -153,7 +152,7 @@
                 @enderror
             </div>
 
-            <div id="course" class="right">
+            <div id="course-box" class="right">
                 <label for="course">{{__('messages.Course')}}</label>
                 <input id="course" class="@error('course') input_error @enderror" type="text" name="course" value="{{ $user->course ?? old('course')}}">
                 @error('course')
@@ -165,7 +164,7 @@
                 @enderror
             </div>
 
-            <div id="description">
+            <div id="description-box">
                 <label for="description">{{__('messages.Description')}}</label>
                 <div class="description_text"> 
                     <textarea id="description" class="@error('description') input_error @enderror" name="description" >{{ $user->description ?? old('description')}}</textarea>
@@ -183,7 +182,7 @@
 
 
             <button id="btnSignup" type="submit">
-                @if(isset($user) && is_object($user))
+                @if($existsUser)
                     <a>{{ __('messages.Edit Profile') }}</a>
                 @else
                     <a>{{ __('messages.Register') }}</a>

@@ -279,9 +279,9 @@
     font-family: 'Rubik',sans-serif;
     font-weight: bold;
     font-size: 20px;
-    color:#fff;
   }
 
+  a.dropdown-user-item, a:active.dropdown-user-item, a:link.dropdown-user-item{color:#fff;}
   .dropdown-user-item:hover{
     background-color: var(--main-morado-apagado);
   }

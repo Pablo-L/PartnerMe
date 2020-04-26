@@ -27,12 +27,43 @@
 
             </div>
 
+            @guest
+               <script>
+                  
+                  function expandLogo(media){
+
+                     const logoguest = document.getElementsByClassName('logoBox');
+
+                     if(media.matches){
+                        logoguest[0].style.gridColumn = "1 / -1";
+                     }else{
+                        logoguest[0].style.gridColumn = "col-start / span 4";
+                     }
+                     
+                  }
+
+                  var mediaQuery = window.matchMedia("(max-width: 1400px)")
+                  expandLogo(mediaQuery) // Call listener function at run time
+                  mediaQuery.addListener(expandLogo) // Attach listener function on state changes 
+
+               </script>
+            @endguest
+
             <div class="dropdown-content">
-                  <!-- <a href=" {{URL::route('usersIndex')}} ">Estudiantes</a> -->
-                  <a href=" {{URL::route('admin.users.index')}} ">Usuarios</a>
-                  <a href=" {{URL::route('subjectsIndex')}} ">Asignaturas</a>
+                  @can('manage-users')
+                     <a href=" {{URL::route('admin.users.index')}} ">Usuarios</a>
+                  @endcan
+
+                  @can('manage-subjects')
+                     <a href=" {{URL::route('subjectsIndex')}} ">Asignaturas</a>
+                  @endcan
+                  
+                  @can('manage-turns')
+                     <a href=" {{URL::route('turnsIndex')}} ">Turnos</a>
+                  @endcan
+
                   <a href=" {{URL::route('groupsIndex')}} ">Grupos</a>
-                  <a href=" {{URL::route('turnsIndex')}} ">Turnos</a>
+                  
                </div>
             
             <!--Se usaría para no tener que marcar el dropdown como absolute

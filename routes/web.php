@@ -49,14 +49,15 @@ Route::group(['prefix'=>'users'], function(){
 | Rutas de las asignaturas
 |--------------------------------------------------------------
 */
-
-Route::get('subject','SubjectController@index')->name('subjectsIndex');
-Route::get('subject/detail/{subjectName}','SubjectController@detail');
-Route::get('subject/create','SubjectController@create')->name('subjectCreate');
-Route::post('subject/create','SubjectController@postForm');
-Route::get('subject/delete/{name}','SubjectController@delete');
-Route::get('subject/edit/{name}','SubjectController@edit');
-Route::post('subject/edit/','SubjectController@update');
+Route::prefix('subject')->middleware('can:manage-subjects')->group(function(){
+    Route::get('/','SubjectController@index')->name('subjectsIndex');
+    Route::get('/detail/{subjectName}','SubjectController@detail');
+    Route::get('/create','SubjectController@create')->name('subjectCreate');
+    Route::post('/create','SubjectController@postForm');
+    Route::get('/delete/{name}','SubjectController@delete');
+    Route::get('/edit/{name}','SubjectController@edit');
+    Route::post('/edit/','SubjectController@update');
+});
 
 
 /*
@@ -81,7 +82,8 @@ Route::get('groups', 'GroupController@index')->name('groupsIndex');
 | Rutas de los turnos
 |--------------------------------------------------------------
 */
-Route::group(['prefix'=>'turn'], function(){
+Route::prefix('turn')->middleware('can:manage-turns')->group(function(){
+    Route::get('/', 'TurnController@index')->name('turnsIndex');
     Route::get('delete/{id}', 'TurnController@delete');
     Route::get('edit/{id}', 'TurnController@edit');
     Route::get('create', 'TurnController@create')->name('turnCreate');
@@ -90,8 +92,6 @@ Route::group(['prefix'=>'turn'], function(){
     Route::post('save', 'TurnController@save');
     Route::get('detail/{id}', 'TurnController@detail');
 });
-
-Route::get('turns', 'TurnController@index')->name('turnsIndex');
 
 
 /*

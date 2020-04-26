@@ -14,16 +14,15 @@
             <td>{{$user->puntuation}}</td>
         -->
         
+        <!-- Solo verán el boton de editar aquellos que puedan editar -->
+        @can('edit-users') 
         <td>
             <a href=" {{ route('admin.users.edit', $user->id) }} "> 
                 <i class="fas fa-edit"></i> 
             </a> 
-            <!-- 
-                <a href=" {{ action('UserController@edit', ['alias' => $user->alias]) }} "> 
-                    <i class="fas fa-edit"></i> 
-                </a> 
-            -->
         </td>
+        @endcan
+
         <td> 
             <a class="delete-link" alias="{{$user->alias}}" user_id="{{$user->id}}"> 
                 <i class="fas fa-trash-alt"> </i> 

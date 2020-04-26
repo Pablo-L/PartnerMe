@@ -78,14 +78,13 @@ class UsersController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user){
-        $id = $request->input('id');
         
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'lastName' => ['nullable','string', 'max:255'],
-            'alias' => ['required', 'string', 'max:255', 'unique:users,' . 'alias,' . $id],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,' . 'email,' . $id],
-            'phone' => ['nullable','numeric'],
+            'alias' => ['required', 'string', 'max:255', 'unique:users,' . 'alias,' . $user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,' . 'email,' . $user->id],
+            'phone' => ['nullable','string', 'regex:/^[\+]+[0-9]+$/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'studies' => ['required', 'string'],
             'course' => ['nullable','numeric', 'between:0,4'],
@@ -94,6 +93,20 @@ class UsersController extends Controller{
 
         $user->roles()->sync($request->roles);
 
+        $user->phone = $request->phone;
+        $user->description = $request->description;
+        $user->alias = $request->alias;
+        $user->name = $request->name;
+        $user->lastName = $request->lastName;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->studies = $request->degree;
+        $user->course = $request->course;
+
+        $user->save();
+
+        //$id = $request->input('id');
+        /*
 		$user = DB::table('users')->where('id', $id)
 			->update(array(
                 'phone' => $request->input('phone'),
@@ -105,7 +118,9 @@ class UsersController extends Controller{
                 'password' => Hash::make($request->input('password')),
                 'studies' =>  $request->input('degree'),
                 'course' =>  $request->input('course'),
-			));
+            ));
+        */
+
         return redirect()->route('admin.users.index')
             ->with('status', 'El usuario ' . $request->input('alias') . ' ha sido modificado correctamente');
     }

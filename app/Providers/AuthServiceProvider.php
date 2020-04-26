@@ -24,6 +24,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(){
         
         $this->registerPolicies();
+        
+        /*
+        |--------------------------------------------------------------
+        | USUARIOS
+        |--------------------------------------------------------------
+        */
 
         Gate::define('manage-users', function($user){
             return $user->hasAnyRoles(['admin', 'professor']);
@@ -35,6 +41,26 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('delete-users', function($user){
             return $user->hasRole('admin');
+        });
+        
+        /*
+        |--------------------------------------------------------------
+        | ASIGNATURAS
+        |--------------------------------------------------------------
+        */
+
+        Gate::define('manage-subjects', function($user){
+            return $user->hasAnyRoles(['admin', 'professor']);
+        });
+
+        /*
+        |--------------------------------------------------------------
+        | TURNOS
+        |--------------------------------------------------------------
+        */
+
+        Gate::define('manage-turns', function($user){
+            return $user->hasAnyRoles(['admin', 'professor']);
         });
 
     }

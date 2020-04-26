@@ -39,7 +39,9 @@
                     </th>
                 -->
                 
+                @can('edit-users')
                 <th>Modificar</th>
+                @endcan
                 <th>Eliminar</th>
             </tr>
         </thead>

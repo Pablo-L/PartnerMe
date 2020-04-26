@@ -26,6 +26,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     //No necesito crear ni guardar usuarios puesto que pueden registrarse
     Route::get('/users/delete/{id}', 'UsersController@delete');
     Route::get('/users/fetchData', 'UsersController@fetchData');
+    Route::get('/users/search/{search?}', 'UsersController@search');
     Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
     
 });

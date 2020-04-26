@@ -28,6 +28,25 @@ class UsersController extends Controller{
         return view('admin.users.index', compact('users', 'roles'));
     }
 
+    public function search($search = null, Request $request){
+        if($request->ajax()){
+            if($search){
+                $users = User::where('alias', 'LIKE', '%' . $search . '%')
+                    ->orWhere('name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('description', 'LIKE', '%' . $search . '%')
+                    ->paginate(20);
+
+                $roles = Role::all();
+                return view('admin.users.index_data', compact('users', 'roles'));
+            }else{
+                //$this->index(); no puedo llamarlo porque solo quiero la tabla
+                $users = User::paginate(20);
+                $roles = Role::all();
+                return view('admin.users.index_data', compact('users', 'roles'));
+            }
+        }
+    }
+
     public function fetchData(Request $request){
         if($request->ajax()){
             $sort_by = $request->get('sortby');

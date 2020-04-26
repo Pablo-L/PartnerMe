@@ -342,7 +342,7 @@
       width: 100vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 0fr 0fr 1fr;
+      grid-template-rows: 1fr 0fr 0fr 0fr;
       grid-template-areas: "logo usuario" 
                            "menuDrop menuDrop"
                            "loginRegistro loginRegistro"
@@ -377,6 +377,8 @@
       grid-area: busqueda;
       justify-self: center;
       width: 75vw;
+
+      display: none;
     }
 
     .custom-select{

@@ -12,6 +12,16 @@
 
     <div class="notify"><span id="notifyType" class=""></span></div>
 
+    <div class="user-search-container">
+        <form id="search-form" method="GET" action="{{ route('admin.users.index') }}">
+            <input type="text" id="search-text" class="search_field" placeholder="Buscar usuario "  />
+            <div class="icon-search">
+               <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+
+
     <table id = "users-table">
         
         <thead>
@@ -62,6 +72,31 @@
 
         //Uso jQuery para simplificar el uso de AJAX
         $(document).ready(function() {
+
+            //$(document).on('click', '#search-form', function(e){
+            $(document).on('keyup', '#search-text', function(e){
+                e.preventDefault();
+                var search = $('#search-text').val();
+
+                $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                        }
+                })
+                jQuery.ajax({
+                    url: '/admin/users/search/' + search,
+                    method: 'get',
+                    success: function(result){
+                        $('tbody').html('');
+                        $('tbody').html(result);
+                    },
+                    //si quiero manejar errores...
+                    error: function (error) {
+                        console.log(error);
+                    }
+                })
+            });
+
 
             //Para eliminar un estudiante...
             $(document).on('click', '.delete-link', function(){

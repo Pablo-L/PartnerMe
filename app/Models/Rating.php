@@ -11,6 +11,10 @@ class Rating extends Model{
     private $student_id_creator;
     private $student_id_receiver;
 
+    protected $fillable = [
+        'user_id_creator', 'user_id_creator', 'points', 'comment',
+    ];
+    
     public function student_creator(){
         return $this->belongsTo('App\Student', 'student_id_creator', 'id');
     }

@@ -20,29 +20,18 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users', 'can:puntuate-users')->group(function(){
     //No necesito crear ni guardar usuarios puesto que pueden registrarse
-    Route::get('/users/delete/{id}', 'UsersController@delete');
-    Route::get('/users/fetchData', 'UsersController@fetchData');
-    Route::get('/users/search/{search?}', 'UsersController@search');
+    Route::get('delete/{id}', 'UsersController@delete')->name('delete');
+    Route::get('fetchData', 'UsersController@fetchData')->name('fetch_data');
+    Route::get('search/{search?}', 'UsersController@search')->name('search');
     Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
-    
-});
-
-
-Route::group(['prefix'=>'users'], function(){
-    Route::get('/', 'UserController@index')->name('usersIndex');
-    Route::get('/detail/{alias}', 'UserController@detail');
-    Route::get('delete/{alias}', 'UserController@delete');
-    Route::get('edit/{alias}', 'UserController@edit');
-    Route::get('fetch_data', 'UserController@fetch_data');
-    Route::post('save', 'UserController@save');
-    Route::post('update', 'UserController@update');  
 
     Route::get('rating/{id}', 'RatingController@detail')->name('user-rating');
-    Route::post('rating/upload', 'RatingController@upload')->name('upload-comment');
+    Route::get('rating/delete/{creatorId}/{receiverId}/{ratingId}', 'RatingController@delete')->name('delete-comment');
+    Route::post('rating/upload/{authUser?}', 'RatingController@upload')->name('upload-comment');
+    
+    
 });
 
 /*

@@ -141,6 +141,7 @@ td > a:hover {
 
     border-radius: 2px;
     margin: 4px;
+    height: auto;
 
     cursor: pointer;
 }

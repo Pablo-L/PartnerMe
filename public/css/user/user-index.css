@@ -31,33 +31,6 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     
 }
 
-.notify{  
-    position:absolute;
-    top:0px;
-
-    width:103%;
-    height:0;  
-    box-sizing:border-box;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    font-family: 'Rubik';
-    font-weight: bold;
-    font-size: 20px;
-    color:white;  
-    background:#3ACACE;
-    
-    overflow:hidden;
-    transition:height .2s;
-
-}
-
-.active{  
-    height:50px;
-}
-
 .user-search-container{
     grid-area: buscador;
 

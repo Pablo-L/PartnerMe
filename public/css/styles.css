@@ -336,6 +336,35 @@
   .btnLogin:hover > a{color: var(--main-azul-claro);}
   .btnRegister:hover > a{color: var(--main-turquesa);}
 
+
+.notify{  
+  position:absolute;
+  top:0px;
+
+  width:103%;
+  height:0;  
+  box-sizing:border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-family: 'Rubik';
+  font-weight: bold;
+  font-size: 20px;
+  color:white;  
+  background:#3ACACE;
+  
+  overflow:hidden;
+  transition:height .2s;
+
+}
+
+.active{  
+  height:50px;
+}
+
+
   @media (max-width: 1400px) {
 
     nav {

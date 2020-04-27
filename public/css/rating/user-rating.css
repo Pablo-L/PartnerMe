@@ -107,6 +107,9 @@ label{
 .comment{
     display: flex;
     align-items: center;
+
+    position: relative;
+
     padding: 20px;
     background-color: #fff;
     border: 1px solid #707070;
@@ -122,6 +125,8 @@ label{
     font-size: 20px;
     font-weight: bold;
     color: #707070;
+
+    cursor: pointer;
 }
 
 .comment_photo{
@@ -157,6 +162,25 @@ label{
 .comment_alias{
     color: var(--main-morado);
     margin-top: 5px;
+}
+
+.comment_delete{
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    padding: 0px 4px;
+    box-sizing: border-box;
+
+    font-size: 24px;
+    color: var(--main-gris-oscuro);
+}
+.comment_delete a {padding: 2px 4px;}
+.comment_delete:hover a{
+    color:#fff;
+    background-color: var(--main-gris-oscuro);
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .publish_comment{

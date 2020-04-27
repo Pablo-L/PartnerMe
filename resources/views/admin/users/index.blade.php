@@ -5,31 +5,10 @@
 @section('head')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('../../css/user/user-index.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 @endsection
 
+
 @section('content')
-
-    <div class="notify"><span id="notifyType" class="">
-        @if(session('success'))
-            {{session('success')}}
-            <script>
-
-                function showNotification(text){
-                    $(".notify").toggleClass("active");
-                    $("#notifyType").toggleClass("success");
-                
-                    $("#notifyType").html(text);
-                    setTimeout(function(){
-                      $(".notify").removeClass("active");
-                      $("#notifyType").removeClass("success");
-                    },2000);
-                }
-
-                showNotification()
-            </script>
-        @endif
-    </span></div>
 
     <div class="user-search-container">
         <form id="search-form" method="GET" action="{{ route('admin.users.index') }}">
@@ -102,7 +81,7 @@
                         }
                 })
                 jQuery.ajax({
-                    url: '/admin/users/search/' + search,
+                    url: '/admin/search/' + search,
                     method: 'get',
                     success: function(result){
                         $('tbody').html('');
@@ -128,7 +107,7 @@
                 })
 
                 jQuery.ajax({
-                    url: '/admin/users/delete/' + id,
+                    url: '/admin/delete/' + id,
                     method: 'get',
                     success: function(result){
                         //Elimino la fila de la tabla, puesto que ya se ha eliminado en la base de datos
@@ -151,7 +130,7 @@
                 
                 $.ajax({
                     //Realmente podría añadir un parámetro para sustituir users y generalizarlo (?)
-                    url:"/admin/users/fetchData?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type,
+                    url:"/admin/fetchData?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type,
                     success:function(data){
                         $('tbody').html('');
                         $('tbody').html(data);

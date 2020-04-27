@@ -17,6 +17,20 @@ class UsersController extends Controller{
         $this->middleware('auth');
     }
 
+    public function calculatePuntuations($id){
+        $user = User::find($id);
+        $puntuations = $user->received_ratings;
+        
+        $totalPuntuation = 0.0;
+
+        foreach($puntuations as $puntuation){
+            $totalPuntuation += $puntuation->points;
+        }
+        
+        $averagePuntuation = ( $totalPuntuation / (count($puntuations) > 0 ? count($puntuations) : 1));        
+        return $averagePuntuation;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -64,9 +78,17 @@ class UsersController extends Controller{
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
-    {
-        //
+    public function show(User $user){
+
+        $puntuation = $this->calculatePuntuations($user->id);
+        $user->puntuation = $puntuation;
+        $user->save();
+
+        $groups = $user->groups;
+        return view('admin.users.detail',[
+            'user' => $user,
+            'groups' => $groups
+		]);
     }
 
     /**
@@ -119,7 +141,7 @@ class UsersController extends Controller{
         $user->lastName = $request->lastName;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->studies = $request->degree;
+        $user->studies = $request->studies;
         $user->course = $request->course;
 
         if($user->save()){
@@ -148,7 +170,7 @@ class UsersController extends Controller{
     }
 
     /*Uso delete para usar AJAX*/
-    public function delete($id){
+    public function delete($id, Request $request){
 
         $user = User::find($id);
         $alias = $user->alias;
@@ -161,9 +183,13 @@ class UsersController extends Controller{
         //$user->received_ratings()->detach();
         //$user->received_created()->detach();
 
-        $user->delete();
+        if($user->delete()){
+            return response()->json(['status'=>'El usuario ' . $alias . ' ha sido borrado correctamente']);
+        }else{
+            return response()->json(['status'=>'El usuario \'' . $alias . '\' no se ha podido borrar']);
+        }
 
-        return response()->json(['status'=>'El usuario ' . $alias . ' ha sido borrado correctamente']);
+        
     }
 
     /**

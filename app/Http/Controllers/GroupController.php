@@ -30,10 +30,15 @@ class GroupController extends Controller
         return view('group.group-edit',['group'=>$group,'turns'=>$turns]);
     }
 
-    public function delete($id){
+    public function delete($id, Request $request){
         $groups_users=DB::table('group_user')->where('group_id',$id)->delete();
         $group=Group::find($id);
-        $group->delete();
+        $groupName = $group->groupName;
+        if($group->delete()){
+            $request->session()->flash('success',  'El grupo \'' . $groupName . '\' ha sido eliminado correctamente');
+        }else{
+            $request->session()->flash('error',  'El grupo \'' . $groupName . '\' no se pudo eliminar');
+        }
         return back();
     }
 
@@ -50,7 +55,12 @@ class GroupController extends Controller
                 $group->image=$fileName;
             }
         }
-        $group->save();
+        if($group->save()){
+            $request->session()->flash('success',  'El grupo \'' . $group->groupName . '\' ha sido modificado correctamente');
+        }else{
+            $request->session()->flash('error',  'El grupo \'' . $group->groupName . '\' no se podido modificar correctamente');
+        }
+
         return redirect()->action('GroupController@detail',[$group->id]);
     }
 

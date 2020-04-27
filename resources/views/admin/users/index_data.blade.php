@@ -1,7 +1,7 @@
 @foreach($users as $user)
     <tr id="{{$user->id}}">
         <td>
-            <a class="alias-links" href=" {{ action('UserController@detail', ['alias' => $user->alias]) }} ">
+            <a class="alias-links" href=" {{ route('admin.users.show', $user->id) }} ">
                 {{ @$user->alias }}
             </a>
         </td>

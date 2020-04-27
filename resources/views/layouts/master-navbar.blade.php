@@ -10,6 +10,8 @@
          <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Rubik:400,700&display=swap" rel="stylesheet">
          <link rel="stylesheet" type="text/css" href="{{ asset('../../css/styles.css') }}">
          <link rel="stylesheet" type="text/css" href="{{ asset('../../css/iconos.css') }}">
+         
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
       </head>
    @show
@@ -127,6 +129,37 @@
             @endguest
 
          </nav>
+      @show
+
+      @section('notification')
+         <script>
+            function showNotification(text){
+               $(".notify").toggleClass("active");
+               $("#notifyType").toggleClass("success");
+            
+               $("#notifyType").html(text);
+               setTimeout(function(){
+               $(".notify").removeClass("active");
+               $("#notifyType").removeClass("success");
+               },2000);
+            }
+         </script>
+         <div class="notify">
+            <span id="notifyType" class="">
+               @if(session('success'))
+                  {{ session('success') }}
+                  <script>showNotification()</script>
+               @endif
+
+               @if(session('error'))
+                  {{session('error')}}
+                  <script>
+                     $('.notify').css("background-color", "#c00");
+                     showNotification()
+                  </script>
+               @endif
+            </span>
+         </div>
       @show
 
       <div class="main-container">

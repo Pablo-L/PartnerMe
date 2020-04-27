@@ -27,7 +27,7 @@
     
         <div class="puntuation">
             <label>Valoracion: </label>
-            <a href=" {{ action('RatingController@detail', ['id' => $user->id, 'puntuation' => $user->puntuation]) }} " 
+            <a href=" {{ route('admin.user-rating', $user->id) }} " 
                 class="puntuation_data"> {{number_format($user->puntuation, 2) }} </a>
         </div>
 
@@ -60,10 +60,8 @@
             @foreach($groups as $group)
                 <div class="group_card" onclick="redirectGroup( {{$group->id}} )">
                     
-
                     <div class="group_photo" style="background-image:url('/storage/group_img/{{ $group->image }}')"></div>
 
-                    
                     <div class="group_data">
                         <div class="group_name"> {{ $group->groupName }} </div>
                         @php

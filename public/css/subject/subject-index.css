@@ -31,6 +31,19 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     
 }
 
+.btnCreate{
+    width: 25%;
+    margin: 15px 0px;
+    
+    background-color: var(--main-morado);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btnCreate:hover{
+    opacity: 70%;
+}
+
 /*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
 #statusCode{
     grid-area: status;

@@ -27,6 +27,20 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     flex-direction: column;
 }
 
+.btnCreate{
+    width: 25%;
+    margin: 15px 0px;
+    align-self: center;
+    
+    background-color: var(--main-morado);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btnCreate:hover{
+    opacity: 70%;
+}
+
 /*añadir animacion de que viene desde arriba y que desaparezca despues de 5 segundos*/
 #statusCode{
     display: none;

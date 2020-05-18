@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\SubjectController;
 
 Route::get('/', function () {
     return view('index');
@@ -30,9 +31,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::get('rating/{id}', 'RatingController@detail')->name('user-rating');
     Route::get('rating/delete/{creatorId}/{receiverId}/{ratingId}', 'RatingController@delete')->name('delete-comment');
     Route::post('rating/upload/{authUser?}', 'RatingController@upload')->name('upload-comment');
-    
-    
 });
+
+Route::get('/getUsers', 'Admin\UsersController@getUsers');
 
 /*
 |--------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::prefix('subject')->middleware('can:manage-subjects')->group(function(){
     Route::post('/create','SubjectController@postForm');
     Route::get('/delete/{name}','SubjectController@delete');
     Route::get('/edit/{name}','SubjectController@edit');
-    Route::post('/edit/','SubjectController@update');
+    Route::post('/edit','SubjectController@update');
 });
 
 
@@ -59,7 +60,7 @@ Route::group(['prefix'=>'group'], function(){
     Route::get('delete/{id}', 'GroupController@delete');
     Route::get('edit/{id}', 'GroupController@edit');
     Route::get('create', 'GroupController@create')->name('groupCreate');
-    Route::post('update', 'GroupController@update');
+    Route::post('update/{group}', 'GroupController@update')->name('groupUpdate');
     Route::post('save', 'GroupController@save');
     Route::get('detail/{id}', 'GroupController@detail');
 });
@@ -82,6 +83,8 @@ Route::prefix('turn')->middleware('can:manage-turns')->group(function(){
     Route::post('save', 'TurnController@save');
     Route::get('detail/{id}', 'TurnController@detail');
 });
+
+Route::get('turn/getTurns/{id}', 'TurnController@getTurnsOfSubject');
 
 
 /*

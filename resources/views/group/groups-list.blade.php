@@ -10,6 +10,10 @@
 
 @section('content')
 
+    <button class="btnCreate">
+        <a href="{{ URL::route('groupCreate') }}"> Crear un grupo</a>
+    </button> 
+
     <table id="list-table">
         <thead>
             <tr>
@@ -44,6 +48,13 @@
             if(link)
                 window.location.href = link;
         });
+
+        $('.btnCreate').click(function(){
+            link = $(this).find("a").attr("href");
+            if(link)
+                window.location.href = link;
+        });
+
     </script>
 
 @endsection

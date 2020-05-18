@@ -11,9 +11,9 @@ class Group extends Model
     private $image; //imagen del grupo
     private $turn_id; //clave ajena a Turn
 
-    //relación con Student
-    public function students(){
-        return $this->belongsToMany('App\Student');
+    //relación con User
+    public function users(){
+        return $this->belongsToMany('App\User');
     }
 
     //relación con Turn

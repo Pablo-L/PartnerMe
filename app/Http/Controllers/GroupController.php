@@ -21,13 +21,16 @@ class GroupController extends Controller
     }
 
     public function edit($id){
-        $group=Group::find($id);
-        $turns=DB::table('turns')
-                    ->join('subjects','turns.subject_id','=','subjects.id')
-                    ->select('turns.*','subjects.subjectName')
-                    ->orderBy('subjectName')
-                    ->get();
-        return view('group.group-edit',['group'=>$group,'turns'=>$turns]);
+        $group = Group::find($id);
+
+        //$turns=DB::table('turns')
+        //            ->join('subjects','turns.subject_id','=','subjects.id')
+        //            ->select('turns.*','subjects.subjectName')
+        //            ->orderBy('subjectName')
+        //            ->get();
+        //return view('group.group-edit',['group'=>$group,'turns'=>$turns]);
+        $users = $group->users()->get();
+        return view('group.group-create',['group' => $group, 'users' => $users]);
     }
 
     public function delete($id, Request $request){
@@ -42,19 +45,23 @@ class GroupController extends Controller
         return back();
     }
 
-    public function update(Request $request){
-        $group=Group::find($request->input('id'));
-        $group->groupName=$request->input('groupName');
-        $group->description=$request->input('description');
-        $group->turn_id=$request->input('turn');
+    public function update(Request $request, Group $group){
+
+        $group->groupName = $request->groupName;
+        $group->description = $request->description;
+        $group->turn_id = $request->turn;
+        
         if($request->file('image')){
             if($request->file('image')->isValid()){
                 $path='/public/group_img';
-                $fileName=$group->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
+                $fileName = $group->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
                 $request->file('image')->storeAs($path, $fileName);
-                $group->image=$fileName;
+                $group->image = $fileName;
             }
         }
+
+        $group->users()->sync($request->users);
+
         if($group->save()){
             $request->session()->flash('success',  'El grupo \'' . $group->groupName . '\' ha sido modificado correctamente');
         }else{
@@ -65,28 +72,50 @@ class GroupController extends Controller
     }
 
     public function create(){
-        $turns=DB::table('turns')
+        /*$turns=DB::table('turns')
                     ->join('subjects','turns.subject_id','=','subjects.id')
                     ->select('turns.*','subjects.subjectName')
                     ->orderBy('subjectName')
-                    ->get();
-        return view('group.group-create',['turns'=>$turns]);
+                    ->get();*/
+
+        $turns = Turn::get();
+        $subjects = Subject::get();
+        return view('group.group-create',['turns'=> $turns, 'subjects' => $subjects]);
     }
 
     public function save(Request $request){
+
         $group = new Group();
         $group->groupName=$request->input('groupName');
         $group->description=$request->input('description');
         $group->turn_id=$request->input('turn');
         $group->image='default.png';
         $group->save();
-        if($request->file('image')->isValid()){
+        if( $request->file('image') !== null && $request->file('image')->isValid()){
             $path='/public/group_img';
             $fileName=$group->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
             $request->file('image')->storeAs($path, $fileName);
             $group->image=$fileName;
             $group->save();
         }
+
+        DB::table('group_user')->insert(
+            [
+                'user_id' => $request->input('groupCreator'), 
+                'group_id' => $group->id
+            ]
+        );
+
+        foreach($request->input('users') as $userId){
+            echo $userId . PHP_EOL;
+            DB::table('group_user')->insert(
+                [
+                    'user_id' => (int)$userId, 
+                    'group_id' => $group->id
+                ]
+            );
+        }
+
         return redirect()->action('GroupController@detail',[$group->id]);
     }
 
@@ -99,8 +128,14 @@ class GroupController extends Controller
                         ->select('users.*')
                         ->get();
         foreach($users as $user){
-            $user->avgRating=app('App\Http\Controllers\UserController')->calculatePuntuations($user->id);
+            $user->avgRating=app('App\Http\Controllers\Admin\UsersController')->calculatePuntuations($user->id);
         }
         return view('group.group-detail',['group'=>$group,'turn'=>$turn,'subject'=>$subject,'users'=>$users]);
+    }
+
+    public static function getSubject($groupTurnID){ 
+        $turn = Turn::find($groupTurnID);
+        $subject = Subject::find($turn->subject_id);
+        return $subject;
     }
 }

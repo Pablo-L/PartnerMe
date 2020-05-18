@@ -30,6 +30,11 @@ class TurnController extends Controller
                     ->first();
         return view('turn.turns-detail',['turn'=>$turn]);
     }
+    
+    public function getTurnsOfSubject($subjectId){
+        $turns = DB::table('turns')->where('subject_id', $subjectId)->get();
+        return response()->json(['turns'=> $turns]);
+    }
 
     public function create(){
         $subjects = Subject::all();

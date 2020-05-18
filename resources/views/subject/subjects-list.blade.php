@@ -23,6 +23,10 @@
         {{ session('status')}}
     </div>
 
+    <button class="btnCreate">
+        <a href="{{ URL::route('subjectCreate') }}"> Crear una asignatura</a>
+    </button> 
+
     <table id="subjects-table">
         <thead>
             <tr>
@@ -101,6 +105,12 @@ $(document).ready(function() {
         if(link)
             window.location.href = link;
     });
+
+    $('.btnCreate').click(function(){
+            link = $(this).find("a").attr("href");
+            if(link)
+                window.location.href = link;
+        });
 
 })
 

@@ -81,6 +81,7 @@
   
     font-size: 28px;
     color: #fff;
+    cursor: pointer;
   }
   
   .icon-menu:hover{
@@ -90,6 +91,7 @@
 
   .icon-menuDrop{
     font-size: 28px;
+    cursor: pointer;
   }
   
   .icon-menuDrop > i:hover{

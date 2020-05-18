@@ -72,6 +72,11 @@ class UsersController extends Controller{
         }
     }
 
+    public function getUsers(){
+        $users = User::all('id', 'name');
+        return json_encode($users);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -149,22 +154,6 @@ class UsersController extends Controller{
         }else{
             $request->session()->flash('error',  'El usuario ' . $request->input('alias') . ' no se pudo modificar');
         }
-
-        //$id = $request->input('id');
-        /*
-		$user = DB::table('users')->where('id', $id)
-			->update(array(
-                'phone' => $request->input('phone'),
-                'description' => $request->input('description'),
-                'alias' => $request->input('alias'),
-                'name' =>  $request->input('name'),
-                'lastName' =>  $request->input('lastName'),
-                'email' =>  $request->input('email'),
-                'password' => Hash::make($request->input('password')),
-                'studies' =>  $request->input('degree'),
-                'course' =>  $request->input('course'),
-            ));
-        */
 
         return redirect()->route('admin.users.index');
     }

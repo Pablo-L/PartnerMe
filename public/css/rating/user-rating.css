@@ -175,7 +175,7 @@ label{
     font-size: 24px;
     color: var(--main-gris-oscuro);
 }
-.comment_delete a {padding: 2px 4px;}
+.comment_delete a {padding: 2px 4px; color: var(--main-gris-oscuro);}
 .comment_delete:hover a{
     color:#fff;
     background-color: var(--main-gris-oscuro);

@@ -16,6 +16,223 @@
 }
 
 .group-form-container{
+    width: 80%;
+}
+
+#group-form{
+    width: auto;
+    
+    display: grid;
+
+    grid-template-rows: repeat(4, 0fr) 0fr 0fr;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-gap: 25px;
+    grid-template-areas: "titulo titulo titulo"
+                         "img    nom      nom"
+                         "img    desc     desc"
+                         "void   subject  turn"
+                         "void  users    users"
+                         "btn    btn      btn"
+                         ;
+
+    padding: 25px 50px;
+    margin-bottom: 50px;
+    border-radius: 0;    
+    background-color:rgba(255, 255, 255, 0.45);
+    box-shadow: 0 4px 8px 0rgba(0, 0, 0, 0.15), 0 6px 20px 0rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+}
+
+.group-form-title{
+    grid-area: titulo;
+    flex-direction: column;
+    
+    text-align: center;
+    align-self: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 42px;
+    color: var(--main-morado);
+}
+
+.group-form-upload{
+    grid-area: img;
+    align-items: center;
+    flex-direction: column;
+}
+
+.group-form-name{grid-area: nom; width: 50%; flex-direction: column;}
+.group-form-desc{grid-area: desc; flex-direction: column;}
+.group-form-subject{grid-area: subject; flex-direction: column;}
+.group-form-turn{grid-area: turn; flex-direction: column;}
+
+.group-form-container > div{
+    display: flex;
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    color: var(--main-gris-oscuro);
+    opacity: 80%;
+
+    padding: 8px 0px;
+    white-space: nowrap;
+}
+
+.group-form-container input, select, textarea{
+    border-radius: 0px;
+    text-decoration: none;
+    border: 2px solid rgba(125, 125, 125, 0.57);
+    padding: 8px;
+}
+
+
+.group-form-upload-select input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.group-form-upload-select {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#output{background-color: #fff;}
+
+.btnUpload {
+    background: none;
+    padding: 5px;
+    margin: 0;
+    color: gray;  
+}
+  
+
+.group-form-container select{
+    background: #fff;
+}
+
+.group-form-container input:focus, textarea:focus{
+    border: 3px solid var(--main-azul-claro);
+    color: var(--main-morado);
+}
+
+.group-form-container textarea{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    resize: vertical;
+    min-height: 110px;
+}
+
+.group-form-usersList{grid-area: users; flex-direction: column;}
+
+group-form-usersList-title{
+    display: flex;
+    flex-direction: row;
+}
+
+#btnAddUser{
+    font-size: 30px;
+    color: var(--main-morado-apagado);
+
+    margin: 0px 5px;
+    cursor: pointer;  
+}
+
+#btnAddUser:hover{
+    color: var(--main-morado);
+}
+
+.usersListContainer.active{
+
+    min-width: 85%;
+    min-height: 400px;
+    padding: 5px 10px;
+    margin: 20px 0px;
+
+    overflow: scroll;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.usersListItem:hover{
+    background-color: var(--main-gris);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.usersListItem-content{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+}
+
+.fa-minus-square{
+    font-size: 20px;
+    padding: 5px;
+}
+
+.fa-minus-square:hover{
+    background-color: var(--main-gris-oscuro);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.usersListItem-image{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+
+    background-image: url(../../imgs/default-user-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.usersListItem-text{
+    margin: 0px 10px;
+    
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+}
+
+.usersListItemResult{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+    align-items: center;
+    
+    padding: 5px 20px;
+}
+
+.group-form-btn{
+    grid-area: btn;
+    align-self: flex-end;
+    background-color: var(--main-morado);
+    border-radius: 8px;
+    
+    font-size: 24px;
+    color: #fff;
+
+    cursor: pointer;
+}
+
+.group-form-btn:hover{
+    opacity: 70%;
+}
+
+
+
+/*
+.group-form-container{
     width: 65vw;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
@@ -37,98 +254,8 @@
 
 }
 
-#group-form{
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
-}
 
-.group-form-container > div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 65%;
 
-    padding: 10px 0px;
-}
-
-.group-form-title{
-    grid-area: titulo;
-    
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-    color: var(--main-morado);
-}
-
-.group-form-name{
-    grid-area: nom;
-}
-
-.group-form-upload{
-    grid-area: img;
-}
-
-.group-form-desc{
-    grid-area: desc;
-}
-
-.group-form-turn{
-    grid-area: turn;
-}
-
-.group-form-btn{
-    background-color: var(--main-morado);
-    grid-area: btn;
-    justify-self: center;
-    width: 70%;
-    border-radius: 16px;
-    margin-top: 15px;
-    padding: 12px;
-    color: #fff;
-    font-size: 24px;
-
-    cursor: pointer;
-}
-
-.group-form-btn:hover{
-    background-color: #fff;
-    color: var(--main-morado);
-}
-
-label{
-    font-family: 'Roboto', sans-serif;
-    font-size: 28px;
-    color: var(--main-gris-oscuro);
-    opacity: 80%;
-
-    padding: 8px 0px;
-    white-space: nowrap;
-}
-
-.group-form-container input, select, textarea{
-    border-radius: 0px;
-    text-decoration: none;
-    border: 2px solid rgba(125, 125, 125, 0.57);
-    padding: 8px;
-}
-
-.group-form-container select{
-    background: #fff;
-}
-
-.group-form-container input:focus, textarea:focus{
-    border: 3px solid var(--main-azul-claro);
-    color: var(--main-morado);
-}
-
-.group-form-container textarea{
-    font-family: 'Rubik', sans-serif;
-    font-size: 18px;
-    resize: vertical;
-    min-height: 110px;
-}
 
 .group-form-upload input{
     border:none;
@@ -136,4 +263,4 @@ label{
 
 .group-form-upload input:focus{
     border:none;
-}
+}*/

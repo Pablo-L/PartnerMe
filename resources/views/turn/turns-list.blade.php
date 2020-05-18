@@ -23,6 +23,10 @@
         {{ session('status')}}
     </div>
 
+    <button class="btnCreate">
+        <a href="{{ URL::route('turnCreate') }}"> Crear un turno</a>
+    </button> 
+
     <table id="turns-table">
         <thead>
             <tr>
@@ -56,6 +60,12 @@
 
     <script>
         $('.page-item').click(function(){
+            link = $(this).find("a").attr("href");
+            if(link)
+                window.location.href = link;
+        });
+
+        $('.btnCreate').click(function(){
             link = $(this).find("a").attr("href");
             if(link)
                 window.location.href = link;

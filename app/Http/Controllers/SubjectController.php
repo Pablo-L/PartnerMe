@@ -30,6 +30,12 @@ class SubjectController extends Controller
     }
 
     public function postForm(Request $request){
+
+        $request->validate([
+            'subjectName' => 'required|unique:subjects|min:2|max:255|alpha_num',
+            'department' => 'required|min:2|max:255|alpha_num',
+        ]);
+
         if($request->has('subjectName')){
             if($request->has('department')){
                 $subject = DB::table('subjects')->insert(array(
@@ -53,6 +59,11 @@ class SubjectController extends Controller
 
     public function update(Request $request){
         $id = $request->input('id');
+
+        $request->validate([
+            'subjectName' => ['min:2','max:255','required','unique:subjects,subjectName,'.$id],
+            'department' => 'required|min:2|max:255',
+        ]);
 
         $subject = DB::table('subjects')->where('id',$id)->update(array(
             'subjectName' => $request->input('subjectName'),

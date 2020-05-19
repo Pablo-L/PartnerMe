@@ -2,9 +2,14 @@
 
 @section('title', 'Editar turno')
 
-@section('content')
+@section('head')
+    @parent
+    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/turn/turn-form.css') }}">
+@endsection
 
-    <form action="{{action('TurnController@update')}}"method='POST'>
+@section('content')
+<div class="turn-form-container">
+    <form id="turn-form" class="turn-form-container" action="{{action('TurnController@update')}}"method='POST'>
         @csrf
         {{method_field('POST')}}
 
@@ -12,11 +17,18 @@
             <input type="hidden" name="id" value="{{$turn->id}}"/>
         @endif
 
-    <div id="classroomName" class="left">
+    <div id="classroomName" class="turn-form-nom">
         <label>Nombre del aula:</label>
-        <input type="text" name="classroomName" id="classroomName">
+        <input type="text" name="classroomName" id="classroomName" value="{{$turn->classroomName ?? ''}}">
+        @error('classroomName')
+                <div class="error_message" style="width: 81%;">
+                    <span>
+                        {{$message}}
+                    </span>
+                </div>
+            @enderror
     </div>
-    <div id="day" class="left">
+    <div id="day" class="turn-form-day">
         <label>Día</label>
         <select name="day">
             <option value="Lunes">Lunes</option>
@@ -26,15 +38,15 @@
             <option value="Viernes" selected>Viernes</option>
         </select>
     </div>
-    <div id="beginHour" class="right">
+    <div id="beginHour" class="turn-form-beginh">
         <label>Hora de comienzo:</label>
         <input type="time" name="beginHour" value="08:00" max="22:30" min="08:00" step="1">
     </div>
-    <div id="endHour" class="right">
+    <div id="endHour" class="turn-form-endh">
         <label>Hora de final:</label>
         <input type="time" name="endHour" value="08:00" max="22:30" min="08:00" step="1">
     </div>
-    <div class="form-group">
+    <div class="turn-form-subject">
         <label>Asignatura</label>
         <select name="subject_id"  id="subject_id" class="form-control">
         @foreach ($subjects as $subject)
@@ -45,8 +57,8 @@
         </select>
     </div>
         
-        <button type="submit" style="background:blue">Enviar</button>
+        <button type="submit" class="turn-form-btn">Enviar</button>
 
     </form>
-
+</div>
 @endsection

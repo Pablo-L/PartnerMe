@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Subject;
+use Illuminate\Validation\Rule;
 class TurnController extends Controller
 {
 
@@ -43,6 +44,17 @@ class TurnController extends Controller
 
 
     public function postForm(Request $request){
+        $request->validate([
+            'classroomName' => ['required','min:2','max:255',
+                Rule::unique('turns')->where(function ($query) use ($request){
+                    return $query
+                        ->where('classroomName',$request->classroomName)
+                        ->where('beginHour',$request->beginHour)
+                        ->where('day',$request->day);
+                }),
+            ],
+        ]);
+
         if($request->has('classroomName')){//admitimos que el resto de campos se rellenan
             $subject = DB::table('turns')->insert(array(
             'classroomName' => $request->input('classroomName'),
@@ -68,7 +80,18 @@ class TurnController extends Controller
 
     public function update(Request $request){
 		$id = $request->input('id');
-		
+        
+        $request->validate([
+            'classroomName' => ['required','min:2','max:255',
+                Rule::unique('turns')->where(function ($query) use ($request){
+                    return $query
+                        ->where('classroomName',$request->classroomName)
+                        ->where('beginHour',$request->beginHour)
+                        ->where('day',$request->day);
+                }),
+            ],
+        ]);
+        
 		$turn = DB::table('turns')->where('id', $id)
 									    ->update(array(
                                             'classroomName' => $request->input('classroomName'),

@@ -55,11 +55,25 @@
             <div class="group-form-name">
                 <label>Nombre del grupo:</label>
                 <input type="text" name="groupName" value="{{ $group->groupName ?? old('groupName') }}">
+                @error('groupName')
+                    <div class="error_message" style="width: 81%;">
+                        <span>
+                            {{$message}}
+                        </span>
+                    </div>
+                @enderror
             </div>
 
             <div class="group-form-desc">
                 <label>Descripción del grupo:</label>
                 <textarea name="description" value="{{ $group->description ?? old('description') }}">{{$group->description ?? old('description') }}</textarea>
+                @error('description')
+                    <div class="error_message" style="width: 81%;">
+                        <span>
+                            {{$message}}
+                        </span>
+                    </div>
+                @enderror
             </div>
 
             <div class="group-form-subject">

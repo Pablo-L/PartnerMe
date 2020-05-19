@@ -47,6 +47,12 @@ class GroupController extends Controller
 
     public function update(Request $request, Group $group){
 
+        $idAct = $group->id;
+        $request->validate([
+            'groupName' => ['min:2','max:255','required','unique:groups,groupName,'.$idAct],
+            'description' => 'required|min:2|max:255',
+        ]);
+
         $group->groupName = $request->groupName;
         $group->description = $request->description;
         $group->turn_id = $request->turn;
@@ -84,6 +90,11 @@ class GroupController extends Controller
     }
 
     public function save(Request $request){
+
+        $request->validate([
+            'groupName' => 'required|unique:groups|min:2|max:255',
+            'description' => 'required|min:2|max:255',
+        ]);
 
         $group = new Group();
         $group->groupName=$request->input('groupName');

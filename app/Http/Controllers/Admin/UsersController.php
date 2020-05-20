@@ -61,6 +61,28 @@ class UsersController extends Controller{
         }
     }
 
+    public function searchUsers($search = null, Request $request, string $specialUser = "notSpecial"){
+        if($request->ajax()){
+            if($specialUser == "special"){
+                $users = User::whereHas('roles', function($q){
+                    $q->where('rolName', 'like', 'professor');
+                })->where('alias', 'LIKE', '%' . $search . '%')
+                ->orWhereHas('roles', function($q){
+                    $q->where('rolName', 'like', 'professor');
+                })->where('name', 'LIKE', '%' . $search . '%')
+                ->get();
+                
+            }else{
+                $users = User::where('alias', 'LIKE', '%' . $search . '%')
+                ->orWhere('name', 'LIKE', '%' . $search . '%')
+                ->orWhere('description', 'LIKE', '%' . $search . '%')
+                ->paginate(20);
+            }
+            $roles = Role::all();
+            return view('admin.users.search_result', compact('users', 'roles'));
+        }
+    }
+
     public function fetchData(Request $request){
         if($request->ajax()){
             $sort_by = $request->get('sortby');
@@ -158,7 +180,6 @@ class UsersController extends Controller{
         return redirect()->route('admin.users.index');
     }
 
-    /*Uso delete para usar AJAX*/
     public function delete($id, Request $request){
 
         $user = User::find($id);

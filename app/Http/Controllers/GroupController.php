@@ -20,6 +20,14 @@ class GroupController extends Controller
         return view('group.groups-list',['groups'=>$groups]);
     }
 
+    public function searchGroups($search = null, Request $request){
+        if($request->ajax()){
+            $groups = Group::where('groupName', 'LIKE', '%' . $search . '%')->paginate(20);
+            $turns = Turn::get();
+            return view('group.search_result', compact('groups', 'turns'));
+        }
+    }
+
     public function edit($id){
         $group = Group::find($id);
 

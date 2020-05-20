@@ -19,6 +19,16 @@ class SubjectController extends Controller
         return view('subject.subjects-list',['subjects'=> $subjects]);
         //return 'Hola mundo';
     }
+    
+    public function searchSubjects($search = null, Request $request){
+        if($request->ajax()){
+            $subjects = Subject::where('subjectName', 'LIKE', '%' . $search . '%')
+            ->orWhere('department', 'LIKE', '%' . $search . '%')
+            ->paginate(20);
+
+            return view('subject.search_result', compact('subjects'));
+        }
+    }
 
     public function detail($subjectName){
         $subject = DB::table('subjects')->where('subjectName',$subjectName)->first();

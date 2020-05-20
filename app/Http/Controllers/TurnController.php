@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Subject;
+use App\Turn;
 use Illuminate\Validation\Rule;
 class TurnController extends Controller
 {
@@ -30,6 +31,17 @@ class TurnController extends Controller
                     ->where('turns.id',$id)
                     ->first();
         return view('turn.turns-detail',['turn'=>$turn]);
+    }
+
+    public function searchTurns($search = null, Request $request){
+        if($request->ajax()){
+            $turns = Turn::where('classroomName', 'LIKE', '%' . $search . '%')
+            ->orWhere('day', 'LIKE', '%' . $search . '%')
+            ->orderBy('classroomName', 'asc')
+            ->paginate(20);
+
+            return view('turn.search_result', compact('turns'));
+        }
     }
     
     public function getTurnsOfSubject($subjectId){

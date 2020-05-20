@@ -34,6 +34,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 });
 
 Route::get('/getUsers', 'Admin\UsersController@getUsers');
+Route::get('/searchUsers/{query}/{special?}', 'Admin\UsersController@searchUsers');
 
 /*
 |--------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::prefix('subject')->middleware('can:manage-subjects')->group(function(){
     Route::post('/edit','SubjectController@update');
 });
 
+Route::get('/searchSubjects/{query}', 'SubjectController@searchSubjects');
 
 /*
 |--------------------------------------------------------------
@@ -67,6 +69,7 @@ Route::group(['prefix'=>'group'], function(){
 
 Route::get('my_groups','GroupController@list');
 Route::get('groups', 'GroupController@index')->name('groupsIndex');
+Route::get('/searchGroups/{query}', 'GroupController@searchGroups');
 
 /*
 |--------------------------------------------------------------
@@ -84,6 +87,7 @@ Route::prefix('turn')->middleware('can:manage-turns')->group(function(){
     Route::get('detail/{id}', 'TurnController@detail');
 });
 
+Route::get('/searchTurns/{query}', 'TurnController@searchTurns');
 Route::get('turn/getTurns/{id}', 'TurnController@getTurnsOfSubject');
 
 

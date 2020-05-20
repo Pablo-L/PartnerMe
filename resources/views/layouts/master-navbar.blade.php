@@ -71,23 +71,49 @@
             <!--Se usaría para no tener que marcar el dropdown como absolute
             <div class="drop-filler"></div>
             -->
-
+            @guest
+               <div class="search-container">
+                  <input type="text" class="search_field" placeholder="Buscar "/>
+                  <div id="guestSearch" class="icon-search"><i class="fas fa-search"></i></div>
+                  <script>
+                     const guestBtn = document.getElementById('guestSearch')
+                     guestBtn.addEventListener('click', () => {
+                        console.log(window.location.origin)
+                        window.location.href = window.location.origin + "/login"
+                     })
+                  </script>
+               </div>
+            @else
             <div class="search-container">
                <input type="text" class="search_field" placeholder="Buscar " name="search" id='name' required />
-               <div class="icon-search">
+               <script type="text/javascript">document.getElementById("name").focus();</script>
+               <div id="btnSearch" class="icon-search">
                   <i class="fas fa-search"></i>
                </div>
             </div>
+            @endguest
 
             <div class="custom-select">
-               <select>
-               <option value="1">Alumno</option>
-               <option value="2">Grupo</option>
-               <option value="3">Profesor</option>
-               <option value="4">Asignatura</option>
-               <option value="5">Turno</option>
+               <select id="search-select">
+               <option value="user">Usuario</option>
+               <option value="group">Grupo</option>
+               <option value="profesor-user">Profesor</option>
+               <option value="subject">Asignatura</option>
+               <option value="turn">Turno</option>
                </select>
             </div>
+
+            <!-- Al redirigir marco la opcion que estaba marcada antes> -->
+            <script>
+               var url_string = window.location.href;
+               var url = new URL(url_string);
+               var option = url.searchParams.get("option");
+   
+               if(option != null){
+                  document.getElementById('search-select').value = option;
+               }
+            </script>
+            
 
             @guest
                <div class="botonesLogin">
@@ -176,6 +202,93 @@
          const btnMenuUser = document.querySelector('.BoxBtnUsuario')
          const btnUser = document.querySelector('.btnUsuario')
          const menuUser = document.querySelector('.dropdown-user')
+
+         const btnSearch = document.getElementById('btnSearch')
+
+         const mainContent = document.getElementsByClassName('main-container')[0]
+
+         if(btnSearch){
+            const searchField = document.getElementById('search-select')
+            const searchElement = document.getElementById('name')
+
+            btnSearch.addEventListener('click', () => {
+               let searchBy
+               let elementRedirect
+
+               switch(searchField.value){
+                  case "user":
+                  case "profesor-user":
+                     searchBy = "/searchUsers/"
+                     elementRedirect = "/admin/users/"
+                     break
+                  case "group":
+                     searchBy = "/searchGroups/"
+                     elementRedirect = "/group/detail/"
+                     break
+                  case "subject":
+                     searchBy = "/searchSubjects/"
+                     elementRedirect = "/subject/detail/"
+                     break
+                  case "turn":
+                     searchBy = "/searchTurns/"
+                     elementRedirect = "/turn/detail/"
+                     break
+               }
+
+               if(! searchElement.value == ""){
+                  path = window.location.origin + searchBy + searchElement.value 
+                  if(searchField.value == "profesor-user"){
+                     path += "/special"
+                  } 
+                  console.log(path)
+
+                  fetch(path, {
+                  headers: {
+                     "Content-Type": "application/json",
+                     "Accept": "application/json",
+                     "X-Requested-With": "XMLHttpRequest",
+                  },
+                  method: "get",
+                  }).then(response => {
+                     return response.text();
+                  }).then(text => {
+                     mainContent.innerHTML = ""
+                     mainContent.style.backgroundColor = 'var(--main-gris)'
+                     mainContent.innerHTML = text
+
+                     const elements = document.getElementsByClassName('element')
+
+                     let elementPath
+                     for(e of elements){
+                        e.addEventListener('click', event => {
+                           elementPath = window.location.origin + elementRedirect + event.currentTarget.id + '?option=' + searchField.value
+                           window.location.href = elementPath
+                        })
+                     }
+
+                  })
+               }
+            })
+
+            document.body.addEventListener('keyup', e => {
+               if (e.keyCode == 13) {
+                  btnSearch.click();
+               }
+            })
+            //en profesor no va ??
+            searchElement.addEventListener('keyup', () => {
+               if(searchElement.value != ""){
+                  btnSearch.click();
+               }else if(searchElement.value === ""){
+                  var clean_uri = location.protocol + "//" + location.host + location.pathname;
+                  window.history.replaceState({}, document.title, clean_uri);
+                  window.location.href = window.location.href + '?option=' + searchField.value
+               }
+            })
+
+         }
+
+
 
          if(btnMenuUser){
             btnMenuUser.addEventListener('click', async () =>{

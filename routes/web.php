@@ -67,7 +67,10 @@ Route::group(['prefix'=>'group'], function(){
     Route::get('detail/{id}', 'GroupController@detail');
 });
 
-Route::get('my_groups','GroupController@list');
+Route::get('my_groups','GroupController@list')->name('myGroups');
+Route::post('my_groups','GroupController@filteredList');
+Route::get('more_groups','GroupController@otherList')->name('otherGroups');
+Route::post('more_groups','GroupController@otherFilteredList');
 Route::get('groups', 'GroupController@index')->name('groupsIndex');
 Route::get('/searchGroups/{query}', 'GroupController@searchGroups');
 

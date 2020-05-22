@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Group;
 use App\Turn;
 use App\Subject;
@@ -18,6 +19,76 @@ class GroupController extends Controller
     public function index(){
         $groups = DB::table('groups')->paginate(20);
         return view('group.groups-list',['groups'=>$groups]);
+    }
+
+    public function list(){
+        $user=Auth::user();
+        $groups = DB::table('groups')
+                        ->join('group_user','groups.id','=','group_user.group_id')
+                        ->where('user_id',$user->id)
+                        ->paginate(5);
+        $subjects = DB::table('subjects')
+                        ->join('turns','turns.subject_id','=','subjects.id')
+                        ->join('groups','groups.turn_id','=','turns.id')
+                        ->join('group_user','groups.id','=','group_user.group_id')
+                        ->where('user_id',$user->id)
+                        ->select('subjects.*')
+                        ->distinct()->get();
+        return view('group.group-my_groups',['groups'=>$groups,'subjects'=>$subjects,'selected'=>'nulo']);
+    }
+
+    public function filteredList(Request $request){
+        $user=Auth::user();
+        $selected=$request->input('subject');
+        if($selected=='nulo'){
+            $groups = DB::table('groups')
+                        ->join('group_user','groups.id','=','group_user.group_id')
+                        ->where('user_id',$user->id)
+                        ->paginate(5);
+        }else{
+            $groups = DB::table('groups')
+                        ->join('group_user','groups.id','=','group_user.group_id')
+                        ->where('user_id',$user->id)
+                        ->join('turns','groups.turn_id','=','turns.id')
+                        ->where('turns.subject_id',$selected)
+                        ->paginate(5);
+        }
+        $subjects = DB::table('subjects')
+                        ->join('turns','turns.subject_id','=','subjects.id')
+                        ->join('groups','groups.turn_id','=','turns.id')
+                        ->join('group_user','groups.id','=','group_user.group_id')
+                        ->where('user_id',$user->id)
+                        ->select('subjects.*')
+                        ->distinct()->get();
+        return view('group.group-my_groups',['groups'=>$groups,'subjects'=>$subjects,'selected'=>$selected]);
+    }
+
+    public function otherList(){
+        $user=Auth::user();
+        $groups = DB::table('groups')->paginate(10);
+        $subjects = DB::table('subjects')->get();
+        $selected='nulo';
+        $name='';
+        return view('group.group-more_groups',['groups'=>$groups,'subjects'=>$subjects,'selected'=>$selected,'name'=>$name]);
+    }
+
+    public function otherFilteredList(Request $request){
+        $user=Auth::user();
+        $selected=$request->input('subject');
+        $name=$request->input('nameTb');
+        if($selected=='nulo'){
+            $groups = DB::table('groups')
+                        ->where('groupName', 'LIKE', '%' . $name . '%')
+                        ->paginate(10);
+        }else{
+            $groups = DB::table('groups')
+                        ->where('groupName', 'LIKE', '%' . $name . '%')
+                        ->join('turns','groups.turn_id','=','turns.id')
+                        ->where('turns.subject_id',$selected)
+                        ->paginate(10);
+        }
+        $subjects = DB::table('subjects')->get();
+        return view('group.group-more_groups',['groups'=>$groups,'subjects'=>$subjects,'selected'=>$selected,'name'=>$name]);
     }
 
     public function searchGroups($search = null, Request $request){

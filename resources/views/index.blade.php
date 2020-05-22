@@ -13,7 +13,7 @@
             <h1>Crea y colabora en grupos de tu universidad de forma sencilla</h1>
             <p>PartnerMe ofrece un conjunto de herramientas online para que los miembros
                  de la comunidad  universitaria puedan crear grupos de trabajo, colaborar
-                y comunicarse de forma sencilla y rápida. <a href="">Saber más...</a></p>
+                y comunicarse de forma sencilla y rápida. <a href="{{route('about')}}">Saber más...</a></p>
         </div>
         <img src="{{asset('imgs/indeximage.png')}}" alt="Imagen del índice" class="indexImg">
     </div>

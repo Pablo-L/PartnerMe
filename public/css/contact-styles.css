@@ -29,32 +29,42 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     align-items: center;
 }
 
-.indexContainer{
+.contactContainer{
     display: grid;
-    grid-template-columns: 0.40fr 0.60fr;
+    grid-template-columns: 0.5fr 0.5fr;
     grid-template-rows: 0fr;
-    grid-template-areas: "titulo img";
-    grid-gap:35px;
+    grid-template-areas: "titulo titulo"
+                         "contact1  contact2";
     padding: 0 35px;
 }
 
-.indexText{
+#contactTitle{
     grid-area:titulo;
+}
 
+#contacts1{
+    grid-area:contact1;
+}
+
+#contacts2{
+    grid-area:contact2;
+}
+
+.contactText{
     font-family: 'Rubik', sans-serif;
     color: white;
 }
 
-.indexText h1{
+.contactText h1{
     font-size:36px;
 }
 
-.indexText p{
+.contactText p{
     font-style: italic;
     font-size:24px;
 }
 
-.indexText a{
+.contactText a{
     color:white;
     background-color: var(--main-azul-claro);
     border-radius: 10px;
@@ -62,15 +72,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     font-size: 16px;
 }
 
-.indexText a:hover{
+.contactText a:hover{
     opacity: 0.7;
     background-color: var(--main-morado);
-}
-
-.indexImg{
-    grid-area:img;
-
-    margin:auto;
-    max-width:100%;
-    height:auto;
 }

@@ -30,6 +30,8 @@ class CreateUsersTable extends Migration
             $table->string('studies')->nullable();
             $table->integer('course')->nullable();
             $table->double('puntuation')->nullable();
+            
+            $table->string('image');
         });
     }
 

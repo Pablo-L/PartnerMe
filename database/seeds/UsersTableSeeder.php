@@ -26,6 +26,12 @@ class UsersTableSeeder extends Seeder
         $numUsers = 100;
         $users = factory(App\User::class, $numUsers)->make();
 
+        $images = [];
+
+        
+
+        for($i = 0; $i < $numUsers; $i++)
+
         for($i = 0; $i < $numUsers; $i++){
             $user = User::create([
                 'phone' => $users[$i]->phone,
@@ -38,6 +44,8 @@ class UsersTableSeeder extends Seeder
                 'studies' => $users[$i]->studies,
                 'course' => $users[$i]->course,
                 'puntuation' => $users[$i]->puntuation,
+                //'image' => $users[$i]->image
+                'image' => 'https://rickandmortyapi.com/api/character/avatar/' . ($i+10) . '.jpeg',
             ]);
 
             $user->roles()->attach($studentRole);
@@ -48,6 +56,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Usuario especial admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('adminadmin'),
+            'image' => '/storage/user_img/default.png',
         ]);
         $admin->roles()->attach($adminRole);
 
@@ -56,6 +65,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Usuario especial profesor',
             'email' => 'profesor@ua.es',
             'password' => Hash::make('profesorua'),
+            'image' => '/storage/user_img/default.png',
         ]);
         $professor->roles()->attach($professorRole);
 

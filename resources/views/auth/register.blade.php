@@ -17,23 +17,15 @@
                 }
             @endphp
 
-        <div id="title">
-            @if($existsUser)
-                <h1> Editar perfil de {{$user->alias}}</h1>
-                @section('title', $user->alias)
-            @else
-                <h1>Registro</h1>
-                @section('title', 'Registro')
-            @endif
-        </div>
 
         <form class="signup-container" id="signup-form" 
-            method="POST" 
+            method="POST" enctype="multipart/form-data"
             @if($existsUser)
                 action="{{ route('admin.users.update', $user) }}">
 	        @else
                 action="{{ route('register') }}">
             @endif
+            
             
             @csrf
 
@@ -45,6 +37,17 @@
 		        <input type="hidden" name="id" value="{{ $user->id }}"/>
             @endif
 
+            <div id="title">
+                @if($existsUser)
+                    <h1> Editar perfil de {{$user->alias}}</h1>
+                    @section('title', $user->alias)
+                @else
+                    <h1>Registro</h1>
+                    @section('title', 'Registro')
+                @endif
+            </div>
+
+            @can('edit-roles')
             @if($existsUser)
                 <!-- Solo el admin debe ver esta parte -->
                 <div class="rol-box">
@@ -57,6 +60,20 @@
                     @endforeach
                 </div>
             @endif
+            @endcan
+
+            <div id="upload-box">
+                @if($existsUser)
+                    <img id="output" src="{{ $user->image }}">
+                @else
+                    <img id="output" src="/storage/user_img/default.png" name="image">
+                @endif
+                <div class="upload-box-select">
+                    <button class="btnUpload">Seleccionar fichero</button>
+                    <input id="imageUpload" type="file" name="image" accept="image/*"  
+                    onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                </div>
+            </div>
 
             <div id="name-box" class="left">
                 <label for="name">{{__('messages.Name')}}</label>
@@ -96,7 +113,7 @@
 
             <div id="password-box" class="left">
                 <label for="password">{{ __('messages.Password') }}</label>
-                <input id="password" class="@error('password') input_error @enderror" type="password" name="password">
+                <input id="password" class="@error('password') input_error @enderror" type="password" name="password" value="{{ old('password')}}">
                 @error('password')
                     <div class="error_message">
                         <span>

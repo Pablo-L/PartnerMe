@@ -14,16 +14,28 @@
         <td>
             {{ @$group->description }}
         </td>
-        <td>
-            <a href=" {{ action('GroupController@edit', ['id' => $group->id]) }} "> 
-                <i class="fas fa-edit"></i> 
-            </a> 
-        </td>
+
+        @can('edit-groups', $group->id)
+            <td>
+                <a href=" {{ action('GroupController@edit', ['id' => $group->id]) }} "> 
+                    <i class="fas fa-edit"></i> 
+                </a> 
+            </td>
+        @else
+            <td></td>
+        @endcan
+
+
+        @can('delete-groups', $group->id)
         <td>
             <a href=" {{ action('GroupController@delete', ['id' => $group->id]) }} "> 
                 <i class="fas fa-trash-alt"> </i> 
             </a> 
         </td>
+        @else
+            <td></td>
+        @endcan
+
     </tr>
 @endforeach
 

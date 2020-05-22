@@ -105,6 +105,12 @@ td > a:hover {
     border-radius: 6px;
 }
 
+td img{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
 .alias-links{
     color: var(--main-morado);
     text-decoration: none;
@@ -171,14 +177,24 @@ td > a:hover {
 
 
 
-@media (max-width: 800px){
+@media (max-width: 1200px){
     .description_cells, #description_cells{
         display: none;
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 800px) {
     .username_cells, #username_cells{
+        display: none;
+    }
+
+    .img_cells{
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .rol_cells{
         display: none;
     }
 }

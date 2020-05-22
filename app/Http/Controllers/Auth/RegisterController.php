@@ -10,6 +10,7 @@ use App\Rules\AliasValidation;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -70,8 +71,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data){
+
         $user = User::create([
             'name' => $data['name'],
             'lastName' => $data['lastName'],
@@ -82,11 +83,23 @@ class RegisterController extends Controller
             'studies' => $data['studies'],
             'course' => $data['course'],
             'description' => $data['description'],
+            'image' => '/storage/user_img/default.png',
         ]);
 
+        $request = request();
+
+        if( $request->file('image') !== null && $request->file('image')->isValid()){
+            $path='/public/user_img';
+            $fileName = $user->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
+            $request->file('image')->storeAs($path, $fileName);
+            $user->image = '/storage/user_img/' . $fileName;
+        }
+
+        
         $role = Role::select('id')->where('rolName', 'student')->first();
         $user->roles()->attach($role);
-
+        
+        $user->save();
         return $user;
 
     }

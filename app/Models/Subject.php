@@ -36,6 +36,6 @@ class Subject extends Model
     //}
 
     public function turns(){
-        return $this->hasMany('App\Turn');
+        return $this->hasMany('App\Turn', 'subjectName');
     }
 }

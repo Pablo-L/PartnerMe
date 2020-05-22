@@ -125,7 +125,7 @@
                   <button class="btnUsuario"><a>Bienvenido {{ Auth::user()->alias }}</a></button>
 
                   <div class="dropdown-user">
-                     <a class="dropdown-user-item">{{ __('messages.Edit Profile') }}</a>
+                     <a href="{{route('admin.users.edit', Auth::user())}}" class="dropdown-user-item">{{ __('messages.Edit Profile') }}</a>
                      <a class="dropdown-user-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -137,21 +137,6 @@
                   </div>
                </div>
 
-
-
-               <!--
-               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ route('logout') }}"
-                     onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
-                  </a>
-                  
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                     @csrf
-                  </form>
-               </div>
-               -->
             @endguest
 
          </nav>
@@ -240,7 +225,6 @@
                   if(searchField.value == "profesor-user"){
                      path += "/special"
                   } 
-                  console.log(path)
 
                   fetch(path, {
                   headers: {
@@ -257,6 +241,7 @@
                      mainContent.innerHTML = text
 
                      const elements = document.getElementsByClassName('element')
+                     const deleteLinks = document.getElementsByClassName('deleteButton')
 
                      let elementPath
                      for(e of elements){
@@ -275,7 +260,7 @@
                   btnSearch.click();
                }
             })
-            //en profesor no va ??
+
             searchElement.addEventListener('keyup', () => {
                if(searchElement.value != ""){
                   btnSearch.click();

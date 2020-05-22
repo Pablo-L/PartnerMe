@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Group;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,12 +32,19 @@ class AuthServiceProvider extends ServiceProvider
         | USUARIOS
         |--------------------------------------------------------------
         */
+        Gate::define('edit-roles', function($user){
+            return $user->hasRole('admin');
+        });
 
         Gate::define('manage-users', function($user){
             return $user->hasAnyRoles(['admin', 'professor']);
         });
 
-        Gate::define('edit-users', function($user){
+        Gate::define('edit-users', function($user, $userToEdit = null){
+            if($userToEdit !== null){
+                return $user->id === $userToEdit->id || $user->hasRole('admin');
+            }
+
             return $user->hasRole('admin');
         });
 
@@ -73,5 +82,48 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAnyRoles(['admin', 'professor']);
         });
 
+        /*
+        |--------------------------------------------------------------
+        | GRUPOS
+        |--------------------------------------------------------------
+        */
+
+        Gate::define('edit-groups', function($user, $groupId){
+            $belongsToGroup = false;
+            
+            $g = Group::find($groupId);
+
+            foreach($g->users as $u){
+                if($u->id == Auth::user()->id){
+                    $belongsToGroup = true;
+                }
+                //var_dump($u);
+            }
+
+            if(!$belongsToGroup && $user->hasAnyRoles(['admin', 'professor'])){
+                $belongsToGroup = true;
+            }
+            
+            return $belongsToGroup;
+        });
+
+        Gate::define('delete-groups', function($user, $groupId){
+            $belongsToGroup = false;
+            
+            $g = Group::find($groupId);
+
+            foreach($g->users as $u){
+                if($u->id == Auth::user()->id){
+                    $belongsToGroup = true;
+                }
+                //var_dump($u);
+            }
+
+            if(!$belongsToGroup && $user->hasAnyRoles(['admin', 'professor'])){
+                $belongsToGroup = true;
+            }
+            
+            return $belongsToGroup;
+        });
     }
 }

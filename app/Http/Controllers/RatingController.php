@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -66,7 +66,7 @@ class RatingController extends Controller{
             }
         }
 
-        return redirect(route('admin.user-rating', $receiver->id));
+        return redirect(route('user-rating', $receiver->id));
     }
 
     public function upload(Request $request, $authUser = null){
@@ -98,7 +98,7 @@ class RatingController extends Controller{
             $request->session()->flash('error',  'No puede comentarse a sí mismo');
         }
 
-        return redirect(route('admin.user-rating', $user->id));
+        return redirect(route('user-rating', $user->id));
     }
 
 

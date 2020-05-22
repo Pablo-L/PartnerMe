@@ -9,6 +9,8 @@ use Gate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller{
 
@@ -126,7 +128,7 @@ class UsersController extends Controller{
      */
     public function edit(User $user){
         //Compruebo si el ususrio tiene los permisos para editar, si no lo redirigo al inicio
-        if(Gate::denies('edit-users')){
+        if(Gate::denies('edit-users', Auth::user(), $user)){
             return redirect(route('admin.users.index'));
         }
         
@@ -152,7 +154,7 @@ class UsersController extends Controller{
             'lastName' => ['nullable','string', 'max:255'],
             'alias' => ['required', 'string', 'max:255', 'unique:users,' . 'alias,' . $user->id],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,' . 'email,' . $user->id],
-            'phone' => ['nullable','string', 'regex:/^[\+]+[0-9]+$/'],
+            'phone' => ['nullable','numeric'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'studies' => ['required', 'string'],
             'course' => ['nullable','numeric', 'between:0,4'],
@@ -170,6 +172,13 @@ class UsersController extends Controller{
         $user->password = Hash::make($request->password);
         $user->studies = $request->studies;
         $user->course = $request->course;
+
+        if( $request->file('image') !== null && $request->file('image')->isValid()){
+            $path='/public/user_img';
+            $fileName = $user->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
+            $request->file('image')->storeAs($path, $fileName);
+            $user->image = '/storage/user_img/' . $fileName;
+        }
 
         if($user->save()){
             $request->session()->flash('success',  'El usuario ' . $request->input('alias') . ' ha sido modificado correctamente');
@@ -200,6 +209,25 @@ class UsersController extends Controller{
         }
 
         
+    }
+
+    public function deleteSearch($id, Request $request){
+        $user = User::find($id);
+        $alias = $user->alias;
+
+        if(Gate::denies('delete-users', $user)){
+            $request->session()->flash('error',  'El usuario ' . $alias . ' no se pudo eliminar');
+            return;
+        }
+
+        if($user->delete()){
+            $request->session()->flash('success',  'El usuario ' . $alias . ' ha sido eliminado correctamente');
+            return redirect()->action('Admin\UsersController@index')->with('message','Operación realizada correctamente');
+            //return Redirect::back();
+        }else{
+            $request->session()->flash('error',  'El usuario ' . $alias . ' no se pudo eliminar');
+            return Redirect::back()->with('message','Operación NO realizada');
+        }
     }
 
     /**

@@ -2,6 +2,7 @@
 <style>
     .main-container{
         position: relative;
+        display: flex;
         align-items: initial;
         justify-content: center;
         width: initial;
@@ -30,6 +31,8 @@
         font-family: 'Rubik', sans-serif;
         color: var(--main-gris-oscuro);
         font-size: 20px;
+
+        position: relative;
     }
 
     .element:hover{
@@ -57,6 +60,46 @@
         font-weight: bold;
     }
 
+    .deleteButton, .editButton{
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 28px;
+        border-radius: 2px;
+    }
+
+    .editButton{
+        top: 12px;
+        right: 55px;
+        font-size: 24px;
+        padding: 1px 0px;
+    }
+
+    .editButton a, .deleteButton a{
+        display: flex;
+        padding: 3px 5px;
+    }
+
+    .editButton a{
+        color: var(--main-azul-claro);
+    }
+
+    .deleteButton a{
+        color: #c00;
+    }
+
+    .deleteButton:hover{
+        background-color: #c00;
+    }
+
+    .editButton:hover{
+        background-color: var(--main-azul-claro);
+    }
+
+    .deleteButton:hover a, .editButton:hover a{
+        color: #fff;
+    }
+
 </style>
 
     <div class="groupContainer">
@@ -69,6 +112,18 @@
                 <div class="groupContent-name">{{$group->groupName}}</div>
                 <div class="groupContent-desc">{{$group->description}}</div>
             </div>
+
+            @can('edit-groups', $group->id)
+            <div class="editButton">
+                <a href="{{route('groupEdit', $group->id)}}"><i class="fas fa-edit"></i></a>
+            </div>
+            @endcan
+
+            @can('delete-groups', $group->id)
+            <div class="deleteButton">
+                <a href="{{route('groupDelete', $group->id)}}"><i class="far fa-minus-square"></i></a>
+            </div>
+            @endcan
             
         </div>
     @endforeach

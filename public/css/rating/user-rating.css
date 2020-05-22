@@ -270,11 +270,28 @@ label{
                              "valoracion"
                              "comentarios"
                              "publicar";
+        margin-top: 20px;
     }
     
     .header{
         flex-direction: column;
         padding-bottom: 20px;
+    }
+
+    .header > div{
+        padding: 10px;
+    }
+
+    .puntuation{
+        padding: 10px 20px !important
+    }
+
+    .puntuation_data{
+        padding: 0px 8px;
+    }
+
+    .nya{
+        text-align: center;
     }
 }
 

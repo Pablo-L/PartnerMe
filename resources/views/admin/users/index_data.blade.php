@@ -1,12 +1,17 @@
 @foreach($users as $user)
     <tr id="{{$user->id}}">
+
+        <td class="img_cells">
+            <img src="{{ @$user->image }}">
+        </td>
+
         <td>
             <a class="alias-links" href=" {{ route('admin.users.show', $user->id) }} ">
                 {{ @$user->alias }}
             </a>
         </td>
 
-        <td>{{ implode(', ' , $user->roles()->get()->pluck('rolName')->toArray()) }}</td>
+        <td class="rol_cells">{{ implode(', ' , $user->roles()->get()->pluck('rolName')->toArray()) }}</td>
 
         <td class="username_cells">{{ $user->name }}</td>
         <td class="description_cells">{{ $user->description }}</td>

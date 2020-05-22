@@ -22,16 +22,53 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 .main-container{
     width: 100vw;
     height: 85vh;
-    background-color: var(--main-gris-oscuro);
+    background-color: var(--main-morado-apagado);
     
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.titulo{
+.indexContainer{
+    display: grid;
+    grid-template-columns: 0.40fr 0.60fr;
+    grid-template-rows: 0fr;
+    grid-template-areas: "titulo img";
+    grid-gap:35px;
+    padding: 0 35px;
+}
+
+.indexText{
+    grid-area:titulo;
+
     font-family: 'Rubik', sans-serif;
-    font-size: 72px;
-    font-weight: bold;
     color: white;
+}
+
+.indexText h1{
+    font-size:36px;
+}
+
+.indexText p{
+    font-style: italic;
+    font-size:24px;
+}
+
+.indexText a{
+    color:white;
+    background-color: var(--main-azul-claro);
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 16px;
+}
+
+.indexText a:hover{
+    opacity: 0.7;
+    background-color: var(--main-morado);
+}
+
+.indexImg{
+    grid-area:img;
+
+    margin:auto;
 }

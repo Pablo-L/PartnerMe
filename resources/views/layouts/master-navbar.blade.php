@@ -22,7 +22,12 @@
          <nav>
 
             <div class="logoBox">
-               <div class="logo"><a href=" {{URL::route('main')}} "><h1>PartnerMe</h1></a></div>
+               @guest
+                  <div class="logo"><a href=" {{URL::route('main')}} "><h1>PartnerMe</h1></a></div>
+               @else
+                  <div class="logo"><a href=" {{URL::route('home')}} "><h1>PartnerMe</h1></a></div>
+               @endguest
+
                <div class="icon-menu">
                   <i class="fas fa-bars"></i>
                </div>

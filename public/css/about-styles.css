@@ -21,7 +21,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
 .main-container{
     width: 100vw;
-    height: 85vh;
+    padding: 35px 0px;
     background-color: var(--main-morado-apagado);
     
     display: flex;
@@ -29,32 +29,74 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     align-items: center;
 }
 
-.indexContainer{
+.aboutContainer{
     display: grid;
-    grid-template-columns: 0.40fr 0.60fr;
+    grid-template-columns: 0.5fr 0.5fr;
     grid-template-rows: 0fr;
-    grid-template-areas: "titulo img";
-    grid-gap:35px;
-    padding: 0 35px;
+    grid-template-areas: "text1 img1"
+                         "img2 text2"
+                         "text3 img3"
+                         "img4 text4"
+                         "text5 img5";
+    grid-gap:55px;
+    padding: 0 55px;
 }
 
-.indexText{
-    grid-area:titulo;
+#text1{
+    grid-area:text1;
+}
 
+#img1{
+    grid-area:img1;
+}
+
+#text2{
+    grid-area:text2;
+}
+
+#img2{
+    grid-area:img2;
+}
+
+#text3{
+    grid-area:text3;
+}
+
+#img3{
+    grid-area:img3;
+}
+
+#text4{
+    grid-area:text4;
+}
+
+#img4{
+    grid-area:img4;
+}
+
+#text5{
+    grid-area:text5;
+}
+
+#img5{
+    grid-area:img5;
+}
+
+.aboutText{
     font-family: 'Rubik', sans-serif;
     color: white;
 }
 
-.indexText h1{
+.aboutText h1{
     font-size:36px;
 }
 
-.indexText p{
+.aboutText p{
     font-style: italic;
     font-size:24px;
 }
 
-.indexText a{
+.aboutText a{
     color:white;
     background-color: var(--main-azul-claro);
     border-radius: 10px;
@@ -62,14 +104,12 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     font-size: 16px;
 }
 
-.indexText a:hover{
+.aboutText a:hover{
     opacity: 0.7;
     background-color: var(--main-morado);
 }
 
-.indexImg{
-    grid-area:img;
-
+.aboutImg{
     margin:auto;
     max-width:100%;
     height:auto;

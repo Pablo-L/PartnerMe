@@ -113,7 +113,7 @@
                         @foreach($users as $user)
                             <div class="usersListItemResult">
                                 <div class="usersListItem-content">
-                                    <div class="usersListItem-image"></div>
+                                    <div class="usersListItem-image" style="background-image: url('{{$user->image}}')"></div>
                                     <div class="usersListItem-text" id="{{$user->id}}">{{$user->name}}</div>
                                 </div>
                                 <div><i class="far fa-minus-square"></i></div>
@@ -174,6 +174,7 @@
                     textDiv.classList.add('usersListItem-text')
                     textDiv.setAttribute("id", user.id); 
                     textDiv.appendChild(document.createTextNode(user.name))
+                    imageDiv.style.backgroundImage = `url('${user.image}')`
                     
                     contentDiv.appendChild(imageDiv) 
                     contentDiv.appendChild(textDiv)

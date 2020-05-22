@@ -97,7 +97,7 @@ class UsersController extends Controller{
     }
 
     public function getUsers(){
-        $users = User::all('id', 'name');
+        $users = User::all('id', 'name', 'image');
         return json_encode($users);
     }
 

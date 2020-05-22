@@ -19,9 +19,10 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 }
 */
 
+
 .main-container{
     width: 100vw;
-    height: 85vh;
+    height: 100vh;
     background-color: var(--main-morado-apagado);
     
     display: flex;
@@ -35,11 +36,14 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     grid-template-rows: 0fr;
     grid-template-areas: "titulo img";
     grid-gap:35px;
+    align-self: baseline;
+    justify-content: center;
     padding: 0 35px;
 }
 
 .indexText{
     grid-area:titulo;
+    align-self: center;
 
     font-family: 'Rubik', sans-serif;
     color: white;
@@ -73,4 +77,14 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     margin:auto;
     max-width:100%;
     height:auto;
+}
+
+@media (max-width: 1400px){
+    .indexContainer{
+        margin-top: 20px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0fr 0fr;
+        grid-template-areas: "img"
+                             "titulo";
+    }
 }

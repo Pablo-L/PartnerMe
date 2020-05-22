@@ -114,3 +114,31 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     max-width:100%;
     height:auto;
 }
+
+@media (max-width: 1400px){
+    .aboutContainer{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(10, 0fr);
+        grid-template-areas: "img1"
+                             "text1"
+                             "img2" 
+                             "text2"
+                             "img3"
+                             "text3" 
+                             "img4" 
+                             "text4"
+                             "img5"
+                             "text5";
+        grid-gap:0;
+        padding: 0;
+        margin-top: 0px;
+    }
+
+    .main-container{
+        padding: 0;
+    }
+
+    .aboutText{
+        padding: 0px 25px;
+    }
+}

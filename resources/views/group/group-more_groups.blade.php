@@ -16,17 +16,17 @@
         <form action="{{action('GroupController@otherFilteredList')}}" method="POST">
             @csrf
             <label for="nameTb">Nombre:</label>
-            <input type="text" name="nameTb" id="nameTb" value="{{$name}}"> 
+            <input type="text" name="nameTb" id="nameTb" value="{{$name}}"> <br>
             <label for="subject">Asignatura:</label>
-            <select name="subject">
+            <select id="selectSubject" name="subject">
                 <option 
                 @if($selected=="nulo")
                 selected 
                 @endif
-                value="nulo"></option>
+                value="nulo">Seleccione una asignatura</option>
                 @foreach($subjects as $subject)
                 <option 
-                @if($subject->id==$selected)
+                @if($subject->id == $selected)
                 selected 
                 @endif
                 value="{{$subject->id}}">{{$subject->subjectName}}</option>
@@ -36,7 +36,6 @@
         </form>
         </div>
     
-
         <div class="groupCardContainer">
         @foreach($groups as $group)
             <div class="element" id="{{$group->id}}">
@@ -47,6 +46,7 @@
                     <div class="groupContent-name">{{$group->groupName}}</div>
                     <div class="groupContent-desc">{{$group->description}}</div>
                 </div> 
+
             </div>
         @endforeach
         </div>
@@ -57,6 +57,28 @@
 
     </div>
 
-    
+    <script>
+        
+        const subjectSelect = document.getElementById('selectSubject')
+        const filterBtn = document.getElementById('filterBtn')
+        const elements = document.getElementsByClassName('element')
+        const searchField = document.getElementById('search-select')
+//
+        //subjectSelect.addEventListener('change', () => {
+        //    filterBtn.click()
+        //})
+
+        let elementPath
+        for(e of elements){
+            e.addEventListener('click', event => {
+                console.log('holi')
+                console.log('ha clickado!' + event.currentTarget.id)
+                elementPath = window.location.origin + '/group/detail/' + event.currentTarget.id + '?option=' + searchField.value
+                window.location.href = elementPath
+            })
+        }
+
+
+    </script>
 
 @endsection

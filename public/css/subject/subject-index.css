@@ -32,7 +32,8 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 }
 
 .btnCreate{
-    width: 25%;
+    width: auto;
+    padding: 15px;
     margin: 15px 0px;
     
     background-color: var(--main-morado);

@@ -64,7 +64,13 @@
                      <a href=" {{URL::route('turnsIndex')}} ">Turnos</a>
                   @endcan
 
+                  @guest
+                  <a href=" {{URL::route('about')}} ">Acerca de</a>
+                  @else
                   <a href=" {{URL::route('groupsIndex')}} ">Grupos</a>
+                  @endguest
+
+                  <a href=" {{URL::route('contact')}} ">Contacto</a>
                   
                </div>
             

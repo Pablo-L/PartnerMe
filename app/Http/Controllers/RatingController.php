@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\ServiceLayer\RatingServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,60 +46,30 @@ class RatingController extends Controller{
 		]);
     }
 
-    public function delete($creatorId, $receiverId,  $ratingId){
-        //Elimino el rating del los ratings del creador
-        $creator = User::find($creatorId);
-        //$creator->created_ratings()->delete($ratingId);
-        $creatorRatings = $creator->created_ratings;
-        foreach($creatorRatings as $r){
-            if($r->id == $ratingId){
-                $r->delete();
-            }
-        }
-
-        //Elimino el rating de los ratings recibidos por el receiver
-        $receiver = User::find($receiverId);
-        //$receiver->received_ratings()->delete($ratingId);
-        $receivedRatings = $receiver->received_ratings;
-        foreach($receivedRatings as $r){
-            if($r->id == $ratingId){
-                $r->delete();
-            }
-        }
-
-        return redirect(route('user-rating', $receiver->id));
-    }
-
-    public function upload(Request $request, $authUser = null){
-
-        $validatedData = $request->validate([
-            'points' => 'required|integer|between:0,10',
-            'comment' => 'required',
-        ]);
-
-        $alias = $request->input('user_alias');
-        $user = DB::table('users')->where('alias', $alias)->first();
-
-        if($authUser && $authUser != $alias){
-
-            $u = User::find($user->id);
-            $u->received_ratings()->create([
-                'user_id_creator' => $request->input('user_creator_id'),
-                'user_id_receiver' => $request->input('user_receiver_id'),
-                'points' =>  $request->input('points'),
-                'comment' => $request->input('comment'),
-            ]);
-            $u->save();
-    
-            $puntuation = $this->calculatePuntuations($user->id);
-            DB::table('users')->where('alias',$alias)->update(array(
-                'puntuation'=>  number_format($puntuation, 2, '.', ''),
-            ));
+    public function delete($creatorId, $receiverId,  $ratingId, Request $request){
+        $receiver = RatingServices::deleteComment($creatorId, $receiverId,  $ratingId);
+        if($receiver !== null){
+            return redirect(route('user-rating', $receiver->id));
         }else{
             $request->session()->flash('error',  'No puede comentarse a sí mismo');
         }
+    }
 
-        return redirect(route('user-rating', $user->id));
+    public function upload(Request $request, $authUser = null){
+        
+        $request->validate([
+            'points' => 'required|integer|between:0,10',
+            'comment' => 'required',
+        ]);
+            
+        $user = RatingServices::uploadComment($request, $authUser);
+        
+        if($user !== null){
+            return redirect(route('user-rating', $user->id));
+        }else{
+            $request->session()->flash('error',  'No puede comentarse a sí mismo');
+        }
+      
     }
 
 

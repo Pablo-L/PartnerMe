@@ -40,12 +40,12 @@
                 
                 <div class="comment_profile" onclick="redirectStudent({{ $rating->user_id_creator }})">
                     <div class="comment_photo" style="background-image:url('{{ $rating->user_creator->image }}')"></div>
-                    <span class="comment_alias">{{DB::table('users')->where('id', $rating->user_id_creator)->first()->alias}}</span>
+                    <span class="comment_alias">{{ $rating->user_creator->alias }}</span>
                     
                     <span>
                         @php array_push($ratingsIds,$rating->user_id_creator) @endphp
-                        {{DB::table('users')->where('id', $rating->user_id_creator)->first()->name}},
-                        {{DB::table('users')->where('id', $rating->user_id_creator)->first()->lastName}}
+                        {{ $rating->user_creator->name }}
+                        {{ $rating->user_creator->lastName }}
                     </span>
 
                 </div>

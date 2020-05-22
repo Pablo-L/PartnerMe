@@ -12,7 +12,7 @@ class Rating extends Model{
     private $student_id_receiver;
 
     protected $fillable = [
-        'user_id_creator', 'user_id_creator', 'points', 'comment',
+        'user_id_creator', 'user_id_receiver', 'points', 'comment',
     ];
     
     public function user_creator(){

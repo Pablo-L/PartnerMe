@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subject;
+use App\Turn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,7 +33,8 @@ class SubjectController extends Controller
 
     public function detail($subjectName){
         $subject = DB::table('subjects')->where('subjectName',$subjectName)->first();
-        return view('subject.subject-detail',['subject'=>$subject]); 
+        $turns = Turn::where('subject_id', $subject->id)->get();
+        return view('subject.subject-detail',['subject'=>$subject, 'turns' => $turns]); 
     }
 
     public function create(){

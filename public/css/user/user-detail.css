@@ -53,7 +53,6 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     background-color: #fff;
     border-radius: 50%;
 
-    background-image: url(../../imgs/default-user-image.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -182,12 +181,13 @@ label{
 .group_photo{
     /*background-image: url(../../imgs/default-user-image.png);*/
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     min-width: 150px;
     height: 150px;
     border-radius: 50%;
 
     margin-right: 20px;
+    
 }
 
 .group_data{
@@ -227,15 +227,36 @@ label{
         align-items: center;
     }
 
+
+    .user-container{
+        margin-top: 20px;
+    }
+
     .nya, .puntuation, .dContainer {
         justify-self: center;
         text-align: center;
     }
 
     .puntuation{
-        margin: 0px;
+        font-size: 1.2em;
+        margin: 0;
+    }
+
+    .puntuation_data{
+        font-size: 2.5em;
+    }
+
+    .data, label{
+        font-size: 1.7em;
     }
 
 }
 
 
+@media (max-width: 800px){
+
+    .group_card{
+        width: 80%;
+    }
+
+}

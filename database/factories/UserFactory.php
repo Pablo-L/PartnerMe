@@ -30,5 +30,7 @@ $factory->define(User::class, function (Faker $faker) {
         'studies' => 'Grado en ingeniería informática',
         'course' => 3,
         'puntuation' => 0.0,
+
+        'image' => '/storage/user_img/default.png',
     ];
 });

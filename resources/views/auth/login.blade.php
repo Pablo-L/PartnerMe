@@ -51,6 +51,8 @@
                 <button class="button">{{ __('messages.Login') }}</button>
 
                 <hr class="line">
+
+                <!--
                 <div class="form-links">
                     @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}">
@@ -58,6 +60,7 @@
                         </a>
                     @endif
                 </div>
+                -->
 			</form>
 		</div>
 	</div>

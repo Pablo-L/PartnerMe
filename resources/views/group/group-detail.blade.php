@@ -21,9 +21,9 @@
 
         <div class="group-integrantes">
             @foreach($users as $user)
-                <div class="group-user">
-                    <div class="group-user-photo"></div>
-                    <div class="group-user-info">{{$user->alias}} <br> {{ $user->name }}<br>Valoración: {{ $user->avgRating }}</div>
+                <div class="group-user" id="{{$user->id}}">
+                    <div class="group-user-photo" style="background-image:url('{{ $user->image }}')"></div>
+                    <div class="group-user-info"><span class="group-user-info-alias">{{$user->alias}}</span> <br> {{ $user->name }}<br>Valoración: {{ $user->avgRating }}</div>
                 </div>
             @endforeach
 
@@ -43,5 +43,17 @@
 
 
     </div>
+
+    <script>
+        const users = document.getElementsByClassName('group-user')
+
+        let path = window.location.origin + '/admin/users/'
+
+        for(user of users){
+            user.addEventListener('click', event => {
+                window.location.href = path + event.currentTarget.id
+            })
+        }
+    </script>
 
 @endsection

@@ -24,12 +24,16 @@
         
         <thead>
             <tr>
+                <th class="img_cells">
+                    Imagen del usuario
+                </th>
+
                 <!-- Marco las columnas para su posterior tratamiento con javascript -->
                 <th class="sorting" data-sorting_type="asc" data-column_name="alias">
                     Alias
                 </th>
 
-                <th class="sorting" data-sorting_type="asc" data-column_name="alias">
+                <th class="rol_cells" class="sorting" data-sorting_type="asc" data-column_name="alias">
                     Roles
                 </th>
                 

@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="user-container">
-        <div class="photo"></div>
+        <div class="photo" style="background-image:url('{{ $user->image }}')"></div>
         <div class="alias">{{ $user->alias }}</div>
     
         <div class="nya">
@@ -27,7 +27,7 @@
     
         <div class="puntuation">
             <label>Valoracion: </label>
-            <a href=" {{ route('admin.user-rating', $user->id) }} " 
+            <a href=" {{ route('user-rating', $user->id) }} " 
                 class="puntuation_data"> {{number_format($user->puntuation, 2) }} </a>
         </div>
 

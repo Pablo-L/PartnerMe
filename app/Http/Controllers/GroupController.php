@@ -50,6 +50,12 @@ class GroupController extends Controller
         }else{
             $request->session()->flash('error',  'El grupo \'' . $groupName . '\' no se pudo eliminar');
         }
+
+        //Si elimino desde detalle redirigo al index de grupos
+        if (strpos(back()->getTargetUrl(), 'detail') !== false) {
+            return redirect()->action('GroupController@index');
+        }
+        
         return back();
     }
 
@@ -109,14 +115,15 @@ class GroupController extends Controller
         $group->description=$request->input('description');
         $group->turn_id=$request->input('turn');
         $group->image='default.png';
-        $group->save();
+
         if( $request->file('image') !== null && $request->file('image')->isValid()){
             $path='/public/group_img';
             $fileName=$group->id . date('_m_d_y_H_i_s') . '.' . $request->file('image')->extension();
             $request->file('image')->storeAs($path, $fileName);
             $group->image=$fileName;
-            $group->save();
         }
+
+        $group->save();
 
         DB::table('group_user')->insert(
             [
@@ -125,14 +132,16 @@ class GroupController extends Controller
             ]
         );
 
-        foreach($request->input('users') as $userId){
-            echo $userId . PHP_EOL;
-            DB::table('group_user')->insert(
-                [
-                    'user_id' => (int)$userId, 
-                    'group_id' => $group->id
-                ]
-            );
+        if($request->input('users') !== null){
+            foreach($request->input('users') as $userId){
+                echo $userId . PHP_EOL;
+                DB::table('group_user')->insert(
+                    [
+                        'user_id' => (int)$userId, 
+                        'group_id' => $group->id
+                    ]
+                );
+            }
         }
 
         return redirect()->action('GroupController@detail',[$group->id]);

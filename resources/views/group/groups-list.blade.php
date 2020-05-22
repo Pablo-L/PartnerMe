@@ -29,12 +29,15 @@
                 <th>
                     Descripción del grupo
                 </th>
-                <th>
-                    Modificar
-                </th>
-                <th>
-                    Eliminar
-                </th>
+                
+                
+                <th>Modificar</th>
+                
+
+
+                <th>Eliminar</th>
+
+
             </tr>
         </thead>
         <tbody>

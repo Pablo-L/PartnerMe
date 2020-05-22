@@ -34,9 +34,10 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
     display: grid;
     grid-template-columns: 0.5fr 1fr;
-    grid-template-rows: repeat(5, 0fr);
-    grid-template-areas: "nombre nombre"
-                        "imagen descripcion"
+    grid-template-rows: repeat(6, 0fr);
+    grid-template-areas: "imagen imagen"
+                        "nombre nombre"
+                        "descripcion descripcion"
                         "title_intg title_intg"
                         "integrantes integrantes"
                         "turnoAsig   turnoAsig";
@@ -69,7 +70,7 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
 .group-description{
     grid-area: descripcion;
-    justify-self: left;
+    justify-self: center;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
     color: var(--main-gris-oscuro);
@@ -79,9 +80,10 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
 .group-image{
     grid-area: imagen;
-    justify-self: right;
+    justify-self: center;
     height: 150px;
     width: 150px;
+    border-radius: 50%;
     background-color: var(--main-gris);
     font-size: 1em;
     box-sizing: border-box;
@@ -112,17 +114,26 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
     min-width: 35%;
     margin: 1%;
+
+    cursor: pointer;
 }
 
 .group-user-info{
     padding: 0px 10px;
+    font-size: 18px;
 }
 
 .group-user-photo{
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
-    background-color: var(--main-gris);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.group-user-info-alias{
+    font-weight: bold;
+    color: var(--main-gris-oscuro);
 }
 
 .turno_asig{
@@ -157,16 +168,36 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
     color: var(--main-morado);
 }
 
-@media (max-width: 900px){
+@media (max-width: 1400px){
     .group-container{
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 0fr);
-        grid-template-areas:  "nombre"
-                              "imagen"
-                              "descripcion"
-                              "integrantes";
+        grid-template-rows: repeat(6, 0fr);
+        grid-template-areas: "imagen"  
+                             "nombre" 
+                             "descripcion"
+                             "title_intg"
+                             "integrantes"
+                             "turnoAsig";
+
+        width: 90%;
+        margin-bottom: 0;
+        box-shadow: initial;
+        background-color: transparent;
+    }
+
+    .group-integrantes{
+        flex-direction: column;
+    }
+
+    .group-user{
+        margin: 10px 0px;
+    }
+
+    .group-turn, .group-subject{
+        flex-wrap: wrap;
     }
 }
+
 
 /*
 #signup-form{

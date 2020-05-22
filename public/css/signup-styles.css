@@ -34,9 +34,10 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(9, 0fr);
+    grid-template-rows: repeat(10, 0fr);
     grid-template-areas: "titulo titulo"
                          "roles roles"
+                         "photo photo"
                          "nombre apellidos"
                          "correo correo"
                          "pass repass"
@@ -80,6 +81,8 @@ Cuando se use en otras vistas simplemente cambiar el color de fondo
 
 #title{
     grid-area: titulo;
+    margin-bottom: -35px;
+    margin-top: -20px;
     
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -132,6 +135,40 @@ div.rol-box{
 
 div.roles{
     margin: 0px 10px;
+}
+
+#upload-box{
+    grid-area: photo;
+}
+
+.upload-box-select input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-box-select {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#output{
+    background-color: #fff;
+    align-self: center;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.btnUpload {
+    background: none;
+    padding: 5px;
+    margin: 0;
+    color: gray;  
 }
 
 #name-box{grid-area: nombre;}
@@ -229,8 +266,9 @@ div.roles{
     .main-container{background-color: var(--main-gris-oscuro);}
     .signup-container{
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(13, 0fr);
+        grid-template-rows: repeat(14, 0fr);
         grid-template-areas: "titulo"
+                              "photo"  
                              "roles"
                              "nombre"
                              "apellidos"
@@ -265,6 +303,10 @@ div.roles{
     }
 
     #email-box, #description-box{width: 65%;}
+
+    .btnUpload{
+        color: #fff;
+    }
 
     #btnSignup{
         background-color: #fff;

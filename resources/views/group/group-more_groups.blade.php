@@ -1,23 +1,25 @@
 @extends('layouts.master-navbar')
 
-@section('title', 'Tus grupos')
+@section('title', 'Otros grupos')
 
 @section('head')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/group/group-my_groups.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('../../css/group/group-more_groups.css') }}">
 @endsection
 
 @section('content')
 
     <div id="groupContainer">
-        <div id="groupTitle">Tus grupos</div>
+        <div id="groupTitle">Otros grupos</div>
         <a id="groupCreateBtn" href="{{ URL::route('groupCreate') }}">Crear un grupo</a>
         <div id="form">
-        <form action="{{action('GroupController@filteredList')}}" method="POST">
+        <form action="{{action('GroupController@otherFilteredList')}}" method="POST">
             @csrf
+            <label for="nameTb">Nombre:</label>
+            <input type="text" name="nameTb" id="nameTb" value="{{$name}}"> 
             <label for="subject">Asignatura:</label>
             <select name="subject">
-            <option 
+                <option 
                 @if($selected=="nulo")
                 selected 
                 @endif

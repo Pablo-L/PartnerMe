@@ -1,6 +1,6 @@
 @extends('layouts.master-navbar')
 
-@section('title', 'Sobre PartnerMe')
+@section('title', 'Acerca de PartnerMe')
 
 @section('head')
     @parent
